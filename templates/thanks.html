@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tack! - Boden GameFest 2027</title>
+    <style>
+        :root {
+            --bg-color: #0d0e15;
+            --container-bg: #1a1c29;
+            --text-color: #e2e8f0;
+            --accent-primary: #00f0ff;
+            --accent-secondary: #ff0055;
+            --border-color: #2d3748;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .form-container {
+            background-color: var(--container-bg);
+            max-width: 640px;
+            width: 100%;
+            padding: 50px 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.1);
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: var(--accent-primary);
+            font-size: 2em;
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+        }
+
+        .thanks-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, rgba(255, 0, 85, 0.3), rgba(0, 240, 255, 0.2));
+            border: 2px solid var(--accent-primary);
+            color: var(--accent-primary);
+            font-size: 40px;
+            line-height: 76px;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.6);
+        }
+
+        h2 {
+            color: #fff;
+            margin: 0 0 15px;
+        }
+
+        p {
+            color: #94a3b8;
+            font-size: 1.05em;
+            line-height: 1.6;
+        }
+
+        .ref {
+            color: var(--accent-primary);
+            font-weight: bold;
+        }
+
+        .submit-btn {
+            display: inline-block;
+            background: linear-gradient(90deg, #00f0ff 0%, #0080ff 100%);
+            color: #000;
+            font-weight: bold;
+            font-size: 1em;
+            padding: 14px 28px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 240, 255, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <div class="header">
+        <h1>BODEN GAMEFEST 2027</h1>
+    </div>
+
+    <div class="thanks-icon">&#10003;</div>
+    <h2>Tack för din intresseanmälan!</h2>
+    <p>Ditt svar har registrerats (ref. <span class="ref">#{{ response_id }}</span>).</p>
+    <p>Håll ögonen öppna – vi hör av oss när biljetterna släpps!</p>
+
+    <a class="submit-btn" href="{{ url_for('index') }}">Skicka en till anmälan</a>
+</div>
+
+</body>
+</html>

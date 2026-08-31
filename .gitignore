@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+server.log
+data/
+.env
+# Local databases contain real responses (incl. emails) — never commit them.
+survey.db
+*.db-journal
+*.db-wal

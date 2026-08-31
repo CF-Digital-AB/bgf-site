@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intresseanmälan - Boden GameFest 2027</title>
+    <style>
+        :root {
+            --bg-color: #0d0e15;
+            --container-bg: #1a1c29;
+            --text-color: #e2e8f0;
+            --accent-primary: #00f0ff;
+            --accent-secondary: #ff0055;
+            --border-color: #2d3748;
+            --input-bg: #0f111a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .form-container {
+            background-color: var(--container-bg);
+            max-width: 800px;
+            width: 100%;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .header h1 {
+            color: var(--accent-primary);
+            font-size: 2.5em;
+            margin: 0 0 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+        }
+
+        .header p {
+            color: #94a3b8;
+            font-size: 1.1em;
+            margin: 5px 0;
+        }
+
+        .tags {
+            font-size: 0.9em;
+            color: var(--accent-secondary);
+            margin-top: 15px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        label.question-title {
+            display: block;
+            font-weight: 600;
+            font-size: 1.1em;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        input[type="text"], input[type="email"], textarea {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: white;
+            font-size: 1em;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus, input[type="email"]:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 8px rgba(0, 240, 255, 0.2);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .radio-group, .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .radio-label, .checkbox-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            transition: background 0.2s;
+        }
+
+        .radio-label:hover, .checkbox-label:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .radio-label input, .checkbox-label input {
+            margin-right: 10px;
+            accent-color: var(--accent-primary);
+            width: 18px;
+            height: 18px;
+        }
+
+        .highlight-section {
+            background: linear-gradient(145deg, rgba(255, 0, 85, 0.1) 0%, rgba(0, 240, 255, 0.05) 100%);
+            border-left: 4px solid var(--accent-secondary);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 35px 0;
+        }
+
+        .highlight-section .question-title {
+            color: var(--accent-secondary);
+            font-size: 1.2em;
+        }
+
+        .note {
+            font-size: 0.85em;
+            color: #64748b;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        .submit-btn {
+            background: linear-gradient(90deg, #00f0ff 0%, #0080ff 100%);
+            color: #000;
+            font-weight: bold;
+            font-size: 1.2em;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 240, 255, 0.4);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.9em;
+            color: #64748b;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <div class="header">
+        <h1>BODEN GAMEFEST 2027</h1>
+        <p><strong>6–9 MAJ &bull; BODEN</strong></p>
+        <div class="tags">GAMING &bull; LAN &bull; ESPORT &bull; GAME DEV &bull; INDIE &bull; CREATORS</div>
+    </div>
+
+    <form id="gamefestForm" onsubmit="event.preventDefault(); alert('Tack för din intresseanmälan! Formuläret är nu redo att kopplas till en databas (t.ex. via CF Digital AB).');">
+        
+        <div class="form-group">
+            <label class="question-title">1. Ålder/intervall</label>
+            <div class="radio-group">
+                <label class="radio-label"><input type="radio" name="age" value="under_15"> Under 15</label>
+                <label class="radio-label"><input type="radio" name="age" value="15_18"> 15-18</label>
+                <label class="radio-label"><input type="radio" name="age" value="19_25"> 19-25</label>
+                <label class="radio-label"><input type="radio" name="age" value="26_35"> 26-35</label>
+                <label class="radio-label"><input type="radio" name="age" value="36_plus"> 36+</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="question-title">2. Ort (Var bor du?)</label>
+            <input type="text" name="location" placeholder="T.ex. Boden, Luleå, Piteå...">
+        </div>
+
+        <div class="form-group">
+            <label class="question-title">3. Skulle du vilja delta på LAN?</label>
+            <div class="radio-group">
+                <label class="radio-label"><input type="radio" name="lan_attend" value="ja"> Ja</label>
+                <label class="radio-label"><input type="radio" name="lan_attend" value="nej"> Nej</label>
+                <label class="radio-label"><input type="radio" name="lan_attend" value="kanske"> Kanske</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="question-title">4. Skulle du komma som vanlig besökare?</label>
+            <div class="radio-group">
+                <label class="radio-label"><input type="radio" name="visitor" value="ja"> Ja</label>
+                <label class="radio-label"><input type="radio" name="visitor" value="nej"> Nej</label>
+                <label class="radio-label"><input type="radio" name="visitor" value="kanske"> Kanske</label>
+            </div>
+        </div>
+
+        <div class="highlight-section">
+            <label class="question-title">VIKTIG FRÅGA: Vilket av detta skulle få dig att åka till Boden GameFest?</label>
+            <p style="font-size: 0.9em; margin-top: -5px; margin-bottom: 15px; color: #cbd5e1;">Välj allt som stämmer in på dig.</p>
+            <div class="checkbox-group">
+                <label class="checkbox-label"><input type="checkbox" name="reason" value="lan"> LAN & spela med vänner</label>
+                <label class="checkbox-label"><input type="checkbox" name="reason" value="esport"> E-sport turneringar</label>
+                <label class="checkbox-label"><input type="checkbox" name="reason" value="indie"> Indie games-utställning</label>
+                <label class="checkbox-label"><input type="checkbox" name="reason" value="gamedev"> Game-dev & nätverkande</label>
+                <label class="checkbox-label"><input type="checkbox" name="reason" value="lectures"> Föreläsningar & inspiration</label>
+                <label class="checkbox-label"><input type="checkbox" name="reason" value="retro"> Retro-gaming</label>
+                <label class="checkbox-label"><input type="checkbox" name="reason" value="community"> Gemenskapen & stämningen</label>
+            </div>
+            <div style="margin-top: 15px;">
+                <input type="text" name="reason_other" placeholder="Annat... (frivilligt)">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="question-title">5. Vilka spel spelar du?</label>
+            <textarea name="games" placeholder="Dina favoritspel just nu..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label class="question-title">6. Vilka turneringar vill du se?</label>
+            <textarea name="tournaments" placeholder="T.ex. CS2, LoL, Smash Bros..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label class="question-title">7. Vilket av följande är du också intresserad av?</label>
+            <div class="checkbox-group">
+                <label class="checkbox-label"><input type="checkbox" name="interests" value="gamedev"> Game-dev (Spelutveckling)</label>
+                <label class="checkbox-label"><input type="checkbox" name="interests" value="lectures"> Föreläsningar</label>
+                <label class="checkbox-label"><input type="checkbox" name="interests" value="indie"> Indie games</label>
+                <label class="checkbox-label"><input type="checkbox" name="interests" value="retro"> Retro</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="question-title">8. Hur långt skulle du kunna resa?</label>
+            <div class="radio-group">
+                <label class="radio-label"><input type="radio" name="travel" value="local"> Lokalt (Boden/Fyrkanten)</label>
+                <label class="radio-label"><input type="radio" name="travel" value="norrbotten"> Inom Norrbotten</label>
+                <label class="radio-label"><input type="radio" name="travel" value="far"> Utanför länet / Längre</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="question-title">9. Ungefär vilket pris känns rimligt för ett LAN-pass?</label>
+            <input type="text" name="price" placeholder="T.ex. 400-600 kr">
+        </div>
+
+        <div class="form-group">
+            <label class="question-title">10. Vill du hjälpa till som funktionär?</label>
+            <div class="radio-group">
+                <label class="radio-label"><input type="radio" name="volunteer" value="ja"> Ja</label>
+                <label class="radio-label"><input type="radio" name="volunteer" value="nej"> Nej</label>
+                <label class="radio-label"><input type="radio" name="volunteer" value="kanske"> Kanske, berätta mer</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="question-title">11. E-post för information när biljetter släpps (Frivilligt)</label>
+            <input type="email" name="email" placeholder="din.epost@exempel.se">
+            <p class="note">För att undvika att samla onödig persondata används e-postadressen enbart för informationsutskick och raderas därefter. Inga andra uppgifter knyts till dig.</p>
+        </div>
+
+        <button type="submit" class="submit-btn">Skicka Intresseanmälan</button>
+        
+        <div class="footer">
+            Ett gemenskapsevent framtaget av CF Digital AB
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

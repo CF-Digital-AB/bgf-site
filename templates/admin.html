@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin – Boden GameFest 2027</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="admin-body">
+<div class="page">
+
+    <div class="header admin-header">
+        <h1>BODEN GAMEFEST 2027</h1>
+        <div class="subtitle">Admin – Intresseformulär</div>
+        <div class="admin-actions">
+            <a class="btn small" href="{{ url_for('index') }}">Visa formulär</a>
+            <a class="btn small outline" href="{{ url_for('export_csv') }}">Exportera CSV</a>
+        </div>
+    </div>
+
+    <div class="kpi-row">
+        <div class="kpi">
+            <div class="kpi-num">{{ unique_visitors }}</div>
+            <div class="kpi-label">Unika besökare</div>
+            <div class="kpi-sub">idag: {{ visitors_today }}</div>
+        </div>
+        <div class="kpi">
+            <div class="kpi-num">{{ total }}</div>
+            <div class="kpi-label">Totalt inskick</div>
+            <div class="kpi-sub">{{ total }} svar av {{ unique_visitors }} besökare</div>
+        </div>
+        <div class="kpi">
+            <div class="kpi-num">{{ with_email }}</div>
+            <div class="kpi-label">Med e-post</div>
+        </div>
+        <div class="kpi">
+            <div class="kpi-num">{% if total %}{{ (stats.volunteer.counts['Ja']|float / total * 100)|round(0) }}{% else %}0{% endif %}%</div>
+            <div class="kpi-label">Vill vara funktionär</div>
+        </div>
+    </div>
+
+    {% macro bar_block(title, stat, note='') %}
+    <section class="card">
+        <h3>{{ title }}{% if note %} <span class="muted">({{ note }})</span>{% endif %}</h3>
+        {% for opt, count in stat.counts.items() %}
+        <div class="bar-row">
+            <div class="bar-label">{{ opt }}</div>
+            <div class="bar-track">
+                <div class="bar-fill" style="width: {{ (count|float / stat.total * 100) if stat.total else 0 }}%"></div>
+            </div>
+            <div class="bar-count">{{ count }}</div>
+        </div>
+        {% endfor %}
+    </section>
+    {% endmacro %}
+
+    <div class="stats-grid">
+        {{ bar_block('1. Ålder', stats.age_group) }}
+        {{ bar_block('3. Delta på LAN?', stats.want_lan) }}
+        {{ bar_block('4. Vanlig besökare?', stats.regular_visitor) }}
+        {{ bar_block('Viktig fråga – vad får dig att åka?', stats.motivation, 'flera val') }}
+        {{ bar_block('7. Övrigt intresse', stats.interests, 'flera val') }}
+        {{ bar_block('8. Resevilja', stats.travel_distance) }}
+        {{ bar_block('10. Funktionär?', stats.volunteer) }}
+    </div>
+
+    <section class="card">
+        <h3>Alla svar ({{ total }})</h3>
+        {% if responses %}
+        <div class="table-wrap">
+            <table class="resp-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Datum</th>
+                        <th>Ålder</th>
+                        <th>Ort</th>
+                        <th>LAN</th>
+                        <th>Besökare</th>
+                        <th>Vad får dig att åka?</th>
+                        <th>Spel</th>
+                        <th>Turneringar</th>
+                        <th>Intresse</th>
+                        <th>Resa</th>
+                        <th>Pris</th>
+                        <th>Funktionär</th>
+                        <th>E-post</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for r in responses %}
+                    <tr>
+                        <td>{{ r['id'] }}</td>
+                        <td class="nowrap">{{ r['created_at'][:16] }}</td>
+                        <td>{{ r['age_group'] or '–' }}</td>
+                        <td>{{ r['location'] or '–' }}</td>
+                        <td>{{ r['want_lan'] or '–' }}</td>
+                        <td>{{ r['regular_visitor'] or '–' }}</td>
+                        <td class="wrap">{{ (r['motivation'] + ((' – Annat: ' ~ r['motivation_other']) if r['motivation_other'] else '')).replace(',', ', ') or '–' }}</td>
+                        <td class="wrap">{{ r['games_played'] or '–' }}</td>
+                        <td class="wrap">{{ r['tournaments_want'] or '–' }}</td>
+                        <td class="wrap">{{ (r['interests'] or '').replace(',', ', ') or '–' }}</td>
+                        <td class="nowrap">{{ r['travel_distance'] or '–' }}</td>
+                        <td>{{ r['lan_price'] or '–' }}</td>
+                        <td>{{ r['volunteer'] or '–' }}</td>
+                        <td class="wrap">{{ r['email'] or '–' }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <p class="muted">Inga svar ännu. <a href="{{ url_for('index') }}">Fyll i formuläret</a> för att testa.</p>
+        {% endif %}
+    </section>
+
+</div>
+</body>
+</html>
