@@ -231,6 +231,26 @@ input[type="radio"], input[type="checkbox"] {
 .nowrap { white-space: nowrap; }
 .wrap { max-width: 260px; }
 
+/* Delete button column */
+.col-del { width: 46px; text-align: center; white-space: nowrap; }
+.resp-table th.col-del { text-align: center; font-size: 12px; text-transform: uppercase; letter-spacing: .5px; }
+.del-btn {
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    font-size: 15px;
+    line-height: 1;
+    padding: 5px 8px;
+    cursor: pointer;
+    opacity: .55;
+    transition: opacity .15s ease, background .15s ease, border-color .15s ease;
+}
+.del-btn:hover {
+    opacity: 1;
+    background: #fdecec;
+    border-color: #e3a3a3;
+}
+
 @media (max-width: 960px) {
     .kpi-row { grid-template-columns: repeat(2, 1fr); }
 }

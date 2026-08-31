@@ -5,6 +5,7 @@ A small Flask app that:
   * stores every submission in a local SQLite database (``survey.db``)
   * shows an admin dashboard at ``/admin`` with counts + all answers
   * exports all responses as CSV at ``/admin/export.csv``
+  * deletes an individual response from the admin dashboard (``/admin/delete/<id>``)
 
 Run with:   .venv/bin/python app.py
 Then open: http://127.0.0.1:5000/          (survey)
@@ -395,6 +396,19 @@ def export_csv():
         mimetype="text/csv",
         headers={"Content-Disposition": "attachment; filename=bgf2027_responses.csv"},
     )
+
+
+@app.route("/admin/delete/<int:response_id>", methods=["POST"])
+def admin_delete(response_id):
+    """Delete a single survey response by id (admin only)."""
+    db = get_db()
+    cur = db.execute("DELETE FROM responses WHERE id = ?", (response_id,))
+    db.commit()
+    if cur.rowcount:
+        flash(f"Svar #{response_id} raderades.", "success")
+    else:
+        flash(f"Hittade inget svar med id #{response_id}.", "error")
+    return redirect(url_for("admin"))
 
 
 init_db()

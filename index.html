@@ -108,22 +108,29 @@
           <span class="font-display font-black text-xl tracking-wider text-white flex items-center gap-1.5">
             BODEN <span class="text-cyber-yellow">GAMEFEST</span>
           </span>
-          <span class="text-[10px] font-tech font-bold tracking-widest text-cyber-cyan block uppercase">6–9 Maj 2027</span>
+          <span class="text-[10px] font-tech font-bold tracking-widest text-cyber-cyan block uppercase" data-i18n="nav-datesub">6–9 Maj 2027</span>
         </div>
       </a>
 
       <!-- Desktop Nav links -->
       <nav class="hidden md:flex items-center gap-8 font-tech text-lg font-semibold tracking-wider uppercase text-gray-300">
-        <a href="#about" class="hover:text-cyber-cyan transition-colors">Om Eventet</a>
-        <a href="#zones" class="hover:text-cyber-yellow transition-colors">Zoner & Aktiviteter</a>
-        <a href="#tournaments" class="hover:text-cyber-magenta transition-colors">Turneringar</a>
-        <a href="#faq" class="hover:text-cyber-cyan transition-colors">FAQ</a>
+        <a href="#about" class="hover:text-cyber-cyan transition-colors" data-i18n="nav-about">Om Eventet</a>
+        <a href="#zones" class="hover:text-cyber-yellow transition-colors" data-i18n="nav-zones">Zoner & Aktiviteter</a>
+        <a href="#tournaments" class="hover:text-cyber-magenta transition-colors" data-i18n="nav-tournaments">Turneringar</a>
+        <a href="#faq" class="hover:text-cyber-cyan transition-colors" data-i18n="nav-faq">FAQ</a>
       </nav>
 
-      <!-- CTA Button -->
+      <!-- CTA Button + Language Switch -->
       <div class="flex items-center gap-3">
+
+        <!-- SV / EN Language Toggle -->
+        <div id="langToggle" class="flex items-center gap-0.5 bg-cyber-card border border-cyber-border rounded-md p-0.5 text-xs font-tech font-bold" role="group" aria-label="Språk / Language">
+          <button type="button" data-lang="sv" class="lang-btn px-2 py-1 rounded bg-cyber-cyan text-black" aria-label="Svenska">SV</button>
+          <button type="button" data-lang="en" class="lang-btn px-2 py-1 rounded text-gray-400 hover:text-white" aria-label="English">EN</button>
+        </div>
+
         <a href="#survey" class="relative group inline-flex items-center gap-2 px-5 py-2.5 rounded-md font-tech font-bold text-sm tracking-wider uppercase overflow-hidden transition-all bg-gradient-to-r from-cyber-yellow to-cyber-magenta text-black hover:shadow-glow-yellow hover:scale-[1.02] active:scale-95">
-          <span>Intresseanmälan</span>
+          <span data-i18n="nav-cta">Intresseanmälan</span>
           <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
           </svg>
@@ -141,11 +148,11 @@
 
     <!-- Mobile Dropdown -->
     <div id="mobileMenu" class="hidden md:hidden bg-cyber-dark border-b border-cyber-border px-4 pt-3 pb-6 space-y-3 font-tech uppercase tracking-wider text-base">
-      <a href="#about" class="block py-2 text-gray-300 hover:text-cyber-cyan">Om Eventet</a>
-      <a href="#zones" class="block py-2 text-gray-300 hover:text-cyber-yellow">Zoner & Aktiviteter</a>
-      <a href="#tournaments" class="block py-2 text-gray-300 hover:text-cyber-magenta">Turneringar</a>
-      <a href="#faq" class="block py-2 text-gray-300 hover:text-cyber-cyan">FAQ</a>
-      <a href="#survey" class="block py-2 text-cyber-yellow font-bold">Gå till formulär →</a>
+      <a href="#about" class="block py-2 text-gray-300 hover:text-cyber-cyan" data-i18n="nav-about">Om Eventet</a>
+      <a href="#zones" class="block py-2 text-gray-300 hover:text-cyber-yellow" data-i18n="nav-zones">Zoner & Aktiviteter</a>
+      <a href="#tournaments" class="block py-2 text-gray-300 hover:text-cyber-magenta" data-i18n="nav-tournaments">Turneringar</a>
+      <a href="#faq" class="block py-2 text-gray-300 hover:text-cyber-cyan" data-i18n="nav-faq">FAQ</a>
+      <a href="#survey" class="block py-2 text-cyber-yellow font-bold" data-i18n="nav-goform">Gå till formulär →</a>
     </div>
   </header>
 
@@ -158,7 +165,7 @@
         <!-- Pre-title Pill -->
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full badge-glitch text-cyber-cyan font-tech font-bold text-sm tracking-widest uppercase mb-2">
           <span class="w-2 h-2 rounded-full bg-cyber-cyan animate-ping"></span>
-          Norra Sveriges Största Mötesplats för Spelkultur
+          <span data-i18n="hero-pill">Norra Sveriges Största Mötesplats för Spelkultur</span>
         </div>
 
         <!-- Main Title -->
@@ -178,7 +185,7 @@
           <span class="text-cyber-magenta">CONNECT</span>
         </p>
 
-        <p class="text-base sm:text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+        <p class="text-base sm:text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed" data-i18n-html="hero-sub">
           En 4-dagars festival i Boden fylld av non-stop <strong>LAN</strong>, <strong>e-sportturneringar</strong>, <strong>indie-utvecklare</strong>, <strong>föreläsningar</strong> och <strong>retroarkader</strong>. Var med och forma framtidens spelhelg!
         </p>
 
@@ -191,8 +198,8 @@
               </svg>
             </div>
             <div>
-              <span class="text-xs text-gray-400 uppercase font-tech tracking-wider block">Datum</span>
-              <span class="font-tech font-bold text-xl text-white">6–9 MAJ 2027</span>
+              <span class="text-xs text-gray-400 uppercase font-tech tracking-wider block" data-i18n="hero-date">Datum</span>
+              <span class="font-tech font-bold text-xl text-white" data-i18n="hero-datetext">6–9 MAJ 2027</span>
             </div>
           </div>
           <div class="h-8 w-[1px] bg-cyber-border hidden sm:block"></div>
@@ -204,41 +211,41 @@
               </svg>
             </div>
             <div>
-              <span class="text-xs text-gray-400 uppercase font-tech tracking-wider block">Plats</span>
-              <span class="font-tech font-bold text-xl text-white">BODEN, SVERIGE</span>
+              <span class="text-xs text-gray-400 uppercase font-tech tracking-wider block" data-i18n="hero-place">Plats</span>
+              <span class="font-tech font-bold text-xl text-white" data-i18n="hero-placetext">BODEN, SVERIGE</span>
             </div>
           </div>
         </div>
 
         <!-- Action CTAs -->
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-          <a href="#survey" class="w-full sm:w-auto px-8 py-4 rounded-lg bg-gradient-to-r from-cyber-cyan via-cyber-purple to-cyber-magenta font-display text-sm tracking-wider font-bold text-white shadow-glow-cyan hover:scale-105 active:scale-95 transition-all">
+          <a href="#survey" class="w-full sm:w-auto px-8 py-4 rounded-lg bg-gradient-to-r from-cyber-cyan via-cyber-purple to-cyber-magenta font-display text-sm tracking-wider font-bold text-white shadow-glow-cyan hover:scale-105 active:scale-95 transition-all" data-i18n="hero-cta1">
             Fyll i intresseanmälan
           </a>
-          <a href="#zones" class="w-full sm:w-auto px-8 py-4 rounded-lg bg-cyber-card border border-cyber-border hover:border-cyber-cyan text-gray-300 hover:text-white font-tech text-lg font-bold uppercase tracking-wider transition-all">
+          <a href="#zones" class="w-full sm:w-auto px-8 py-4 rounded-lg bg-cyber-card border border-cyber-border hover:border-cyber-cyan text-gray-300 hover:text-white font-tech text-lg font-bold uppercase tracking-wider transition-all" data-i18n="hero-cta2">
             Utforska Zoner & Program
           </a>
         </div>
 
         <!-- Live Countdown Timer -->
         <div class="pt-8">
-          <p class="text-xs font-tech uppercase tracking-widest text-gray-400 mb-3">Nedräkning till öppning</p>
+          <p class="text-xs font-tech uppercase tracking-widest text-gray-400 mb-3" data-i18n="hero-countdown">Nedräkning till öppning</p>
           <div class="grid grid-cols-4 gap-2 sm:gap-4 max-w-md mx-auto">
             <div class="bg-cyber-dark border border-cyber-border p-3 rounded-lg">
               <span id="days" class="font-display text-2xl sm:text-3xl font-bold text-cyber-yellow">---</span>
-              <span class="block text-[10px] sm:text-xs text-gray-400 uppercase font-tech mt-1">Dagar</span>
+              <span class="block text-[10px] sm:text-xs text-gray-400 uppercase font-tech mt-1" data-i18n="hero-days">Dagar</span>
             </div>
             <div class="bg-cyber-dark border border-cyber-border p-3 rounded-lg">
               <span id="hours" class="font-display text-2xl sm:text-3xl font-bold text-cyber-cyan">--</span>
-              <span class="block text-[10px] sm:text-xs text-gray-400 uppercase font-tech mt-1">Timmar</span>
+              <span class="block text-[10px] sm:text-xs text-gray-400 uppercase font-tech mt-1" data-i18n="hero-hours">Timmar</span>
             </div>
             <div class="bg-cyber-dark border border-cyber-border p-3 rounded-lg">
               <span id="minutes" class="font-display text-2xl sm:text-3xl font-bold text-cyber-magenta">--</span>
-              <span class="block text-[10px] sm:text-xs text-gray-400 uppercase font-tech mt-1">Minuter</span>
+              <span class="block text-[10px] sm:text-xs text-gray-400 uppercase font-tech mt-1" data-i18n="hero-minutes">Minuter</span>
             </div>
             <div class="bg-cyber-dark border border-cyber-border p-3 rounded-lg">
               <span id="seconds" class="font-display text-2xl sm:text-3xl font-bold text-white">--</span>
-              <span class="block text-[10px] sm:text-xs text-gray-400 uppercase font-tech mt-1">Sekunder</span>
+              <span class="block text-[10px] sm:text-xs text-gray-400 uppercase font-tech mt-1" data-i18n="hero-seconds">Sekunder</span>
             </div>
           </div>
         </div>
@@ -250,20 +257,20 @@
     <section class="border-y border-cyber-border bg-cyber-dark/60 py-6">
       <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
         <div>
-          <div class="font-display text-3xl font-bold text-cyber-yellow">4 DAGAR</div>
-          <div class="text-xs font-tech text-gray-400 uppercase tracking-widest mt-1">Dygnet-runt Festival</div>
+          <div class="font-display text-3xl font-bold text-cyber-yellow" data-i18n="pillars-1a">4 DAGAR</div>
+          <div class="text-xs font-tech text-gray-400 uppercase tracking-widest mt-1" data-i18n="pillars-1b">Dygnet-runt Festival</div>
         </div>
         <div>
           <div class="font-display text-3xl font-bold text-cyber-cyan">LAN-PARTY</div>
-          <div class="text-xs font-tech text-gray-400 uppercase tracking-widest mt-1">Blixtsnabb Fiber & Gigantisk Sal</div>
+          <div class="text-xs font-tech text-gray-400 uppercase tracking-widest mt-1" data-i18n="pillars-2b">Blixtsnabb Fiber & Gigantisk Sal</div>
         </div>
         <div>
           <div class="font-display text-3xl font-bold text-cyber-magenta">ESPORT & DEV</div>
-          <div class="text-xs font-tech text-gray-400 uppercase tracking-widest mt-1">Turneringar & Föreläsningar</div>
+          <div class="text-xs font-tech text-gray-400 uppercase tracking-widest mt-1" data-i18n="pillars-3b">Turneringar & Föreläsningar</div>
         </div>
         <div>
           <div class="font-display text-3xl font-bold text-purple-400">COMMUNITY</div>
-          <div class="text-xs font-tech text-gray-400 uppercase tracking-widest mt-1">Skapat För Alla Spelälskare</div>
+          <div class="text-xs font-tech text-gray-400 uppercase tracking-widest mt-1" data-i18n="pillars-4b">Skapat För Alla Spelälskare</div>
         </div>
       </div>
     </section>
@@ -272,16 +279,16 @@
     <section id="about" class="py-20 px-4 max-w-7xl mx-auto">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <div class="lg:col-span-6 space-y-6">
-          <div class="inline-block px-3 py-1 bg-cyber-cyan/10 border border-cyber-cyan/30 text-cyber-cyan font-tech font-bold text-sm tracking-widest uppercase rounded">
+          <div class="inline-block px-3 py-1 bg-cyber-cyan/10 border border-cyber-cyan/30 text-cyber-cyan font-tech font-bold text-sm tracking-widest uppercase rounded" data-i18n="about-badge">
             Bakgrund & Vision
           </div>
           <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight">
-            ÅTERUPPLIVA DEN ÄKTA <span class="text-cyber-yellow">LAN-MAGIN</span>
+            <span data-i18n="about-h2pre">ÅTERUPPLIVA DEN ÄKTA</span> <span class="text-cyber-yellow" data-i18n="about-h2gold">LAN-MAGIN</span>
           </h2>
-          <p class="text-gray-300 leading-relaxed">
+          <p class="text-gray-300 leading-relaxed" data-i18n="about-p1">
             Kommer du ihåg de sena nätterna med datorn inkopplad, skratten, de episka matcherna med vännerna och doften av varm pizza över tangentbordet?
           </p>
-          <p class="text-gray-400 leading-relaxed">
+          <p class="text-gray-400 leading-relaxed" data-i18n-html="about-p2">
             <strong>Boden GameFest 2027</strong> tar det bästa från de legendariska LAN-partyna och kombinerar det med modern e-sport, spelutveckling, indie-shower, föreläsningar och en pulserande mötesplats för både unga, erfarna och familjer.
           </p>
           
@@ -289,15 +296,15 @@
             <div class="flex items-start gap-3 p-3 bg-cyber-card rounded-lg border border-cyber-border">
               <span class="text-cyber-yellow text-xl">⚡</span>
               <div>
-                <h4 class="font-tech font-bold text-white uppercase text-base">För Gamers</h4>
-                <p class="text-xs text-gray-400">Rigga upp din dator eller konsol och gamea hela helgen non-stop.</p>
+                <h4 class="font-tech font-bold text-white uppercase text-base" data-i18n="about-card1h">För Gamers</h4>
+                <p class="text-xs text-gray-400" data-i18n="about-card1b">Rigga upp din dator eller konsol och gamea hela helgen non-stop.</p>
               </div>
             </div>
             <div class="flex items-start gap-3 p-3 bg-cyber-card rounded-lg border border-cyber-border">
               <span class="text-cyber-cyan text-xl">🎮</span>
               <div>
-                <h4 class="font-tech font-bold text-white uppercase text-base">För Skapare</h4>
-                <p class="text-xs text-gray-400">Träffa spelstudios, visa upp ditt projekt och lär dig game dev från proffs.</p>
+                <h4 class="font-tech font-bold text-white uppercase text-base" data-i18n="about-card2h">För Skapare</h4>
+                <p class="text-xs text-gray-400" data-i18n="about-card2b">Träffa spelstudios, visa upp ditt projekt och lär dig game dev från proffs.</p>
               </div>
             </div>
           </div>
@@ -320,24 +327,24 @@
               <ul class="space-y-3 font-tech text-lg text-gray-300">
                 <li class="flex items-center gap-3">
                   <span class="w-6 h-6 rounded bg-cyber-dark flex items-center justify-center text-cyber-cyan font-bold text-xs border border-cyber-border">01</span>
-                  <span><strong>Massiv LAN-hall:</strong> Med el, fiber & bekväma platser.</span>
+                  <span data-i18n-html="about-hl1"><strong>Massiv LAN-hall:</strong> Med el, fiber & bekväma platser.</span>
                 </li>
                 <li class="flex items-center gap-3">
                   <span class="w-6 h-6 rounded bg-cyber-dark flex items-center justify-center text-cyber-magenta font-bold text-xs border border-cyber-border">02</span>
-                  <span><strong>E-sport Scen:</strong> Storbildsskärmar, finaler och live-kommentatorer.</span>
+                  <span data-i18n-html="about-hl2"><strong>E-sport Scen:</strong> Storbildsskärmar, finaler och live-kommentatorer.</span>
                 </li>
                 <li class="flex items-center gap-3">
                   <span class="w-6 h-6 rounded bg-cyber-dark flex items-center justify-center text-cyber-yellow font-bold text-xs border border-cyber-border">03</span>
-                  <span><strong>Game Dev Talks:</strong> Föreläsningar från 'Concept to Launch'.</span>
+                  <span data-i18n-html="about-hl3"><strong>Game Dev Talks:</strong> Föreläsningar från 'Concept to Launch'.</span>
                 </li>
                 <li class="flex items-center gap-3">
                   <span class="w-6 h-6 rounded bg-cyber-dark flex items-center justify-center text-purple-400 font-bold text-xs border border-cyber-border">04</span>
-                  <span><strong>Indie & Retro Arcade:</strong> Testspela och minns guldåldern.</span>
+                  <span data-i18n-html="about-hl4"><strong>Indie & Retro Arcade:</strong> Testspela och minns guldåldern.</span>
                 </li>
               </ul>
 
               <div class="pt-4 mt-4 border-t border-cyber-border/60 text-center">
-                <p class="text-xs text-gray-400 italic">Ett gemenskapsevent initierat av CF Digital AB tillsammans med Norrbottens gaming-community.</p>
+                <p class="text-xs text-gray-400 italic" data-i18n="about-note">Ett gemenskapsevent initierat av CF Digital AB tillsammans med Norrbottens gaming-community.</p>
               </div>
             </div>
           </div>
@@ -349,13 +356,13 @@
     <section id="zones" class="py-20 px-4 bg-cyber-dark/40 border-t border-cyber-border">
       <div class="max-w-7xl mx-auto space-y-12">
         <div class="text-center space-y-4">
-          <div class="inline-block px-3 py-1 bg-cyber-yellow/10 border border-cyber-yellow/30 text-cyber-yellow font-tech font-bold text-sm tracking-widest uppercase rounded">
+          <div class="inline-block px-3 py-1 bg-cyber-yellow/10 border border-cyber-yellow/30 text-cyber-yellow font-tech font-bold text-sm tracking-widest uppercase rounded" data-i18n="zones-badge">
             Vad händer på plats?
           </div>
           <h2 class="font-display text-3xl sm:text-5xl font-black text-white">
-            UTFORSKA VÅRA <span class="text-cyber-cyan">ZONER</span>
+            <span data-i18n="zones-h2pre">UTFORSKA VÅRA</span> <span class="text-cyber-cyan" data-i18n="zones-h2gold">ZONER</span>
           </h2>
-          <p class="text-gray-400 max-w-2xl mx-auto">
+          <p class="text-gray-400 max-w-2xl mx-auto" data-i18n="zones-sub">
             Oavsett om du vill krossa motståndet i LAN-salen, knyta kontakter i spelbranschen eller bara strosa runt och uppleva atmosfären.
           </p>
         </div>
@@ -369,7 +376,7 @@
               💻
             </div>
             <h3 class="font-display font-bold text-xl text-white mb-2 group-hover:text-cyber-cyan transition-colors">LAN PARTY</h3>
-            <p class="text-sm text-gray-400 leading-relaxed">
+            <p class="text-sm text-gray-400 leading-relaxed" data-i18n="zone1">
               Ta med din burk, rigga upp med polarna och spela hela helgen. Dygnet runt-support, stabil strömförsörjning och blixtsnabbt nätverk.
             </p>
           </div>
@@ -380,7 +387,7 @@
               🏆
             </div>
             <h3 class="font-display font-bold text-xl text-white mb-2 group-hover:text-cyber-magenta transition-colors">TOURNAMENTS</h3>
-            <p class="text-sm text-gray-400 leading-relaxed">
+            <p class="text-sm text-gray-400 leading-relaxed" data-i18n="zone2">
               Tävla i CS2, Rocket League, Fortnite, Smash Bros och mer. Livefinaler på stora scenen med ära, publikjubel och feta prispotter.
             </p>
           </div>
@@ -391,7 +398,7 @@
               💡
             </div>
             <h3 class="font-display font-bold text-xl text-white mb-2 group-hover:text-cyber-yellow transition-colors">TALKS & PANELS</h3>
-            <p class="text-sm text-gray-400 leading-relaxed">
+            <p class="text-sm text-gray-400 leading-relaxed" data-i18n="zone3">
               Inspireras av branschveteraner och spelutvecklare. Föreläsningar om programmering, 3D-grafik, ljuddesign och hur du bygger en karriär inom gaming.
             </p>
           </div>
@@ -402,7 +409,7 @@
               🎨
             </div>
             <h3 class="font-display font-bold text-xl text-white mb-2 group-hover:text-purple-400 transition-colors">INDIE GAMES</h3>
-            <p class="text-sm text-gray-400 leading-relaxed">
+            <p class="text-sm text-gray-400 leading-relaxed" data-i18n="zone4">
               Spela kommande pärlor och unika koncept direkt från oberoende spelutvecklare och studenter. Ge feedback direkt till skaparna!
             </p>
           </div>
@@ -413,7 +420,7 @@
               🎙️
             </div>
             <h3 class="font-display font-bold text-xl text-white mb-2 group-hover:text-blue-400 transition-colors">CREATORS & STREAMERS</h3>
-            <p class="text-sm text-gray-400 leading-relaxed">
+            <p class="text-sm text-gray-400 leading-relaxed" data-i18n="zone5">
               Möt dina favoritstreamers, upptäck nya profiler, delta i meet & greets och se live-sändningar direkt från festivalgolvet.
             </p>
           </div>
@@ -424,7 +431,7 @@
               👾
             </div>
             <h3 class="font-display font-bold text-xl text-white mb-2 group-hover:text-green-400 transition-colors">RETRO ARCADE</h3>
-            <p class="text-sm text-gray-400 leading-relaxed">
+            <p class="text-sm text-gray-400 leading-relaxed" data-i18n="zone6">
               Kliv tillbaka i tiden med klassiska arkadkabinett, CRT-skärmar, NES, SNES, N64 och PlayStation 1 & 2. Ren och skär nostalgi.
             </p>
           </div>
@@ -439,16 +446,16 @@
         
         <!-- Header of form -->
         <div class="text-center space-y-3 pb-8 border-b border-cyber-border">
-          <span class="inline-block px-3 py-1 bg-cyber-magenta/10 border border-cyber-magenta/40 text-cyber-magenta font-tech font-bold text-xs tracking-widest uppercase rounded">
+          <span class="inline-block px-3 py-1 bg-cyber-magenta/10 border border-cyber-magenta/40 text-cyber-magenta font-tech font-bold text-xs tracking-widest uppercase rounded" data-i18n="survey-badge">
             Forma festivalen
           </span>
-          <h2 class="font-display text-2xl sm:text-4xl font-black text-white">
+          <h2 class="font-display text-2xl sm:text-4xl font-black text-white" data-i18n="survey-h2">
             ÄR DU INTRESSERAD?
           </h2>
-          <p class="font-tech text-lg text-cyber-yellow font-bold uppercase tracking-wider">
+          <p class="font-tech text-lg text-cyber-yellow font-bold uppercase tracking-wider" data-i18n="survey-tagline">
             Intresseformulär • Boden GameFest 2027
           </p>
-          <p class="text-sm text-gray-400 max-w-xl mx-auto">
+          <p class="text-sm text-gray-400 max-w-xl mx-auto" data-i18n="survey-sub">
             Dina svar hjälper oss att planera storlek på LAN-salen, vilka turneringar vi ska satsa på och vilket innehåll som lockar mest.
           </p>
         </div>
@@ -459,12 +466,12 @@
             ✓
           </div>
           <div class="space-y-2">
-            <h3 class="font-display font-bold text-2xl text-white">TACK FÖR DITT SVAR!</h3>
-            <p class="text-gray-300 max-w-md mx-auto text-sm">
+            <h3 class="font-display font-bold text-2xl text-white" data-i18n="survey-succ-h">TACK FÖR DITT SVAR!</h3>
+            <p class="text-gray-300 max-w-md mx-auto text-sm" data-i18n-html="survey-succ-b">
               Din feedback är guld värd för oss när vi bygger <strong>Boden GameFest 2027</strong>. Om du angav din e-post kommer du vara först med att få veta när biljetter och turneringar släpps!
             </p>
           </div>
-          <button id="resetFormBtn" class="px-6 py-2.5 rounded bg-cyber-dark border border-cyber-border text-xs uppercase font-tech font-bold text-cyber-cyan hover:border-cyber-cyan">
+          <button id="resetFormBtn" class="px-6 py-2.5 rounded bg-cyber-dark border border-cyber-border text-xs uppercase font-tech font-bold text-cyber-cyan hover:border-cyber-cyan" data-i18n="survey-succ-btn">
             Skicka in ett till svar
           </button>
         </div>
@@ -474,7 +481,7 @@
 
           <!-- 1. Ålder/intervall -->
           <div class="space-y-3">
-            <label class="block font-tech text-lg font-bold text-white uppercase tracking-wider">
+            <label class="block font-tech text-lg font-bold text-white uppercase tracking-wider" data-i18n="q1">
               1. Ålder / Intervall
             </label>
             <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
@@ -503,10 +510,10 @@
 
           <!-- 2. Ort -->
           <div class="space-y-2">
-            <label for="locationInput" class="block font-tech text-lg font-bold text-white uppercase tracking-wider">
+            <label for="locationInput" class="block font-tech text-lg font-bold text-white uppercase tracking-wider" data-i18n="q2">
               2. Ort (Var bor du?)
             </label>
-            <input type="text" id="locationInput" name="location" placeholder="T.ex. Boden, Luleå, Piteå, Umeå..." class="w-full px-4 py-3 rounded-lg bg-cyber-dark border border-cyber-border focus:border-cyber-cyan focus:ring-1 focus:ring-cyber-cyan text-white placeholder-gray-500 outline-none text-sm transition-all" />
+            <input type="text" id="locationInput" name="location" placeholder="T.ex. Boden, Luleå, Piteå, Umeå..." data-i18n-placeholder="q2-ph" class="w-full px-4 py-3 rounded-lg bg-cyber-dark border border-cyber-border focus:border-cyber-cyan focus:ring-1 focus:ring-cyber-cyan text-white placeholder-gray-500 outline-none text-sm transition-all" />
           </div>
 
           <!-- 3 & 4. Deltagande / Besökare i 2 kolumner -->
@@ -514,42 +521,42 @@
             
             <!-- 3. Delta på LAN -->
             <div class="space-y-3">
-              <label class="block font-tech text-lg font-bold text-white uppercase tracking-wider">
+              <label class="block font-tech text-lg font-bold text-white uppercase tracking-wider" data-i18n="q3">
                 3. Skulle du vilja delta på LAN?
               </label>
               <div class="grid grid-cols-3 gap-2">
                 <label class="flex items-center justify-center gap-2 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer text-sm font-medium">
                   <input type="radio" name="lan_attend" value="ja" class="accent-cyber-yellow" />
-                  <span>Ja</span>
+                  <span data-i18n="yn-ja">Ja</span>
                 </label>
                 <label class="flex items-center justify-center gap-2 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer text-sm font-medium">
                   <input type="radio" name="lan_attend" value="nej" class="accent-cyber-yellow" />
-                  <span>Nej</span>
+                  <span data-i18n="yn-nej">Nej</span>
                 </label>
                 <label class="flex items-center justify-center gap-2 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer text-sm font-medium">
                   <input type="radio" name="lan_attend" value="kanske" class="accent-cyber-yellow" />
-                  <span>Kanske</span>
+                  <span data-i18n="yn-kanske">Kanske</span>
                 </label>
               </div>
             </div>
 
             <!-- 4. Vanlig besökare -->
             <div class="space-y-3">
-              <label class="block font-tech text-lg font-bold text-white uppercase tracking-wider">
+              <label class="block font-tech text-lg font-bold text-white uppercase tracking-wider" data-i18n="q4">
                 4. Skulle du komma som vanlig besökare?
               </label>
               <div class="grid grid-cols-3 gap-2">
                 <label class="flex items-center justify-center gap-2 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer text-sm font-medium">
                   <input type="radio" name="visitor" value="ja" class="accent-cyber-yellow" />
-                  <span>Ja</span>
+                  <span data-i18n="yn-ja">Ja</span>
                 </label>
                 <label class="flex items-center justify-center gap-2 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer text-sm font-medium">
                   <input type="radio" name="visitor" value="nej" class="accent-cyber-yellow" />
-                  <span>Nej</span>
+                  <span data-i18n="yn-nej">Nej</span>
                 </label>
                 <label class="flex items-center justify-center gap-2 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer text-sm font-medium">
                   <input type="radio" name="visitor" value="kanske" class="accent-cyber-yellow" />
-                  <span>Kanske</span>
+                  <span data-i18n="yn-kanske">Kanske</span>
                 </label>
               </div>
             </div>
@@ -559,107 +566,107 @@
           <!-- ⭐ VIKTIG FRÅGA SECTION (Framhävd box) -->
           <div class="p-6 rounded-xl bg-gradient-to-r from-cyber-magenta/10 via-cyber-dark to-cyber-cyan/10 border-2 border-cyber-magenta/60 shadow-glow-magenta space-y-4">
             <div class="flex items-center gap-2 text-cyber-magenta font-tech font-bold text-sm uppercase tracking-widest">
-              <span>⭐</span> VIKTIG FRÅGA
+              <span>⭐</span> <span data-i18n="imp-title">VIKTIG FRÅGA</span>
             </div>
-            <label class="block font-display text-lg sm:text-xl font-bold text-white leading-snug">
+            <label class="block font-display text-lg sm:text-xl font-bold text-white leading-snug" data-i18n="imp-q">
               Vilket av detta skulle få dig att åka till Boden GameFest?
             </label>
-            <p class="text-xs text-gray-300">Kryssa i alla alternativ som stämmer in på dig.</p>
+            <p class="text-xs text-gray-300" data-i18n="imp-hint">Kryssa i alla alternativ som stämmer in på dig.</p>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
               <label class="flex items-center gap-3 p-3 bg-cyber-card/90 rounded-lg border border-cyber-border hover:border-cyber-magenta cursor-pointer transition-colors text-sm">
                 <input type="checkbox" name="reasons" value="lan_vanner" class="accent-cyber-magenta w-4 h-4" />
-                <span>LAN & spela dygnet runt med vänner</span>
+                <span data-i18n="imp-o1">LAN & spela dygnet runt med vänner</span>
               </label>
               <label class="flex items-center gap-3 p-3 bg-cyber-card/90 rounded-lg border border-cyber-border hover:border-cyber-magenta cursor-pointer transition-colors text-sm">
                 <input type="checkbox" name="reasons" value="esport" class="accent-cyber-magenta w-4 h-4" />
-                <span>E-sport turneringar & scenfinaler</span>
+                <span data-i18n="imp-o2">E-sport turneringar & scenfinaler</span>
               </label>
               <label class="flex items-center gap-3 p-3 bg-cyber-card/90 rounded-lg border border-cyber-border hover:border-cyber-magenta cursor-pointer transition-colors text-sm">
                 <input type="checkbox" name="reasons" value="indie" class="accent-cyber-magenta w-4 h-4" />
-                <span>Indie games-utställning & nya spel</span>
+                <span data-i18n="imp-o3">Indie games-utställning & nya spel</span>
               </label>
               <label class="flex items-center gap-3 p-3 bg-cyber-card/90 rounded-lg border border-cyber-border hover:border-cyber-magenta cursor-pointer transition-colors text-sm">
                 <input type="checkbox" name="reasons" value="gamedev" class="accent-cyber-magenta w-4 h-4" />
-                <span>Game-dev & branschnätverkande</span>
+                <span data-i18n="imp-o4">Game-dev & branschnätverkande</span>
               </label>
               <label class="flex items-center gap-3 p-3 bg-cyber-card/90 rounded-lg border border-cyber-border hover:border-cyber-magenta cursor-pointer transition-colors text-sm">
                 <input type="checkbox" name="reasons" value="lectures" class="accent-cyber-magenta w-4 h-4" />
-                <span>Föreläsningar & inspiration</span>
+                <span data-i18n="imp-o5">Föreläsningar & inspiration</span>
               </label>
               <label class="flex items-center gap-3 p-3 bg-cyber-card/90 rounded-lg border border-cyber-border hover:border-cyber-magenta cursor-pointer transition-colors text-sm">
                 <input type="checkbox" name="reasons" value="retro" class="accent-cyber-magenta w-4 h-4" />
-                <span>Retro-gaming & arkadkänsla</span>
+                <span data-i18n="imp-o6">Retro-gaming & arkadkänsla</span>
               </label>
               <label class="flex items-center gap-3 p-3 bg-cyber-card/90 rounded-lg border border-cyber-border hover:border-cyber-magenta cursor-pointer transition-colors text-sm sm:col-span-2">
                 <input type="checkbox" name="reasons" value="gemenskap" class="accent-cyber-magenta w-4 h-4" />
-                <span>Gemenskapen, folket och den fantastiska stämningen</span>
+                <span data-i18n="imp-o7">Gemenskapen, folket och den fantastiska stämningen</span>
               </label>
             </div>
             
             <div class="pt-2">
-              <input type="text" name="reason_other" placeholder="Annat som lockar dig? (frivilligt)..." class="w-full px-4 py-2.5 rounded-lg bg-cyber-dark border border-cyber-border focus:border-cyber-magenta focus:ring-1 focus:ring-cyber-magenta text-white placeholder-gray-500 outline-none text-sm" />
+              <input type="text" name="reason_other" placeholder="Annat som lockar dig? (frivilligt)..." data-i18n-placeholder="imp-ph" class="w-full px-4 py-2.5 rounded-lg bg-cyber-dark border border-cyber-border focus:border-cyber-magenta focus:ring-1 focus:ring-cyber-magenta text-white placeholder-gray-500 outline-none text-sm" />
             </div>
           </div>
 
           <!-- 5. Spel du spelar -->
           <div class="space-y-2">
-            <label for="gamesInput" class="block font-tech text-lg font-bold text-white uppercase tracking-wider">
+            <label for="gamesInput" class="block font-tech text-lg font-bold text-white uppercase tracking-wider" data-i18n="q5">
               5. Vilka spel spelar du?
             </label>
-            <input type="text" id="gamesInput" name="games" placeholder="T.ex. CS2, LoL, Fortnite, Valorant, WoW, Minecraft, Rocket League..." class="w-full px-4 py-3 rounded-lg bg-cyber-dark border border-cyber-border focus:border-cyber-cyan focus:ring-1 focus:ring-cyber-cyan text-white placeholder-gray-500 outline-none text-sm" />
+            <input type="text" id="gamesInput" name="games" placeholder="T.ex. CS2, LoL, Fortnite, Valorant, WoW, Minecraft, Rocket League..." data-i18n-placeholder="q5-ph" class="w-full px-4 py-3 rounded-lg bg-cyber-dark border border-cyber-border focus:border-cyber-cyan focus:ring-1 focus:ring-cyber-cyan text-white placeholder-gray-500 outline-none text-sm" />
           </div>
 
           <!-- 6. Önskade Turneringar -->
           <div class="space-y-2">
-            <label for="tournamentsInput" class="block font-tech text-lg font-bold text-white uppercase tracking-wider">
+            <label for="tournamentsInput" class="block font-tech text-lg font-bold text-white uppercase tracking-wider" data-i18n="q6">
               6. Vilka turneringar vill du se på plats?
             </label>
-            <input type="text" id="tournamentsInput" name="tournaments" placeholder="Vilka titlar vill du tävla i eller se på storbildsskärmarna?" class="w-full px-4 py-3 rounded-lg bg-cyber-dark border border-cyber-border focus:border-cyber-cyan focus:ring-1 focus:ring-cyber-cyan text-white placeholder-gray-500 outline-none text-sm" />
+            <input type="text" id="tournamentsInput" name="tournaments" placeholder="Vilka titlar vill du tävla i eller se på storbildsskärmarna?" data-i18n-placeholder="q6-ph" class="w-full px-4 py-3 rounded-lg bg-cyber-dark border border-cyber-border focus:border-cyber-cyan focus:ring-1 focus:ring-cyber-cyan text-white placeholder-gray-500 outline-none text-sm" />
           </div>
 
           <!-- 7. Specifika intressen -->
           <div class="space-y-3">
-            <label class="block font-tech text-lg font-bold text-white uppercase tracking-wider">
+            <label class="block font-tech text-lg font-bold text-white uppercase tracking-wider" data-i18n="q7">
               7. Är du också intresserad av följande?
             </label>
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
               <label class="flex items-center gap-2.5 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-cyan cursor-pointer text-sm">
                 <input type="checkbox" name="interests" value="gamedev" class="accent-cyber-cyan w-4 h-4" />
-                <span>Game-dev</span>
+                <span data-i18n="q7-gamedev">Game-dev</span>
               </label>
               <label class="flex items-center gap-2.5 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-cyan cursor-pointer text-sm">
                 <input type="checkbox" name="interests" value="forelasningar" class="accent-cyber-cyan w-4 h-4" />
-                <span>Föreläsningar</span>
+                <span data-i18n="q7-talks">Föreläsningar</span>
               </label>
               <label class="flex items-center gap-2.5 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-cyan cursor-pointer text-sm">
                 <input type="checkbox" name="interests" value="indie" class="accent-cyber-cyan w-4 h-4" />
-                <span>Indie games</span>
+                <span data-i18n="q7-indie">Indie games</span>
               </label>
               <label class="flex items-center gap-2.5 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-cyan cursor-pointer text-sm">
                 <input type="checkbox" name="interests" value="retro" class="accent-cyber-cyan w-4 h-4" />
-                <span>Retro Arcade</span>
+                <span data-i18n="q7-retro">Retro Arcade</span>
               </label>
             </div>
           </div>
 
           <!-- 8. Resavstånd -->
           <div class="space-y-3">
-            <label class="block font-tech text-lg font-bold text-white uppercase tracking-wider">
+            <label class="block font-tech text-lg font-bold text-white uppercase tracking-wider" data-i18n="q8">
               8. Hur långt skulle du kunna resa till eventet?
             </label>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
               <label class="flex items-center gap-2.5 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer text-sm">
                 <input type="radio" name="travel_distance" value="lokalt" class="accent-cyber-yellow w-4 h-4" />
-                <span>Lokalt (Boden/Fyrkanten)</span>
+                <span data-i18n="q8-lokalt">Lokalt (Boden/Fyrkanten)</span>
               </label>
               <label class="flex items-center gap-2.5 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer text-sm">
                 <input type="radio" name="travel_distance" value="norrbotten" class="accent-cyber-yellow w-4 h-4" />
-                <span>Inom Norrbotten</span>
+                <span data-i18n="q8-norrbotten">Inom Norrbotten</span>
               </label>
               <label class="flex items-center gap-2.5 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer text-sm">
                 <input type="radio" name="travel_distance" value="sverige" class="accent-cyber-yellow w-4 h-4" />
-                <span>Utanför länet / Längre</span>
+                <span data-i18n="q8-langt">Utanför länet / Längre</span>
               </label>
             </div>
           </div>
@@ -669,29 +676,29 @@
             
             <!-- 9. Pris LAN-pass -->
             <div class="space-y-2">
-              <label for="priceInput" class="block font-tech text-lg font-bold text-white uppercase tracking-wider">
+              <label for="priceInput" class="block font-tech text-lg font-bold text-white uppercase tracking-wider" data-i18n="q9">
                 9. Rimligt pris för ett LAN-pass?
               </label>
-              <input type="text" id="priceInput" name="price" placeholder="T.ex. 400–600 kr för 4 dagar..." class="w-full px-4 py-3 rounded-lg bg-cyber-dark border border-cyber-border focus:border-cyber-cyan focus:ring-1 focus:ring-cyber-cyan text-white placeholder-gray-500 outline-none text-sm" />
+              <input type="text" id="priceInput" name="price" placeholder="T.ex. 400–600 kr för 4 dagar..." data-i18n-placeholder="q9-ph" class="w-full px-4 py-3 rounded-lg bg-cyber-dark border border-cyber-border focus:border-cyber-cyan focus:ring-1 focus:ring-cyber-cyan text-white placeholder-gray-500 outline-none text-sm" />
             </div>
 
             <!-- 10. Funktionär -->
             <div class="space-y-3">
-              <label class="block font-tech text-lg font-bold text-white uppercase tracking-wider">
+              <label class="block font-tech text-lg font-bold text-white uppercase tracking-wider" data-i18n="q10">
                 10. Vill du hjälpa till som funktionär?
               </label>
               <div class="grid grid-cols-3 gap-2">
                 <label class="flex items-center justify-center gap-2 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-cyan cursor-pointer text-sm">
                   <input type="radio" name="volunteer" value="ja" class="accent-cyber-cyan" />
-                  <span>Ja</span>
+                  <span data-i18n="yn-ja">Ja</span>
                 </label>
                 <label class="flex items-center justify-center gap-2 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-cyan cursor-pointer text-sm">
                   <input type="radio" name="volunteer" value="nej" class="accent-cyber-cyan" />
-                  <span>Nej</span>
+                  <span data-i18n="yn-nej">Nej</span>
                 </label>
                 <label class="flex items-center justify-center gap-2 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-cyan cursor-pointer text-sm">
                   <input type="radio" name="volunteer" value="kanske" class="accent-cyber-cyan" />
-                  <span>Kanske</span>
+                  <span data-i18n="yn-kanske">Kanske</span>
                 </label>
               </div>
             </div>
@@ -700,11 +707,11 @@
 
           <!-- 11. E-post (Frivilligt med integritetsnotis) -->
           <div class="space-y-2 pt-4 border-t border-cyber-border">
-            <label for="emailInput" class="block font-tech text-lg font-bold text-white uppercase tracking-wider">
+            <label for="emailInput" class="block font-tech text-lg font-bold text-white uppercase tracking-wider" data-i18n="q11">
               11. E-post för förtur vid biljettsläpp (Frivilligt)
             </label>
-            <input type="email" id="emailInput" name="email" placeholder="namn@exempel.se" class="w-full px-4 py-3 rounded-lg bg-cyber-dark border border-cyber-border focus:border-cyber-cyan focus:ring-1 focus:ring-cyber-cyan text-white placeholder-gray-500 outline-none text-sm" />
-            <p class="text-xs text-gray-400 italic">
+            <input type="email" id="emailInput" name="email" placeholder="namn@exempel.se" data-i18n-placeholder="q11-ph" class="w-full px-4 py-3 rounded-lg bg-cyber-dark border border-cyber-border focus:border-cyber-cyan focus:ring-1 focus:ring-cyber-cyan text-white placeholder-gray-500 outline-none text-sm" />
+            <p class="text-xs text-gray-400 italic" data-i18n-html="privacy">
               🔒 <strong>Integritet:</strong> Vi samlar inte in fler personuppgifter än nödvändigt. E-postadressen används uteslutande för information om festivalen och biljettsläpp.
             </p>
           </div>
@@ -714,7 +721,7 @@
 
           <!-- Submit Button -->
           <div class="pt-4">
-            <button type="submit" id="submitBtn" class="w-full py-4 rounded-xl bg-gradient-to-r from-cyber-yellow via-cyber-magenta to-cyber-cyan font-display font-black text-lg tracking-wider text-black uppercase shadow-glow-yellow hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer">
+            <button type="submit" id="submitBtn" class="w-full py-4 rounded-xl bg-gradient-to-r from-cyber-yellow via-cyber-magenta to-cyber-cyan font-display font-black text-lg tracking-wider text-black uppercase shadow-glow-yellow hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer" data-i18n="submit">
               Skicka In Mina Tankar & Önskemål
             </button>
           </div>
@@ -727,8 +734,8 @@
     <!-- FAQ SECTION -->
     <section id="faq" class="py-16 px-4 max-w-4xl mx-auto space-y-8">
       <div class="text-center space-y-2">
-        <h2 class="font-display text-2xl sm:text-3xl font-black text-white">VANLIGA FRÅGOR</h2>
-        <p class="text-gray-400 text-sm">Här hittar du snabba svar om planeringen inför Boden GameFest 2027.</p>
+        <h2 class="font-display text-2xl sm:text-3xl font-black text-white" data-i18n="faq-h">VANLIGA FRÅGOR</h2>
+        <p class="text-gray-400 text-sm" data-i18n="faq-sub">Här hittar du snabba svar om planeringen inför Boden GameFest 2027.</p>
       </div>
 
       <div class="space-y-4">
@@ -736,12 +743,12 @@
         <!-- Accordion 1 -->
         <details class="group bg-cyber-card border border-cyber-border rounded-xl p-5 [&_svg]:open:-rotate-180 cursor-pointer">
           <summary class="flex items-center justify-between font-tech text-lg font-bold text-white uppercase tracking-wider list-none">
-            <span>Varför ska man fylla i intresseformuläret redan nu?</span>
+            <span data-i18n="faq-q1">Varför ska man fylla i intresseformuläret redan nu?</span>
             <svg class="w-5 h-5 text-cyber-cyan transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </summary>
-          <p class="text-sm text-gray-300 mt-3 leading-relaxed">
+          <p class="text-sm text-gray-300 mt-3 leading-relaxed" data-i18n="faq-a1">
             Genom att samla in vad communityt vill ha tidigt kan arrangörerna anpassa lokalens storlek, nätverkskapacitet, prispotter för e-sporten och bjuda in relevanta föreläsare och spelstudios. Dessutom får du förtur när biljetterna väl släpps!
           </p>
         </details>
@@ -749,12 +756,12 @@
         <!-- Accordion 2 -->
         <details class="group bg-cyber-card border border-cyber-border rounded-xl p-5 [&_svg]:open:-rotate-180 cursor-pointer">
           <summary class="flex items-center justify-between font-tech text-lg font-bold text-white uppercase tracking-wider list-none">
-            <span>Måste man ha med egen dator för att komma?</span>
+            <span data-i18n="faq-q2">Måste man ha med egen dator för att komma?</span>
             <svg class="w-5 h-5 text-cyber-cyan transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </summary>
-          <p class="text-sm text-gray-300 mt-3 leading-relaxed">
+          <p class="text-sm text-gray-300 mt-3 leading-relaxed" data-i18n="faq-a2">
             Nej, absolut inte! Det kommer finnas vanliga dagsbiljetter för besökare som vill kolla på e-sportfinalerna, testa spelen i indie-zonen, lyssna på paneler eller köra retrospel. LAN-platser är bara för dig som vill ha din egen rigg och spela dygnet runt.
           </p>
         </details>
@@ -762,12 +769,12 @@
         <!-- Accordion 3 -->
         <details class="group bg-cyber-card border border-cyber-border rounded-xl p-5 [&_svg]:open:-rotate-180 cursor-pointer">
           <summary class="flex items-center justify-between font-tech text-lg font-bold text-white uppercase tracking-wider list-none">
-            <span>Vilka står bakom festivalen?</span>
+            <span data-i18n="faq-q3">Vilka står bakom festivalen?</span>
             <svg class="w-5 h-5 text-cyber-cyan transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </summary>
-          <p class="text-sm text-gray-300 mt-3 leading-relaxed">
+          <p class="text-sm text-gray-300 mt-3 leading-relaxed" data-i18n-html="faq-a3">
             Eventet planeras och drivs av <strong>CF Digital AB</strong> i samarbete med lokala gaming-föreningar, skolor och näringsliv i Boden och Norrbotten.
           </p>
         </details>
@@ -786,17 +793,17 @@
         <div class="font-display font-black text-2xl text-white tracking-wider">
           BODEN <span class="text-cyber-yellow">GAMEFEST</span> 2027
         </div>
-        <p class="text-xs text-cyber-cyan font-tech uppercase tracking-widest mt-1">
+        <p class="text-xs text-cyber-cyan font-tech uppercase tracking-widest mt-1" data-i18n="foot-date">
           6–9 MAJ &bull; BODEN, SVERIGE
         </p>
-        <p class="text-xs text-gray-500 mt-2">
+        <p class="text-xs text-gray-500 mt-2" data-i18n-html="foot-prod">
           Ett initiativ och produktion av <strong>CF Digital AB</strong>.
         </p>
       </div>
 
       <!-- Social Channels -->
       <div class="space-y-2">
-        <span class="text-xs font-tech font-bold uppercase tracking-widest text-gray-400 block">Följ oss i sociala medier</span>
+        <span class="text-xs font-tech font-bold uppercase tracking-widest text-gray-400 block" data-i18n="foot-social">Följ oss i sociala medier</span>
         <div class="flex items-center justify-center md:justify-start gap-4 text-cyber-yellow text-sm font-tech font-bold">
           <a href="https://x.com/boden_gamefest" target="_blank" rel="noopener noreferrer" class="hover:text-cyber-cyan transition-colors">@BODENGAMEFEST</a>
           <span>&bull;</span>
@@ -811,7 +818,7 @@
       <!-- Back to top -->
       <div>
         <a href="#" class="inline-flex items-center gap-2 px-4 py-2 rounded bg-cyber-card border border-cyber-border text-xs uppercase font-tech font-bold text-gray-300 hover:text-white hover:border-cyber-cyan transition-colors">
-          <span>Till Toppen</span>
+          <span data-i18n="foot-top">Till Toppen</span>
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
           </svg>
@@ -823,6 +830,274 @@
 
   <!-- JAVASCRIPT LOGIC -->
   <script>
+    // 0. SV / EN language switch (translations dictionary)
+    const I18N = {
+      sv: {
+        "nav-datesub": "6–9 Maj 2027",
+        "nav-about": "Om Eventet",
+        "nav-zones": "Zoner & Aktiviteter",
+        "nav-tournaments": "Turneringar",
+        "nav-faq": "FAQ",
+        "nav-cta": "Intresseanmälan",
+        "nav-goform": "Gå till formulär →",
+        "hero-pill": "Norra Sveriges Största Mötesplats för Spelkultur",
+        "hero-sub": "En 4-dagars festival i Boden fylld av non-stop <strong>LAN</strong>, <strong>e-sportturneringar</strong>, <strong>indie-utvecklare</strong>, <strong>föreläsningar</strong> och <strong>retroarkader</strong>. Var med och forma framtidens spelhelg!",
+        "hero-date": "Datum",
+        "hero-datetext": "6–9 MAJ 2027",
+        "hero-place": "Plats",
+        "hero-placetext": "BODEN, SVERIGE",
+        "hero-cta1": "Fyll i intresseanmälan",
+        "hero-cta2": "Utforska Zoner & Program",
+        "hero-countdown": "Nedräkning till öppning",
+        "hero-days": "Dagar",
+        "hero-hours": "Timmar",
+        "hero-minutes": "Minuter",
+        "hero-seconds": "Sekunder",
+        "pillars-1a": "4 DAGAR",
+        "pillars-1b": "Dygnet-runt Festival",
+        "pillars-2b": "Blixtsnabb Fiber & Gigantisk Sal",
+        "pillars-3b": "Turneringar & Föreläsningar",
+        "pillars-4b": "Skapat För Alla Spelälskare",
+        "about-badge": "Bakgrund & Vision",
+        "about-h2pre": "ÅTERUPPLIVA DEN ÄKTA",
+        "about-h2gold": "LAN-MAGIN",
+        "about-p1": "Kommer du ihåg de sena nätterna med datorn inkopplad, skratten, de episka matcherna med vännerna och doften av varm pizza över tangentbordet?",
+        "about-p2": "<strong>Boden GameFest 2027</strong> tar det bästa från de legendariska LAN-partyna och kombinerar det med modern e-sport, spelutveckling, indie-shower, föreläsningar och en pulserande mötesplats för både unga, erfarna och familjer.",
+        "about-card1h": "För Gamers",
+        "about-card1b": "Rigga upp din dator eller konsol och gamea hela helgen non-stop.",
+        "about-card2h": "För Skapare",
+        "about-card2b": "Träffa spelstudios, visa upp ditt projekt och lär dig game dev från proffs.",
+        "about-hl1": "<strong>Massiv LAN-hall:</strong> Med el, fiber & bekväma platser.",
+        "about-hl2": "<strong>E-sport Scen:</strong> Storbildsskärmar, finaler och live-kommentatorer.",
+        "about-hl3": "<strong>Game Dev Talks:</strong> Föreläsningar från 'Concept to Launch'.",
+        "about-hl4": "<strong>Indie & Retro Arcade:</strong> Testspela och minns guldåldern.",
+        "about-note": "Ett gemenskapsevent initierat av CF Digital AB tillsammans med Norrbottens gaming-community.",
+        "zones-badge": "Vad händer på plats?",
+        "zones-h2pre": "UTFORSKA VÅRA",
+        "zones-h2gold": "ZONER",
+        "zones-sub": "Oavsett om du vill krossa motståndet i LAN-salen, knyta kontakter i spelbranschen eller bara strosa runt och uppleva atmosfären.",
+        "zone1": "Ta med din burk, rigga upp med polarna och spela hela helgen. Dygnet runt-support, stabil strömförsörjning och blixtsnabbt nätverk.",
+        "zone2": "Tävla i CS2, Rocket League, Fortnite, Smash Bros och mer. Livefinaler på stora scenen med ära, publikjubel och feta prispotter.",
+        "zone3": "Inspireras av branschveteraner och spelutvecklare. Föreläsningar om programmering, 3D-grafik, ljuddesign och hur du bygger en karriär inom gaming.",
+        "zone4": "Spela kommande pärlor och unika koncept direkt från oberoende spelutvecklare och studenter. Ge feedback direkt till skaparna!",
+        "zone5": "Möt dina favoritstreamers, upptäck nya profiler, delta i meet & greets och se live-sändningar direkt från festivalgolvet.",
+        "zone6": "Kliv tillbaka i tiden med klassiska arkadkabinett, CRT-skärmar, NES, SNES, N64 och PlayStation 1 & 2. Ren och skär nostalgi.",
+        "survey-badge": "Forma festivalen",
+        "survey-h2": "ÄR DU INTRESSERAD?",
+        "survey-tagline": "Intresseformulär • Boden GameFest 2027",
+        "survey-sub": "Dina svar hjälper oss att planera storlek på LAN-salen, vilka turneringar vi ska satsa på och vilket innehåll som lockar mest.",
+        "survey-succ-h": "TACK FÖR DITT SVAR!",
+        "survey-succ-b": "Din feedback är guld värd för oss när vi bygger <strong>Boden GameFest 2027</strong>. Om du angav din e-post kommer du vara först med att få veta när biljetter och turneringar släpps!",
+        "survey-succ-btn": "Skicka in ett till svar",
+        "q1": "1. Ålder / Intervall",
+        "q2": "2. Ort (Var bor du?)",
+        "q2-ph": "T.ex. Boden, Luleå, Piteå, Umeå...",
+        "q3": "3. Skulle du vilja delta på LAN?",
+        "q4": "4. Skulle du komma som vanlig besökare?",
+        "yn-ja": "Ja",
+        "yn-nej": "Nej",
+        "yn-kanske": "Kanske",
+        "imp-title": "VIKTIG FRÅGA",
+        "imp-q": "Vilket av detta skulle få dig att åka till Boden GameFest?",
+        "imp-hint": "Kryssa i alla alternativ som stämmer in på dig.",
+        "imp-o1": "LAN & spela dygnet runt med vänner",
+        "imp-o2": "E-sport turneringar & scenfinaler",
+        "imp-o3": "Indie games-utställning & nya spel",
+        "imp-o4": "Game-dev & branschnätverkande",
+        "imp-o5": "Föreläsningar & inspiration",
+        "imp-o6": "Retro-gaming & arkadkänsla",
+        "imp-o7": "Gemenskapen, folket och den fantastiska stämningen",
+        "imp-ph": "Annat som lockar dig? (frivilligt)...",
+        "q5": "5. Vilka spel spelar du?",
+        "q5-ph": "T.ex. CS2, LoL, Fortnite, Valorant, WoW, Minecraft, Rocket League...",
+        "q6": "6. Vilka turneringar vill du se på plats?",
+        "q6-ph": "Vilka titlar vill du tävla i eller se på storbildsskärmarna?",
+        "q7": "7. Är du också intresserad av följande?",
+        "q7-gamedev": "Game-dev",
+        "q7-talks": "Föreläsningar",
+        "q7-indie": "Indie games",
+        "q7-retro": "Retro Arcade",
+        "q8": "8. Hur långt skulle du kunna resa till eventet?",
+        "q8-lokalt": "Lokalt (Boden/Fyrkanten)",
+        "q8-norrbotten": "Inom Norrbotten",
+        "q8-langt": "Utanför länet / Längre",
+        "q9": "9. Rimligt pris för ett LAN-pass?",
+        "q9-ph": "T.ex. 400–600 kr för 4 dagar...",
+        "q10": "10. Vill du hjälpa till som funktionär?",
+        "q11": "11. E-post för förtur vid biljettsläpp (Frivilligt)",
+        "q11-ph": "namn@exempel.se",
+        "privacy": "🔒 <strong>Integritet:</strong> Vi samlar inte in fler personuppgifter än nödvändigt. E-postadressen används uteslutande för information om festivalen och biljettsläpp.",
+        "submit": "Skicka In Mina Tankar & Önskemål",
+        "submit-sending": "Skickar...",
+        "error-msg": "Något gick fel när vi skickade ditt svar. Kontrollera din anslutning och försök igen.",
+        "faq-h": "VANLIGA FRÅGOR",
+        "faq-sub": "Här hittar du snabba svar om planeringen inför Boden GameFest 2027.",
+        "faq-q1": "Varför ska man fylla i intresseformuläret redan nu?",
+        "faq-a1": "Genom att samla in vad communityt vill ha tidigt kan arrangörerna anpassa lokalens storlek, nätverkskapacitet, prispotter för e-sporten och bjuda in relevanta föreläsare och spelstudios. Dessutom får du förtur när biljetterna väl släpps!",
+        "faq-q2": "Måste man ha med egen dator för att komma?",
+        "faq-a2": "Nej, absolut inte! Det kommer finnas vanliga dagsbiljetter för besökare som vill kolla på e-sportfinalerna, testa spelen i indie-zonen, lyssna på paneler eller köra retrospel. LAN-platser är bara för dig som vill ha din egen rigg och spela dygnet runt.",
+        "faq-q3": "Vilka står bakom festivalen?",
+        "faq-a3": "Eventet planeras och drivs av <strong>CF Digital AB</strong> i samarbete med lokala gaming-föreningar, skolor och näringsliv i Boden och Norrbotten.",
+        "foot-date": "6–9 MAJ • BODEN, SVERIGE",
+        "foot-prod": "Ett initiativ och produktion av <strong>CF Digital AB</strong>.",
+        "foot-social": "Följ oss i sociala medier",
+        "foot-top": "Till Toppen"
+      },
+      en: {
+        "nav-datesub": "6–9 May 2027",
+        "nav-about": "About the Event",
+        "nav-zones": "Zones & Activities",
+        "nav-tournaments": "Tournaments",
+        "nav-faq": "FAQ",
+        "nav-cta": "Register Interest",
+        "nav-goform": "Go to the form →",
+        "hero-pill": "Northern Sweden's Biggest Meeting Place for Gaming Culture",
+        "hero-sub": "A 4-day festival in Boden packed with non-stop <strong>LAN</strong>, <strong>esports tournaments</strong>, <strong>indie developers</strong>, <strong>talks</strong> and <strong>retro arcades</strong>. Come help shape the ultimate gaming weekend!",
+        "hero-date": "Date",
+        "hero-datetext": "6–9 MAY 2027",
+        "hero-place": "Location",
+        "hero-placetext": "BODEN, SWEDEN",
+        "hero-cta1": "Fill in the interest form",
+        "hero-cta2": "Explore Zones & Programme",
+        "hero-countdown": "Countdown to opening",
+        "hero-days": "Days",
+        "hero-hours": "Hours",
+        "hero-minutes": "Minutes",
+        "hero-seconds": "Seconds",
+        "pillars-1a": "4 DAYS",
+        "pillars-1b": "Round-the-clock Festival",
+        "pillars-2b": "Lightning-Fast Fibre & Huge Hall",
+        "pillars-3b": "Tournaments & Talks",
+        "pillars-4b": "Made For Every Game Lover",
+        "about-badge": "Background & Vision",
+        "about-h2pre": "REVIVING THE TRUE",
+        "about-h2gold": "LAN MAGIC",
+        "about-p1": "Remember the late nights with your PC plugged in, the laughter, the epic matches with friends and the smell of hot pizza hovering over the keyboard?",
+        "about-p2": "<strong>Boden GameFest 2027</strong> takes the best of the legendary LAN parties and combines it with modern esports, game development, indie showcases, talks and a vibrant meeting place for young people, veterans and families alike.",
+        "about-card1h": "For Gamers",
+        "about-card1b": "Set up your PC or console and game all weekend, non-stop.",
+        "about-card2h": "For Creators",
+        "about-card2b": "Meet game studios, show off your project and learn game dev from the pros.",
+        "about-hl1": "<strong>Massive LAN hall:</strong> With power, fibre & comfortable seats.",
+        "about-hl2": "<strong>Esports Stage:</strong> Big screens, finals and live commentators.",
+        "about-hl3": "<strong>Game Dev Talks:</strong> Sessions from 'Concept to Launch'.",
+        "about-hl4": "<strong>Indie & Retro Arcade:</strong> Try the games and relive the golden age.",
+        "about-note": "A community event initiated by CF Digital AB together with Norrbotten's gaming community.",
+        "zones-badge": "What's happening on site?",
+        "zones-h2pre": "EXPLORE OUR",
+        "zones-h2gold": "ZONES",
+        "zones-sub": "Whether you want to crush the competition in the LAN hall, network in the games industry or simply stroll around and soak up the atmosphere.",
+        "zone1": "Bring your rig, set up with your friends and play all weekend. 24/7 support, stable power and lightning-fast network.",
+        "zone2": "Compete in CS2, Rocket League, Fortnite, Smash Bros and more. Live finals on the big stage with glory, roaring crowds and fat prize pools.",
+        "zone3": "Get inspired by industry veterans and game developers. Talks on programming, 3D graphics, sound design and how to build a career in gaming.",
+        "zone4": "Play upcoming gems and unique concepts straight from independent developers and students. Give feedback directly to the creators!",
+        "zone5": "Meet your favourite streamers, discover new personalities, join meet & greets and watch live broadcasts straight from the festival floor.",
+        "zone6": "Step back in time with classic arcade cabinets, CRT screens, NES, SNES, N64 and PlayStation 1 & 2. Pure nostalgia.",
+        "survey-badge": "Shape the festival",
+        "survey-h2": "ARE YOU INTERESTED?",
+        "survey-tagline": "Interest form • Boden GameFest 2027",
+        "survey-sub": "Your answers help us plan the size of the LAN hall, which tournaments to focus on and what content appeals most.",
+        "survey-succ-h": "THANK YOU FOR YOUR RESPONSE!",
+        "survey-succ-b": "Your feedback is gold to us as we build <strong>Boden GameFest 2027</strong>. If you left your email you'll be first to know when tickets and tournaments are released!",
+        "survey-succ-btn": "Submit another response",
+        "q1": "1. Age / Range",
+        "q2": "2. Location (Where do you live?)",
+        "q2-ph": "E.g. Boden, Luleå, Piteå, Umeå...",
+        "q3": "3. Would you like to take part in the LAN?",
+        "q4": "4. Would you come as a regular visitor?",
+        "yn-ja": "Yes",
+        "yn-nej": "No",
+        "yn-kanske": "Maybe",
+        "imp-title": "IMPORTANT QUESTION",
+        "imp-q": "Which of these would make you come to Boden GameFest?",
+        "imp-hint": "Tick all the options that apply to you.",
+        "imp-o1": "LAN & gaming around the clock with friends",
+        "imp-o2": "Esports tournaments & stage finals",
+        "imp-o3": "Indie games showcase & new games",
+        "imp-o4": "Game dev & industry networking",
+        "imp-o5": "Talks & inspiration",
+        "imp-o6": "Retro gaming & arcade vibes",
+        "imp-o7": "The community, the people and the amazing atmosphere",
+        "imp-ph": "Something else that appeals to you? (optional)...",
+        "q5": "5. Which games do you play?",
+        "q5-ph": "E.g. CS2, LoL, Fortnite, Valorant, WoW, Minecraft, Rocket League...",
+        "q6": "6. Which tournaments do you want to see on site?",
+        "q6-ph": "Which titles would you compete in or watch on the big screens?",
+        "q7": "7. Are you also interested in the following?",
+        "q7-gamedev": "Game dev",
+        "q7-talks": "Talks",
+        "q7-indie": "Indie games",
+        "q7-retro": "Retro Arcade",
+        "q8": "8. How far would you be willing to travel to the event?",
+        "q8-lokalt": "Local (Boden/Fyrkanten)",
+        "q8-norrbotten": "Within Norrbotten",
+        "q8-langt": "Outside the county / further",
+        "q9": "9. Reasonable price for a LAN pass?",
+        "q9-ph": "E.g. 400–600 SEK for 4 days...",
+        "q10": "10. Would you like to volunteer as staff?",
+        "q11": "11. Email for early access to ticket release (Optional)",
+        "q11-ph": "name@example.com",
+        "privacy": "🔒 <strong>Privacy:</strong> We don't collect more personal data than necessary. Your email address is used solely to send you information about the festival and ticket release.",
+        "submit": "Submit My Thoughts & Wishes",
+        "submit-sending": "Submitting...",
+        "error-msg": "Something went wrong sending your response. Check your connection and try again.",
+        "faq-h": "FREQUENTLY ASKED QUESTIONS",
+        "faq-sub": "Quick answers about the planning for Boden GameFest 2027.",
+        "faq-q1": "Why fill in the interest form already now?",
+        "faq-a1": "By collecting what the community wants early, the organisers can adjust the size of the venue, network capacity, esports prize pools and invite relevant speakers and game studios. Plus you get early access when tickets are finally released!",
+        "faq-q2": "Do I need to bring my own computer to come?",
+        "faq-a2": "No, absolutely not! There will be regular day passes for visitors who want to watch the esports finals, try the games in the indie zone, listen to panels or play retro games. LAN seats are only for those who want to bring their own rig and play around the clock.",
+        "faq-q3": "Who is behind the festival?",
+        "faq-a3": "The event is planned and run by <strong>CF Digital AB</strong> in collaboration with local gaming associations, schools and businesses in Boden and Norrbotten.",
+        "foot-date": "6–9 MAY • BODEN, SWEDEN",
+        "foot-prod": "An initiative and production by <strong>CF Digital AB</strong>.",
+        "foot-social": "Follow us on social media",
+        "foot-top": "Back to top"
+      }
+    };
+
+    let CUR_LANG = 'sv';
+
+    function applyLang(lang) {
+      if (!I18N[lang]) return;
+      CUR_LANG = lang;
+      document.documentElement.lang = lang;
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (I18N[lang][key] !== undefined) el.textContent = I18N[lang][key];
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(el => {
+        const key = el.getAttribute('data-i18n-html');
+        if (I18N[lang][key] !== undefined) el.innerHTML = I18N[lang][key];
+      });
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (I18N[lang][key] !== undefined) el.placeholder = I18N[lang][key];
+      });
+
+      // Highlight the active toggle button
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        const active = btn.getAttribute('data-lang') === lang;
+        btn.classList.toggle('bg-cyber-cyan', active);
+        btn.classList.toggle('text-black', active);
+        btn.classList.toggle('text-gray-400', !active);
+        btn.classList.toggle('hover:text-white', !active);
+      });
+
+      try { localStorage.setItem('bgf_lang', lang); } catch (e) { /* storage unavailable (e.g. private mode) */ }
+    }
+
+    // Wire up the toggle buttons
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', () => applyLang(btn.getAttribute('data-lang')));
+    });
+
+    // Restore the user's previous language (defaults to Swedish)
+    let savedLang = null;
+    try { savedLang = localStorage.getItem('bgf_lang'); } catch (e) { /* ignore */ }
+    applyLang(savedLang || 'sv');
+
     // 1. Mobile Menu Toggle
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');
     const mobileMenu = document.getElementById('mobileMenu');
@@ -879,7 +1154,9 @@
     function setSubmitting(isSubmitting) {
       if (!submitBtn) return;
       submitBtn.disabled = isSubmitting;
-      submitBtn.textContent = isSubmitting ? 'Skickar...' : 'Skicka In Mina Tankar & Önskemål';
+      submitBtn.textContent = isSubmitting
+        ? I18N[CUR_LANG]['submit-sending']
+        : I18N[CUR_LANG]['submit'];
       submitBtn.classList.toggle('opacity-60', isSubmitting);
     }
 
@@ -901,7 +1178,7 @@
           formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
         } catch (err) {
           console.error('Survey submit failed:', err);
-          showError('Något gick fel när vi skickade ditt svar. Kontrollera din anslutning och försök igen.');
+          showError(I18N[CUR_LANG]['error-msg']);
           setSubmitting(false);
         }
       });

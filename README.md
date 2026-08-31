@@ -37,6 +37,10 @@ python3 -m venv .venv
 - Admin page:    http://127.0.0.1:5000/admin
 - CSV export:    http://127.0.0.1:5000/admin/export.csv
 
+Each row in the admin table has a 🗑 delete button (POST to `/admin/delete/<id>`,
+admin-auth protected, with an on-page confirmation prompt) to remove an individual
+response from the database.
+
 Set `PORT` to change the port, `HOST` to change the bind address
 (default `127.0.0.1`; Docker sets it to `0.0.0.0`), `BGF_DB` to use a
 different database file.

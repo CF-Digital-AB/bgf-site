@@ -18,6 +18,16 @@
         </div>
     </div>
 
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      <div class="flash">
+        {% for category, message in messages %}
+        <div class="flash-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+      {% endif %}
+    {% endwith %}
+
     <div class="kpi-row">
         <div class="kpi">
             <div class="kpi-num">{{ unique_visitors }}</div>
@@ -85,6 +95,7 @@
                         <th>Pris</th>
                         <th>Funktionär</th>
                         <th>E-post</th>
+                        <th class="col-del" aria-label="Ta bort">Ta bort</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -96,7 +107,7 @@
                         <td>{{ r['location'] or '–' }}</td>
                         <td>{{ r['want_lan'] or '–' }}</td>
                         <td>{{ r['regular_visitor'] or '–' }}</td>
-                        <td class="wrap">{{ (r['motivation'] + ((' – Annat: ' ~ r['motivation_other']) if r['motivation_other'] else '')).replace(',', ', ') or '–' }}</td>
+                        <td class="wrap">{{ ((r['motivation'] or '') + ((' – Annat: ' ~ r['motivation_other']) if r['motivation_other'] else '')).replace(',', ', ') or '–' }}</td>
                         <td class="wrap">{{ r['games_played'] or '–' }}</td>
                         <td class="wrap">{{ r['tournaments_want'] or '–' }}</td>
                         <td class="wrap">{{ (r['interests'] or '').replace(',', ', ') or '–' }}</td>
@@ -104,6 +115,12 @@
                         <td>{{ r['lan_price'] or '–' }}</td>
                         <td>{{ r['volunteer'] or '–' }}</td>
                         <td class="wrap">{{ r['email'] or '–' }}</td>
+                        <td class="col-del nowrap">
+                            <form method="post" action="{{ url_for('admin_delete', response_id=r['id']) }}"
+                                  onsubmit="return confirm('Radera svar #{{ r['id'] }}? Detta kan inte ångras.');">
+                                <button type="submit" class="del-btn" title="Radera svar #{{ r['id'] }}" aria-label="Radera svar #{{ r['id'] }}">🗑</button>
+                            </form>
+                        </td>
                     </tr>
                     {% endfor %}
                 </tbody>
