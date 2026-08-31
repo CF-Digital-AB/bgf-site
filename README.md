@@ -6,9 +6,10 @@ A small web app for the Boden GameFest 2027 interest survey (6–9 maj, Boden).
 
 | File / dir            | Purpose |
 |-----------------------|---------|
-| `app.py`              | Flask app: survey form, SQLite storage, admin dashboard, CSV export |
+| `index.html`          | Public landing page + survey form (Tailwind, self-contained). Served at `/`; its form posts to `/submit` |
+| `app.py`              | Flask backend: serves `index.html`, stores submissions in SQLite, admin dashboard, CSV export |
 | `survey.db`           | SQLite database with all submitted responses (auto-created) |
-| `templates/`          | Jinja templates: `survey.html`, `thanks.html`, `admin.html` |
+| `templates/`          | Jinja templates: `thanks.html`, `admin.html` (`survey.html` is a legacy form, no longer served) |
 | `static/style.css`    | Shared styling (purple BG27 theme, same look as the printed form) |
 | `generate_pdf.py`     | Generates the printable A4 PDF version of the survey |
 | `output/`             | Generated HTML + PDF of the printed form |
@@ -80,6 +81,20 @@ container.
 .venv/bin/python generate_pdf.py
 # -> output/Boden_GameFest_Formular.pdf
 ```
+
+## How the form connects to the backend
+
+The landing page is the standalone `index.html`. Its survey form posts to
+`POST /submit` (via a small `fetch()` in the page; with JavaScript disabled it
+falls back to a normal form submit and lands on the `/tack/<id>` page).
+
+The form uses short machine codes for its option values (e.g. `age=under_15`,
+`reasons=lan_vanner`, `travel_distance=norrbotten`). `app.py` maps each code to
+the human-readable label that is stored in SQLite, shown on the admin dashboard,
+and exported as CSV (see the `*_MAP` tables in `app.py`). Free-text fields are
+stored as typed. Multi-select checkboxes (`reasons`, `interests`) are joined into
+a single comma-separated column. Because the stored values match the option lists
+used by the admin charts, existing rows and new submissions aggregate together.
 
 ## Database schema (`survey.db`, table `responses`)
 

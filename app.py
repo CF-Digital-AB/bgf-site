@@ -28,6 +28,7 @@ from flask import (
     redirect,
     render_template,
     request,
+    send_from_directory,
     url_for,
 )
 
@@ -188,6 +189,45 @@ INTEREST_OPTIONS = ["Game-dev (Spelutveckling)", "Föreläsningar", "Indie games
 TRAVEL_OPTIONS = ["Lokalt (Boden/Fyrkanten)", "Inom Norrbotten", "Utanför länet / Längre"]
 VOLUNTEER_OPTIONS = ["Ja", "Nej", "Kanske, berätta mer"]
 
+# --------------------------------------------------------------------------- #
+# Value maps for the standalone index.html form.
+#
+# The landing page's <form> posts short machine codes (e.g. age=under_15,
+# reasons=lan_vanner). These tables translate each code into the same
+# human-readable label that the admin dashboard counts against and that is
+# written to SQLite / exported as CSV. Keeping the stored values identical to
+# the option lists above means existing rows and the admin charts stay correct.
+# --------------------------------------------------------------------------- #
+AGE_MAP = {
+    "under_15": "Under 15",
+    "15_18": "15-18",
+    "19_25": "19-25",
+    "26_35": "26-35",
+    "36_plus": "36+",
+}
+YES_NO_MAP = {"ja": "Ja", "nej": "Nej", "kanske": "Kanske"}
+MOTIVATION_MAP = {
+    "lan_vanner": "LAN & spela med vänner",
+    "esport": "E-sport turneringar",
+    "indie": "Indie games-utställning",
+    "gamedev": "Game-dev & nätverkande",
+    "lectures": "Föreläsningar & inspiration",
+    "retro": "Retro-gaming",
+    "gemenskap": "Gemenskapen & stämningen",
+}
+INTEREST_MAP = {
+    "gamedev": "Game-dev (Spelutveckling)",
+    "forelasningar": "Föreläsningar",
+    "indie": "Indie games",
+    "retro": "Retro",
+}
+TRAVEL_MAP = {
+    "lokalt": "Lokalt (Boden/Fyrkanten)",
+    "norrbotten": "Inom Norrbotten",
+    "sverige": "Utanför länet / Längre",
+}
+VOLUNTEER_MAP = {"ja": "Ja", "nej": "Nej", "kanske": "Kanske, berätta mer"}
+
 
 def _clean(value: str) -> str:
     return (value or "").strip()
@@ -198,40 +238,53 @@ def _join_multi(values) -> str:
     return ",".join(v for v in values if v)
 
 
+def _map(value, mapping: dict) -> str:
+    """Translate an index.html form code into its stored label.
+
+    Empty values map to "" and unknown codes pass through unchanged, so free
+    text (and any future option not yet in the table) round-trips losslessly.
+    """
+    value = _clean(value)
+    return mapping.get(value, value)
+
+
 # --------------------------------------------------------------------------- #
 # Routes
 # --------------------------------------------------------------------------- #
 @app.route("/")
 def index():
-    return render_template(
-        "survey.html",
-        age_groups=AGE_GROUPS,
-        yes_no_maybe=YES_NO_MAYBE,
-        motivation_options=MOTIVATION_OPTIONS,
-        interest_options=INTEREST_OPTIONS,
-        travel_options=TRAVEL_OPTIONS,
-        volunteer_options=VOLUNTEER_OPTIONS,
-    )
+    # The public landing page (with the embedded survey form) is the standalone
+    # index.html. Serve it verbatim so its inline Tailwind/JS/CSS stay intact —
+    # no Jinja templating needed, and nothing in the file gets accidentally
+    # parsed as a template expression.
+    return send_from_directory(BASE_DIR, "index.html")
 
 
 @app.route("/submit", methods=["POST"])
 def submit():
     db = get_db()
 
+    # Field names below are the `name` attributes of index.html's form. Single
+    # choice + multi-choice values are mapped through the *_MAP tables so they
+    # land in SQLite as the same labels the admin dashboard expects.
     row = {
         "created_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"),
-        "age_group": _clean(request.form.get("age_group")),
+        "age_group": _map(request.form.get("age"), AGE_MAP),
         "location": _clean(request.form.get("location")),
-        "want_lan": _clean(request.form.get("want_lan")),
-        "regular_visitor": _clean(request.form.get("regular_visitor")),
-        "motivation": _join_multi(request.form.getlist("motivation")),
-        "motivation_other": _clean(request.form.get("motivation_other")),
-        "games_played": _clean(request.form.get("games_played")),
-        "tournaments_want": _clean(request.form.get("tournaments_want")),
-        "interests": _join_multi(request.form.getlist("interests")),
-        "travel_distance": _clean(request.form.get("travel_distance")),
-        "lan_price": _clean(request.form.get("lan_price")),
-        "volunteer": _clean(request.form.get("volunteer")),
+        "want_lan": _map(request.form.get("lan_attend"), YES_NO_MAP),
+        "regular_visitor": _map(request.form.get("visitor"), YES_NO_MAP),
+        "motivation": _join_multi(
+            [_map(v, MOTIVATION_MAP) for v in request.form.getlist("reasons")]
+        ),
+        "motivation_other": _clean(request.form.get("reason_other")),
+        "games_played": _clean(request.form.get("games")),
+        "tournaments_want": _clean(request.form.get("tournaments")),
+        "interests": _join_multi(
+            [_map(v, INTEREST_MAP) for v in request.form.getlist("interests")]
+        ),
+        "travel_distance": _map(request.form.get("travel_distance"), TRAVEL_MAP),
+        "lan_price": _clean(request.form.get("price")),
+        "volunteer": _map(request.form.get("volunteer"), VOLUNTEER_MAP),
         "email": _clean(request.form.get("email")),
     }
 

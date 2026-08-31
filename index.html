@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="sv" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BODEN GAMEFEST 2027 | 6–9 Maj • Play • Create • Connect</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Orbitron, Rajdhani & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@600;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Orbitron', 'sans-serif'],
+            tech: ['Rajdhani', 'sans-serif'],
+          },
+          colors: {
+            cyber: {
+              black: '#07080d',
+              dark: '#0e111a',
+              card: '#141724',
+              border: '#23283e',
+              cyan: '#00f0ff',
+              magenta: '#ff0055',
+              yellow: '#ffcc00',
+              purple: '#9d4edd',
+            }
+          },
+          boxShadow: {
+            'glow-cyan': '0 0 25px rgba(0, 240, 255, 0.35)',
+            'glow-magenta': '0 0 25px rgba(255, 0, 85, 0.35)',
+            'glow-yellow': '0 0 25px rgba(255, 204, 0, 0.35)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Grid and Glow Animations */
+    .bg-grid-pattern {
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    }
+    .neon-border-glow {
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.2), inset 0 0 15px rgba(0, 240, 255, 0.1);
+    }
+    .grunge-text {
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      background: linear-gradient(180deg, #FFFFFF 20%, #ffcc00 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .badge-glitch {
+      background: linear-gradient(90deg, rgba(255,0,85,0.15), rgba(0,240,255,0.15));
+      border: 1px solid rgba(0,240,255,0.4);
+    }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #07080d;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #23283e;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00f0ff;
+    }
+  </style>
+</head>
+
+<body class="bg-cyber-black text-gray-200 font-sans antialiased selection:bg-cyber-magenta selection:text-white relative overflow-x-hidden min-h-screen">
+
+  <!-- Ambient Glow Canvas & Background -->
+  <div class="fixed inset-0 bg-grid-pattern pointer-events-none z-0"></div>
+  <div class="fixed top-[-10vw] left-[-10vw] w-[40vw] h-[40vw] bg-cyber-purple/15 rounded-full blur-[120px] pointer-events-none z-0"></div>
+  <div class="fixed bottom-[-10vw] right-[-10vw] w-[40vw] h-[40vw] bg-cyber-cyan/10 rounded-full blur-[140px] pointer-events-none z-0"></div>
+
+  <!-- Top Navigation -->
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-cyber-dark/80 border-b border-cyber-border/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand / Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-lg bg-gradient-to-tr from-cyber-yellow via-cyber-magenta to-cyber-cyan p-[2px] shadow-glow-cyan transition-transform group-hover:scale-105">
+          <div class="w-full h-full bg-cyber-dark rounded-md flex items-center justify-center">
+            <!-- Gamepad SVG Icon -->
+            <svg class="w-6 h-6 text-cyber-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 5v2m0 4v2m0 4v2M5 5a2 2 0 00-2 2v3a2 2 0 110 4v3a2 2 0 002 2h14a2 2 0 002-2v-3a2 2 0 110-4V7a2 2 0 00-2-2H5z" />
+            </svg>
+          </div>
+        </div>
+        <div>
+          <span class="font-display font-black text-xl tracking-wider text-white flex items-center gap-1.5">
+            BODEN <span class="text-cyber-yellow">GAMEFEST</span>
+          </span>
+          <span class="text-[10px] font-tech font-bold tracking-widest text-cyber-cyan block uppercase">6–9 Maj 2027</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav links -->
+      <nav class="hidden md:flex items-center gap-8 font-tech text-lg font-semibold tracking-wider uppercase text-gray-300">
+        <a href="#about" class="hover:text-cyber-cyan transition-colors">Om Eventet</a>
+        <a href="#zones" class="hover:text-cyber-yellow transition-colors">Zoner & Aktiviteter</a>
+        <a href="#tournaments" class="hover:text-cyber-magenta transition-colors">Turneringar</a>
+        <a href="#faq" class="hover:text-cyber-cyan transition-colors">FAQ</a>
+      </nav>
+
+      <!-- CTA Button -->
+      <div class="flex items-center gap-3">
+        <a href="#survey" class="relative group inline-flex items-center gap-2 px-5 py-2.5 rounded-md font-tech font-bold text-sm tracking-wider uppercase overflow-hidden transition-all bg-gradient-to-r from-cyber-yellow to-cyber-magenta text-black hover:shadow-glow-yellow hover:scale-[1.02] active:scale-95">
+          <span>Intresseanmälan</span>
+          <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobileMenuBtn" class="md:hidden p-2 rounded-lg bg-cyber-card border border-cyber-border text-gray-300 hover:text-white" aria-label="Öppna meny">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Dropdown -->
+    <div id="mobileMenu" class="hidden md:hidden bg-cyber-dark border-b border-cyber-border px-4 pt-3 pb-6 space-y-3 font-tech uppercase tracking-wider text-base">
+      <a href="#about" class="block py-2 text-gray-300 hover:text-cyber-cyan">Om Eventet</a>
+      <a href="#zones" class="block py-2 text-gray-300 hover:text-cyber-yellow">Zoner & Aktiviteter</a>
+      <a href="#tournaments" class="block py-2 text-gray-300 hover:text-cyber-magenta">Turneringar</a>
+      <a href="#faq" class="block py-2 text-gray-300 hover:text-cyber-cyan">FAQ</a>
+      <a href="#survey" class="block py-2 text-cyber-yellow font-bold">Gå till formulär →</a>
+    </div>
+  </header>
+
+  <main class="relative z-10">
+
+    <!-- HERO SECTION -->
+    <section class="relative pt-16 pb-24 md:pt-24 md:pb-32 overflow-hidden text-center px-4">
+      <div class="max-w-5xl mx-auto space-y-8">
+        
+        <!-- Pre-title Pill -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full badge-glitch text-cyber-cyan font-tech font-bold text-sm tracking-widest uppercase mb-2">
+          <span class="w-2 h-2 rounded-full bg-cyber-cyan animate-ping"></span>
+          Norra Sveriges Största Mötesplats för Spelkultur
+        </div>
+
+        <!-- Main Title -->
+        <div class="space-y-2">
+          <h1 class="font-display font-black text-4xl sm:text-6xl md:text-7xl lg:text-8xl tracking-tight leading-none text-white drop-shadow-lg">
+            BODEN <span class="grunge-text">GAMEFEST</span>
+          </h1>
+          <div class="font-display text-2xl sm:text-3xl md:text-4xl text-cyber-yellow font-bold tracking-widest">
+            2027
+          </div>
+        </div>
+
+        <!-- Taglines -->
+        <p class="font-tech text-xl sm:text-2xl md:text-3xl font-semibold tracking-wider text-gray-300 uppercase">
+          <span class="text-cyber-cyan">PLAY</span> &bull; 
+          <span class="text-cyber-yellow">CREATE</span> &bull; 
+          <span class="text-cyber-magenta">CONNECT</span>
+        </p>
+
+        <p class="text-base sm:text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+          En 4-dagars festival i Boden fylld av non-stop <strong>LAN</strong>, <strong>e-sportturneringar</strong>, <strong>indie-utvecklare</strong>, <strong>föreläsningar</strong> och <strong>retroarkader</strong>. Var med och forma framtidens spelhelg!
+        </p>
+
+        <!-- Date & Location Card -->
+        <div class="inline-flex flex-wrap items-center justify-center gap-6 bg-cyber-card/90 border border-cyber-border px-8 py-4 rounded-xl shadow-xl backdrop-blur-sm">
+          <div class="flex items-center gap-3 text-left">
+            <div class="p-2 rounded bg-cyber-dark text-cyber-yellow border border-cyber-border">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <div>
+              <span class="text-xs text-gray-400 uppercase font-tech tracking-wider block">Datum</span>
+              <span class="font-tech font-bold text-xl text-white">6–9 MAJ 2027</span>
+            </div>
+          </div>
+          <div class="h-8 w-[1px] bg-cyber-border hidden sm:block"></div>
+          <div class="flex items-center gap-3 text-left">
+            <div class="p-2 rounded bg-cyber-dark text-cyber-cyan border border-cyber-border">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <div>
+              <span class="text-xs text-gray-400 uppercase font-tech tracking-wider block">Plats</span>
+              <span class="font-tech font-bold text-xl text-white">BODEN, SVERIGE</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Action CTAs -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+          <a href="#survey" class="w-full sm:w-auto px-8 py-4 rounded-lg bg-gradient-to-r from-cyber-cyan via-cyber-purple to-cyber-magenta font-display text-sm tracking-wider font-bold text-white shadow-glow-cyan hover:scale-105 active:scale-95 transition-all">
+            Fyll i intresseanmälan
+          </a>
+          <a href="#zones" class="w-full sm:w-auto px-8 py-4 rounded-lg bg-cyber-card border border-cyber-border hover:border-cyber-cyan text-gray-300 hover:text-white font-tech text-lg font-bold uppercase tracking-wider transition-all">
+            Utforska Zoner & Program
+          </a>
+        </div>
+
+        <!-- Live Countdown Timer -->
+        <div class="pt-8">
+          <p class="text-xs font-tech uppercase tracking-widest text-gray-400 mb-3">Nedräkning till öppning</p>
+          <div class="grid grid-cols-4 gap-2 sm:gap-4 max-w-md mx-auto">
+            <div class="bg-cyber-dark border border-cyber-border p-3 rounded-lg">
+              <span id="days" class="font-display text-2xl sm:text-3xl font-bold text-cyber-yellow">---</span>
+              <span class="block text-[10px] sm:text-xs text-gray-400 uppercase font-tech mt-1">Dagar</span>
+            </div>
+            <div class="bg-cyber-dark border border-cyber-border p-3 rounded-lg">
+              <span id="hours" class="font-display text-2xl sm:text-3xl font-bold text-cyber-cyan">--</span>
+              <span class="block text-[10px] sm:text-xs text-gray-400 uppercase font-tech mt-1">Timmar</span>
+            </div>
+            <div class="bg-cyber-dark border border-cyber-border p-3 rounded-lg">
+              <span id="minutes" class="font-display text-2xl sm:text-3xl font-bold text-cyber-magenta">--</span>
+              <span class="block text-[10px] sm:text-xs text-gray-400 uppercase font-tech mt-1">Minuter</span>
+            </div>
+            <div class="bg-cyber-dark border border-cyber-border p-3 rounded-lg">
+              <span id="seconds" class="font-display text-2xl sm:text-3xl font-bold text-white">--</span>
+              <span class="block text-[10px] sm:text-xs text-gray-400 uppercase font-tech mt-1">Sekunder</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- KEY PILLARS / HIGHLIGHTS BAR -->
+    <section class="border-y border-cyber-border bg-cyber-dark/60 py-6">
+      <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <div>
+          <div class="font-display text-3xl font-bold text-cyber-yellow">4 DAGAR</div>
+          <div class="text-xs font-tech text-gray-400 uppercase tracking-widest mt-1">Dygnet-runt Festival</div>
+        </div>
+        <div>
+          <div class="font-display text-3xl font-bold text-cyber-cyan">LAN-PARTY</div>
+          <div class="text-xs font-tech text-gray-400 uppercase tracking-widest mt-1">Blixtsnabb Fiber & Gigantisk Sal</div>
+        </div>
+        <div>
+          <div class="font-display text-3xl font-bold text-cyber-magenta">ESPORT & DEV</div>
+          <div class="text-xs font-tech text-gray-400 uppercase tracking-widest mt-1">Turneringar & Föreläsningar</div>
+        </div>
+        <div>
+          <div class="font-display text-3xl font-bold text-purple-400">COMMUNITY</div>
+          <div class="text-xs font-tech text-gray-400 uppercase tracking-widest mt-1">Skapat För Alla Spelälskare</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-20 px-4 max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-6 space-y-6">
+          <div class="inline-block px-3 py-1 bg-cyber-cyan/10 border border-cyber-cyan/30 text-cyber-cyan font-tech font-bold text-sm tracking-widest uppercase rounded">
+            Bakgrund & Vision
+          </div>
+          <h2 class="font-display text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight">
+            ÅTERUPPLIVA DEN ÄKTA <span class="text-cyber-yellow">LAN-MAGIN</span>
+          </h2>
+          <p class="text-gray-300 leading-relaxed">
+            Kommer du ihåg de sena nätterna med datorn inkopplad, skratten, de episka matcherna med vännerna och doften av varm pizza över tangentbordet?
+          </p>
+          <p class="text-gray-400 leading-relaxed">
+            <strong>Boden GameFest 2027</strong> tar det bästa från de legendariska LAN-partyna och kombinerar det med modern e-sport, spelutveckling, indie-shower, föreläsningar och en pulserande mötesplats för både unga, erfarna och familjer.
+          </p>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+            <div class="flex items-start gap-3 p-3 bg-cyber-card rounded-lg border border-cyber-border">
+              <span class="text-cyber-yellow text-xl">⚡</span>
+              <div>
+                <h4 class="font-tech font-bold text-white uppercase text-base">För Gamers</h4>
+                <p class="text-xs text-gray-400">Rigga upp din dator eller konsol och gamea hela helgen non-stop.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3 p-3 bg-cyber-card rounded-lg border border-cyber-border">
+              <span class="text-cyber-cyan text-xl">🎮</span>
+              <div>
+                <h4 class="font-tech font-bold text-white uppercase text-base">För Skapare</h4>
+                <p class="text-xs text-gray-400">Träffa spelstudios, visa upp ditt projekt och lär dig game dev från proffs.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-6">
+          <!-- Visual Cyber Box -->
+          <div class="relative bg-cyber-card rounded-2xl border-2 border-cyber-border/80 p-6 shadow-2xl overflow-hidden group">
+            <div class="absolute -right-16 -top-16 w-48 h-48 bg-cyber-magenta/20 rounded-full blur-3xl"></div>
+            <div class="absolute -left-16 -bottom-16 w-48 h-48 bg-cyber-cyan/20 rounded-full blur-3xl"></div>
+            
+            <div class="relative z-10 space-y-4">
+              <div class="flex items-center justify-between border-b border-cyber-border pb-4">
+                <span class="font-tech font-bold text-sm text-cyber-yellow tracking-widest uppercase">// FESTIVAL HIGHLIGHTS</span>
+                <span class="inline-flex items-center gap-1 text-xs text-green-400 font-mono">
+                  <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span> SYSTEM READY
+                </span>
+              </div>
+              
+              <ul class="space-y-3 font-tech text-lg text-gray-300">
+                <li class="flex items-center gap-3">
+                  <span class="w-6 h-6 rounded bg-cyber-dark flex items-center justify-center text-cyber-cyan font-bold text-xs border border-cyber-border">01</span>
+                  <span><strong>Massiv LAN-hall:</strong> Med el, fiber & bekväma platser.</span>
+                </li>
+                <li class="flex items-center gap-3">
+                  <span class="w-6 h-6 rounded bg-cyber-dark flex items-center justify-center text-cyber-magenta font-bold text-xs border border-cyber-border">02</span>
+                  <span><strong>E-sport Scen:</strong> Storbildsskärmar, finaler och live-kommentatorer.</span>
+                </li>
+                <li class="flex items-center gap-3">
+                  <span class="w-6 h-6 rounded bg-cyber-dark flex items-center justify-center text-cyber-yellow font-bold text-xs border border-cyber-border">03</span>
+                  <span><strong>Game Dev Talks:</strong> Föreläsningar från 'Concept to Launch'.</span>
+                </li>
+                <li class="flex items-center gap-3">
+                  <span class="w-6 h-6 rounded bg-cyber-dark flex items-center justify-center text-purple-400 font-bold text-xs border border-cyber-border">04</span>
+                  <span><strong>Indie & Retro Arcade:</strong> Testspela och minns guldåldern.</span>
+                </li>
+              </ul>
+
+              <div class="pt-4 mt-4 border-t border-cyber-border/60 text-center">
+                <p class="text-xs text-gray-400 italic">Ett gemenskapsevent initierat av CF Digital AB tillsammans med Norrbottens gaming-community.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FESTIVAL ZONES -->
+    <section id="zones" class="py-20 px-4 bg-cyber-dark/40 border-t border-cyber-border">
+      <div class="max-w-7xl mx-auto space-y-12">
+        <div class="text-center space-y-4">
+          <div class="inline-block px-3 py-1 bg-cyber-yellow/10 border border-cyber-yellow/30 text-cyber-yellow font-tech font-bold text-sm tracking-widest uppercase rounded">
+            Vad händer på plats?
+          </div>
+          <h2 class="font-display text-3xl sm:text-5xl font-black text-white">
+            UTFORSKA VÅRA <span class="text-cyber-cyan">ZONER</span>
+          </h2>
+          <p class="text-gray-400 max-w-2xl mx-auto">
+            Oavsett om du vill krossa motståndet i LAN-salen, knyta kontakter i spelbranschen eller bara strosa runt och uppleva atmosfären.
+          </p>
+        </div>
+
+        <!-- 6 Core Zone Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          
+          <!-- Card 1: LAN -->
+          <div class="bg-cyber-card p-6 rounded-xl border border-cyber-border hover:border-cyber-cyan transition-all group hover:-translate-y-1 shadow-lg">
+            <div class="w-12 h-12 rounded-lg bg-cyber-cyan/10 border border-cyber-cyan/30 text-cyber-cyan flex items-center justify-center font-display font-bold text-2xl mb-4 group-hover:scale-110 transition-transform">
+              💻
+            </div>
+            <h3 class="font-display font-bold text-xl text-white mb-2 group-hover:text-cyber-cyan transition-colors">LAN PARTY</h3>
+            <p class="text-sm text-gray-400 leading-relaxed">
+              Ta med din burk, rigga upp med polarna och spela hela helgen. Dygnet runt-support, stabil strömförsörjning och blixtsnabbt nätverk.
+            </p>
+          </div>
+
+          <!-- Card 2: Esport Tournaments -->
+          <div class="bg-cyber-card p-6 rounded-xl border border-cyber-border hover:border-cyber-magenta transition-all group hover:-translate-y-1 shadow-lg">
+            <div class="w-12 h-12 rounded-lg bg-cyber-magenta/10 border border-cyber-magenta/30 text-cyber-magenta flex items-center justify-center font-display font-bold text-2xl mb-4 group-hover:scale-110 transition-transform">
+              🏆
+            </div>
+            <h3 class="font-display font-bold text-xl text-white mb-2 group-hover:text-cyber-magenta transition-colors">TOURNAMENTS</h3>
+            <p class="text-sm text-gray-400 leading-relaxed">
+              Tävla i CS2, Rocket League, Fortnite, Smash Bros och mer. Livefinaler på stora scenen med ära, publikjubel och feta prispotter.
+            </p>
+          </div>
+
+          <!-- Card 3: Game Dev & Panels -->
+          <div class="bg-cyber-card p-6 rounded-xl border border-cyber-border hover:border-cyber-yellow transition-all group hover:-translate-y-1 shadow-lg">
+            <div class="w-12 h-12 rounded-lg bg-cyber-yellow/10 border border-cyber-yellow/30 text-cyber-yellow flex items-center justify-center font-display font-bold text-2xl mb-4 group-hover:scale-110 transition-transform">
+              💡
+            </div>
+            <h3 class="font-display font-bold text-xl text-white mb-2 group-hover:text-cyber-yellow transition-colors">TALKS & PANELS</h3>
+            <p class="text-sm text-gray-400 leading-relaxed">
+              Inspireras av branschveteraner och spelutvecklare. Föreläsningar om programmering, 3D-grafik, ljuddesign och hur du bygger en karriär inom gaming.
+            </p>
+          </div>
+
+          <!-- Card 4: Indie Showcase -->
+          <div class="bg-cyber-card p-6 rounded-xl border border-cyber-border hover:border-purple-400 transition-all group hover:-translate-y-1 shadow-lg">
+            <div class="w-12 h-12 rounded-lg bg-purple-500/10 border border-purple-500/30 text-purple-400 flex items-center justify-center font-display font-bold text-2xl mb-4 group-hover:scale-110 transition-transform">
+              🎨
+            </div>
+            <h3 class="font-display font-bold text-xl text-white mb-2 group-hover:text-purple-400 transition-colors">INDIE GAMES</h3>
+            <p class="text-sm text-gray-400 leading-relaxed">
+              Spela kommande pärlor och unika koncept direkt från oberoende spelutvecklare och studenter. Ge feedback direkt till skaparna!
+            </p>
+          </div>
+
+          <!-- Card 5: Creators & Community -->
+          <div class="bg-cyber-card p-6 rounded-xl border border-cyber-border hover:border-blue-400 transition-all group hover:-translate-y-1 shadow-lg">
+            <div class="w-12 h-12 rounded-lg bg-blue-500/10 border border-blue-500/30 text-blue-400 flex items-center justify-center font-display font-bold text-2xl mb-4 group-hover:scale-110 transition-transform">
+              🎙️
+            </div>
+            <h3 class="font-display font-bold text-xl text-white mb-2 group-hover:text-blue-400 transition-colors">CREATORS & STREAMERS</h3>
+            <p class="text-sm text-gray-400 leading-relaxed">
+              Möt dina favoritstreamers, upptäck nya profiler, delta i meet & greets och se live-sändningar direkt från festivalgolvet.
+            </p>
+          </div>
+
+          <!-- Card 6: Retro Arcade -->
+          <div class="bg-cyber-card p-6 rounded-xl border border-cyber-border hover:border-green-400 transition-all group hover:-translate-y-1 shadow-lg">
+            <div class="w-12 h-12 rounded-lg bg-green-500/10 border border-green-500/30 text-green-400 flex items-center justify-center font-display font-bold text-2xl mb-4 group-hover:scale-110 transition-transform">
+              👾
+            </div>
+            <h3 class="font-display font-bold text-xl text-white mb-2 group-hover:text-green-400 transition-colors">RETRO ARCADE</h3>
+            <p class="text-sm text-gray-400 leading-relaxed">
+              Kliv tillbaka i tiden med klassiska arkadkabinett, CRT-skärmar, NES, SNES, N64 och PlayStation 1 & 2. Ren och skär nostalgi.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- INTRESSEFORMULÄR / SURVEY SECTION -->
+    <section id="survey" class="py-24 px-4 max-w-4xl mx-auto">
+      <div class="bg-cyber-card rounded-2xl border-2 border-cyber-border p-6 sm:p-10 shadow-2xl relative">
+        
+        <!-- Header of form -->
+        <div class="text-center space-y-3 pb-8 border-b border-cyber-border">
+          <span class="inline-block px-3 py-1 bg-cyber-magenta/10 border border-cyber-magenta/40 text-cyber-magenta font-tech font-bold text-xs tracking-widest uppercase rounded">
+            Forma festivalen
+          </span>
+          <h2 class="font-display text-2xl sm:text-4xl font-black text-white">
+            ÄR DU INTRESSERAD?
+          </h2>
+          <p class="font-tech text-lg text-cyber-yellow font-bold uppercase tracking-wider">
+            Intresseformulär • Boden GameFest 2027
+          </p>
+          <p class="text-sm text-gray-400 max-w-xl mx-auto">
+            Dina svar hjälper oss att planera storlek på LAN-salen, vilka turneringar vi ska satsa på och vilket innehåll som lockar mest.
+          </p>
+        </div>
+
+        <!-- Form Success State (hidden initially) -->
+        <div id="formSuccess" class="hidden py-12 text-center space-y-6">
+          <div class="w-20 h-20 bg-green-500/10 border-2 border-green-500 rounded-full flex items-center justify-center mx-auto text-green-400 text-4xl">
+            ✓
+          </div>
+          <div class="space-y-2">
+            <h3 class="font-display font-bold text-2xl text-white">TACK FÖR DITT SVAR!</h3>
+            <p class="text-gray-300 max-w-md mx-auto text-sm">
+              Din feedback är guld värd för oss när vi bygger <strong>Boden GameFest 2027</strong>. Om du angav din e-post kommer du vara först med att få veta när biljetter och turneringar släpps!
+            </p>
+          </div>
+          <button id="resetFormBtn" class="px-6 py-2.5 rounded bg-cyber-dark border border-cyber-border text-xs uppercase font-tech font-bold text-cyber-cyan hover:border-cyber-cyan">
+            Skicka in ett till svar
+          </button>
+        </div>
+
+        <!-- Actual Interactive Form -->
+        <form id="gamefestForm" action="/submit" method="post" class="space-y-8 pt-8">
+
+          <!-- 1. Ålder/intervall -->
+          <div class="space-y-3">
+            <label class="block font-tech text-lg font-bold text-white uppercase tracking-wider">
+              1. Ålder / Intervall
+            </label>
+            <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
+              <label class="flex items-center gap-2.5 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-cyan cursor-pointer transition-colors text-sm">
+                <input type="radio" name="age" value="under_15" class="accent-cyber-cyan w-4 h-4" />
+                <span>Under 15</span>
+              </label>
+              <label class="flex items-center gap-2.5 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-cyan cursor-pointer transition-colors text-sm">
+                <input type="radio" name="age" value="15_18" class="accent-cyber-cyan w-4 h-4" />
+                <span>15–18</span>
+              </label>
+              <label class="flex items-center gap-2.5 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-cyan cursor-pointer transition-colors text-sm">
+                <input type="radio" name="age" value="19_25" class="accent-cyber-cyan w-4 h-4" />
+                <span>19–25</span>
+              </label>
+              <label class="flex items-center gap-2.5 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-cyan cursor-pointer transition-colors text-sm">
+                <input type="radio" name="age" value="26_35" class="accent-cyber-cyan w-4 h-4" />
+                <span>26–35</span>
+              </label>
+              <label class="flex items-center gap-2.5 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-cyan cursor-pointer transition-colors text-sm col-span-2 sm:col-span-1">
+                <input type="radio" name="age" value="36_plus" class="accent-cyber-cyan w-4 h-4" />
+                <span>36+</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- 2. Ort -->
+          <div class="space-y-2">
+            <label for="locationInput" class="block font-tech text-lg font-bold text-white uppercase tracking-wider">
+              2. Ort (Var bor du?)
+            </label>
+            <input type="text" id="locationInput" name="location" placeholder="T.ex. Boden, Luleå, Piteå, Umeå..." class="w-full px-4 py-3 rounded-lg bg-cyber-dark border border-cyber-border focus:border-cyber-cyan focus:ring-1 focus:ring-cyber-cyan text-white placeholder-gray-500 outline-none text-sm transition-all" />
+          </div>
+
+          <!-- 3 & 4. Deltagande / Besökare i 2 kolumner -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <!-- 3. Delta på LAN -->
+            <div class="space-y-3">
+              <label class="block font-tech text-lg font-bold text-white uppercase tracking-wider">
+                3. Skulle du vilja delta på LAN?
+              </label>
+              <div class="grid grid-cols-3 gap-2">
+                <label class="flex items-center justify-center gap-2 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer text-sm font-medium">
+                  <input type="radio" name="lan_attend" value="ja" class="accent-cyber-yellow" />
+                  <span>Ja</span>
+                </label>
+                <label class="flex items-center justify-center gap-2 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer text-sm font-medium">
+                  <input type="radio" name="lan_attend" value="nej" class="accent-cyber-yellow" />
+                  <span>Nej</span>
+                </label>
+                <label class="flex items-center justify-center gap-2 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer text-sm font-medium">
+                  <input type="radio" name="lan_attend" value="kanske" class="accent-cyber-yellow" />
+                  <span>Kanske</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- 4. Vanlig besökare -->
+            <div class="space-y-3">
+              <label class="block font-tech text-lg font-bold text-white uppercase tracking-wider">
+                4. Skulle du komma som vanlig besökare?
+              </label>
+              <div class="grid grid-cols-3 gap-2">
+                <label class="flex items-center justify-center gap-2 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer text-sm font-medium">
+                  <input type="radio" name="visitor" value="ja" class="accent-cyber-yellow" />
+                  <span>Ja</span>
+                </label>
+                <label class="flex items-center justify-center gap-2 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer text-sm font-medium">
+                  <input type="radio" name="visitor" value="nej" class="accent-cyber-yellow" />
+                  <span>Nej</span>
+                </label>
+                <label class="flex items-center justify-center gap-2 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer text-sm font-medium">
+                  <input type="radio" name="visitor" value="kanske" class="accent-cyber-yellow" />
+                  <span>Kanske</span>
+                </label>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- ⭐ VIKTIG FRÅGA SECTION (Framhävd box) -->
+          <div class="p-6 rounded-xl bg-gradient-to-r from-cyber-magenta/10 via-cyber-dark to-cyber-cyan/10 border-2 border-cyber-magenta/60 shadow-glow-magenta space-y-4">
+            <div class="flex items-center gap-2 text-cyber-magenta font-tech font-bold text-sm uppercase tracking-widest">
+              <span>⭐</span> VIKTIG FRÅGA
+            </div>
+            <label class="block font-display text-lg sm:text-xl font-bold text-white leading-snug">
+              Vilket av detta skulle få dig att åka till Boden GameFest?
+            </label>
+            <p class="text-xs text-gray-300">Kryssa i alla alternativ som stämmer in på dig.</p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+              <label class="flex items-center gap-3 p-3 bg-cyber-card/90 rounded-lg border border-cyber-border hover:border-cyber-magenta cursor-pointer transition-colors text-sm">
+                <input type="checkbox" name="reasons" value="lan_vanner" class="accent-cyber-magenta w-4 h-4" />
+                <span>LAN & spela dygnet runt med vänner</span>
+              </label>
+              <label class="flex items-center gap-3 p-3 bg-cyber-card/90 rounded-lg border border-cyber-border hover:border-cyber-magenta cursor-pointer transition-colors text-sm">
+                <input type="checkbox" name="reasons" value="esport" class="accent-cyber-magenta w-4 h-4" />
+                <span>E-sport turneringar & scenfinaler</span>
+              </label>
+              <label class="flex items-center gap-3 p-3 bg-cyber-card/90 rounded-lg border border-cyber-border hover:border-cyber-magenta cursor-pointer transition-colors text-sm">
+                <input type="checkbox" name="reasons" value="indie" class="accent-cyber-magenta w-4 h-4" />
+                <span>Indie games-utställning & nya spel</span>
+              </label>
+              <label class="flex items-center gap-3 p-3 bg-cyber-card/90 rounded-lg border border-cyber-border hover:border-cyber-magenta cursor-pointer transition-colors text-sm">
+                <input type="checkbox" name="reasons" value="gamedev" class="accent-cyber-magenta w-4 h-4" />
+                <span>Game-dev & branschnätverkande</span>
+              </label>
+              <label class="flex items-center gap-3 p-3 bg-cyber-card/90 rounded-lg border border-cyber-border hover:border-cyber-magenta cursor-pointer transition-colors text-sm">
+                <input type="checkbox" name="reasons" value="lectures" class="accent-cyber-magenta w-4 h-4" />
+                <span>Föreläsningar & inspiration</span>
+              </label>
+              <label class="flex items-center gap-3 p-3 bg-cyber-card/90 rounded-lg border border-cyber-border hover:border-cyber-magenta cursor-pointer transition-colors text-sm">
+                <input type="checkbox" name="reasons" value="retro" class="accent-cyber-magenta w-4 h-4" />
+                <span>Retro-gaming & arkadkänsla</span>
+              </label>
+              <label class="flex items-center gap-3 p-3 bg-cyber-card/90 rounded-lg border border-cyber-border hover:border-cyber-magenta cursor-pointer transition-colors text-sm sm:col-span-2">
+                <input type="checkbox" name="reasons" value="gemenskap" class="accent-cyber-magenta w-4 h-4" />
+                <span>Gemenskapen, folket och den fantastiska stämningen</span>
+              </label>
+            </div>
+            
+            <div class="pt-2">
+              <input type="text" name="reason_other" placeholder="Annat som lockar dig? (frivilligt)..." class="w-full px-4 py-2.5 rounded-lg bg-cyber-dark border border-cyber-border focus:border-cyber-magenta focus:ring-1 focus:ring-cyber-magenta text-white placeholder-gray-500 outline-none text-sm" />
+            </div>
+          </div>
+
+          <!-- 5. Spel du spelar -->
+          <div class="space-y-2">
+            <label for="gamesInput" class="block font-tech text-lg font-bold text-white uppercase tracking-wider">
+              5. Vilka spel spelar du?
+            </label>
+            <input type="text" id="gamesInput" name="games" placeholder="T.ex. CS2, LoL, Fortnite, Valorant, WoW, Minecraft, Rocket League..." class="w-full px-4 py-3 rounded-lg bg-cyber-dark border border-cyber-border focus:border-cyber-cyan focus:ring-1 focus:ring-cyber-cyan text-white placeholder-gray-500 outline-none text-sm" />
+          </div>
+
+          <!-- 6. Önskade Turneringar -->
+          <div class="space-y-2">
+            <label for="tournamentsInput" class="block font-tech text-lg font-bold text-white uppercase tracking-wider">
+              6. Vilka turneringar vill du se på plats?
+            </label>
+            <input type="text" id="tournamentsInput" name="tournaments" placeholder="Vilka titlar vill du tävla i eller se på storbildsskärmarna?" class="w-full px-4 py-3 rounded-lg bg-cyber-dark border border-cyber-border focus:border-cyber-cyan focus:ring-1 focus:ring-cyber-cyan text-white placeholder-gray-500 outline-none text-sm" />
+          </div>
+
+          <!-- 7. Specifika intressen -->
+          <div class="space-y-3">
+            <label class="block font-tech text-lg font-bold text-white uppercase tracking-wider">
+              7. Är du också intresserad av följande?
+            </label>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <label class="flex items-center gap-2.5 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-cyan cursor-pointer text-sm">
+                <input type="checkbox" name="interests" value="gamedev" class="accent-cyber-cyan w-4 h-4" />
+                <span>Game-dev</span>
+              </label>
+              <label class="flex items-center gap-2.5 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-cyan cursor-pointer text-sm">
+                <input type="checkbox" name="interests" value="forelasningar" class="accent-cyber-cyan w-4 h-4" />
+                <span>Föreläsningar</span>
+              </label>
+              <label class="flex items-center gap-2.5 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-cyan cursor-pointer text-sm">
+                <input type="checkbox" name="interests" value="indie" class="accent-cyber-cyan w-4 h-4" />
+                <span>Indie games</span>
+              </label>
+              <label class="flex items-center gap-2.5 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-cyan cursor-pointer text-sm">
+                <input type="checkbox" name="interests" value="retro" class="accent-cyber-cyan w-4 h-4" />
+                <span>Retro Arcade</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- 8. Resavstånd -->
+          <div class="space-y-3">
+            <label class="block font-tech text-lg font-bold text-white uppercase tracking-wider">
+              8. Hur långt skulle du kunna resa till eventet?
+            </label>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <label class="flex items-center gap-2.5 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer text-sm">
+                <input type="radio" name="travel_distance" value="lokalt" class="accent-cyber-yellow w-4 h-4" />
+                <span>Lokalt (Boden/Fyrkanten)</span>
+              </label>
+              <label class="flex items-center gap-2.5 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer text-sm">
+                <input type="radio" name="travel_distance" value="norrbotten" class="accent-cyber-yellow w-4 h-4" />
+                <span>Inom Norrbotten</span>
+              </label>
+              <label class="flex items-center gap-2.5 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer text-sm">
+                <input type="radio" name="travel_distance" value="sverige" class="accent-cyber-yellow w-4 h-4" />
+                <span>Utanför länet / Längre</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- 9 & 10. Pris & Funktionär -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <!-- 9. Pris LAN-pass -->
+            <div class="space-y-2">
+              <label for="priceInput" class="block font-tech text-lg font-bold text-white uppercase tracking-wider">
+                9. Rimligt pris för ett LAN-pass?
+              </label>
+              <input type="text" id="priceInput" name="price" placeholder="T.ex. 400–600 kr för 4 dagar..." class="w-full px-4 py-3 rounded-lg bg-cyber-dark border border-cyber-border focus:border-cyber-cyan focus:ring-1 focus:ring-cyber-cyan text-white placeholder-gray-500 outline-none text-sm" />
+            </div>
+
+            <!-- 10. Funktionär -->
+            <div class="space-y-3">
+              <label class="block font-tech text-lg font-bold text-white uppercase tracking-wider">
+                10. Vill du hjälpa till som funktionär?
+              </label>
+              <div class="grid grid-cols-3 gap-2">
+                <label class="flex items-center justify-center gap-2 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-cyan cursor-pointer text-sm">
+                  <input type="radio" name="volunteer" value="ja" class="accent-cyber-cyan" />
+                  <span>Ja</span>
+                </label>
+                <label class="flex items-center justify-center gap-2 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-cyan cursor-pointer text-sm">
+                  <input type="radio" name="volunteer" value="nej" class="accent-cyber-cyan" />
+                  <span>Nej</span>
+                </label>
+                <label class="flex items-center justify-center gap-2 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-cyan cursor-pointer text-sm">
+                  <input type="radio" name="volunteer" value="kanske" class="accent-cyber-cyan" />
+                  <span>Kanske</span>
+                </label>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- 11. E-post (Frivilligt med integritetsnotis) -->
+          <div class="space-y-2 pt-4 border-t border-cyber-border">
+            <label for="emailInput" class="block font-tech text-lg font-bold text-white uppercase tracking-wider">
+              11. E-post för förtur vid biljettsläpp (Frivilligt)
+            </label>
+            <input type="email" id="emailInput" name="email" placeholder="namn@exempel.se" class="w-full px-4 py-3 rounded-lg bg-cyber-dark border border-cyber-border focus:border-cyber-cyan focus:ring-1 focus:ring-cyber-cyan text-white placeholder-gray-500 outline-none text-sm" />
+            <p class="text-xs text-gray-400 italic">
+              🔒 <strong>Integritet:</strong> Vi samlar inte in fler personuppgifter än nödvändigt. E-postadressen används uteslutande för information om festivalen och biljettsläpp.
+            </p>
+          </div>
+
+          <!-- Form Error State (hidden initially) -->
+          <div id="formError" class="hidden mb-4 p-3 rounded-lg bg-red-500/10 border border-red-500/40 text-red-300 text-sm text-center"></div>
+
+          <!-- Submit Button -->
+          <div class="pt-4">
+            <button type="submit" id="submitBtn" class="w-full py-4 rounded-xl bg-gradient-to-r from-cyber-yellow via-cyber-magenta to-cyber-cyan font-display font-black text-lg tracking-wider text-black uppercase shadow-glow-yellow hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer">
+              Skicka In Mina Tankar & Önskemål
+            </button>
+          </div>
+
+        </form>
+
+      </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section id="faq" class="py-16 px-4 max-w-4xl mx-auto space-y-8">
+      <div class="text-center space-y-2">
+        <h2 class="font-display text-2xl sm:text-3xl font-black text-white">VANLIGA FRÅGOR</h2>
+        <p class="text-gray-400 text-sm">Här hittar du snabba svar om planeringen inför Boden GameFest 2027.</p>
+      </div>
+
+      <div class="space-y-4">
+        
+        <!-- Accordion 1 -->
+        <details class="group bg-cyber-card border border-cyber-border rounded-xl p-5 [&_svg]:open:-rotate-180 cursor-pointer">
+          <summary class="flex items-center justify-between font-tech text-lg font-bold text-white uppercase tracking-wider list-none">
+            <span>Varför ska man fylla i intresseformuläret redan nu?</span>
+            <svg class="w-5 h-5 text-cyber-cyan transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <p class="text-sm text-gray-300 mt-3 leading-relaxed">
+            Genom att samla in vad communityt vill ha tidigt kan arrangörerna anpassa lokalens storlek, nätverkskapacitet, prispotter för e-sporten och bjuda in relevanta föreläsare och spelstudios. Dessutom får du förtur när biljetterna väl släpps!
+          </p>
+        </details>
+
+        <!-- Accordion 2 -->
+        <details class="group bg-cyber-card border border-cyber-border rounded-xl p-5 [&_svg]:open:-rotate-180 cursor-pointer">
+          <summary class="flex items-center justify-between font-tech text-lg font-bold text-white uppercase tracking-wider list-none">
+            <span>Måste man ha med egen dator för att komma?</span>
+            <svg class="w-5 h-5 text-cyber-cyan transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <p class="text-sm text-gray-300 mt-3 leading-relaxed">
+            Nej, absolut inte! Det kommer finnas vanliga dagsbiljetter för besökare som vill kolla på e-sportfinalerna, testa spelen i indie-zonen, lyssna på paneler eller köra retrospel. LAN-platser är bara för dig som vill ha din egen rigg och spela dygnet runt.
+          </p>
+        </details>
+
+        <!-- Accordion 3 -->
+        <details class="group bg-cyber-card border border-cyber-border rounded-xl p-5 [&_svg]:open:-rotate-180 cursor-pointer">
+          <summary class="flex items-center justify-between font-tech text-lg font-bold text-white uppercase tracking-wider list-none">
+            <span>Vilka står bakom festivalen?</span>
+            <svg class="w-5 h-5 text-cyber-cyan transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </summary>
+          <p class="text-sm text-gray-300 mt-3 leading-relaxed">
+            Eventet planeras och drivs av <strong>CF Digital AB</strong> i samarbete med lokala gaming-föreningar, skolor och näringsliv i Boden och Norrbotten.
+          </p>
+        </details>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-cyber-border bg-cyber-dark py-12 px-4 relative z-10">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
+      
+      <!-- Brand & Date -->
+      <div>
+        <div class="font-display font-black text-2xl text-white tracking-wider">
+          BODEN <span class="text-cyber-yellow">GAMEFEST</span> 2027
+        </div>
+        <p class="text-xs text-cyber-cyan font-tech uppercase tracking-widest mt-1">
+          6–9 MAJ &bull; BODEN, SVERIGE
+        </p>
+        <p class="text-xs text-gray-500 mt-2">
+          Ett initiativ och produktion av <strong>CF Digital AB</strong>.
+        </p>
+      </div>
+
+      <!-- Social Channels -->
+      <div class="space-y-2">
+        <span class="text-xs font-tech font-bold uppercase tracking-widest text-gray-400 block">Följ oss i sociala medier</span>
+        <div class="flex items-center justify-center md:justify-start gap-4 text-cyber-yellow text-sm font-tech font-bold">
+          <a href="#" class="hover:text-cyber-cyan transition-colors">@BODENGAMEFEST</a>
+          <span>&bull;</span>
+          <a href="#" class="hover:text-cyber-cyan transition-colors">DISCORD</a>
+          <span>&bull;</span>
+          <a href="#" class="hover:text-cyber-cyan transition-colors">INSTAGRAM</a>
+          <span>&bull;</span>
+          <a href="#" class="hover:text-cyber-cyan transition-colors">TIKTOK</a>
+        </div>
+      </div>
+
+      <!-- Back to top -->
+      <div>
+        <a href="#" class="inline-flex items-center gap-2 px-4 py-2 rounded bg-cyber-card border border-cyber-border text-xs uppercase font-tech font-bold text-gray-300 hover:text-white hover:border-cyber-cyan transition-colors">
+          <span>Till Toppen</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // 1. Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if (mobileMenuBtn && mobileMenu) {
+      mobileMenuBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+      });
+      // Close on link click
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+      });
+    }
+
+    // 2. Countdown Timer to May 6, 2027
+    function updateCountdown() {
+      const targetDate = new Date('May 6, 2027 10:00:00 GMT+0200').getTime();
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+
+      if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        document.getElementById('days').innerText = days;
+        document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+        document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+        document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+      } else {
+        document.getElementById('days').innerText = '00';
+        document.getElementById('hours').innerText = '00';
+        document.getElementById('minutes').innerText = '00';
+        document.getElementById('seconds').innerText = '00';
+      }
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // 3. Form Submission Handling -> POST to the backend (/submit) -> SQLite
+    const form = document.getElementById('gamefestForm');
+    const formSuccess = document.getElementById('formSuccess');
+    const formError = document.getElementById('formError');
+    const submitBtn = document.getElementById('submitBtn');
+    const resetBtn = document.getElementById('resetFormBtn');
+
+    function showError(message) {
+      if (!formError) return;
+      formError.textContent = message;
+      formError.classList.remove('hidden');
+      formError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function setSubmitting(isSubmitting) {
+      if (!submitBtn) return;
+      submitBtn.disabled = isSubmitting;
+      submitBtn.textContent = isSubmitting ? 'Skickar...' : 'Skicka In Mina Tankar & Önskemål';
+      submitBtn.classList.toggle('opacity-60', isSubmitting);
+    }
+
+    if (form && formSuccess) {
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        if (formError) formError.classList.add('hidden');
+
+        // Send the whole form (FormData preserves multi-value checkboxes).
+        const formData = new FormData(form);
+        setSubmitting(true);
+        try {
+          const res = await fetch('/submit', { method: 'POST', body: formData });
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+
+          // Success: hide the form, reveal the success state smoothly.
+          form.classList.add('hidden');
+          formSuccess.classList.remove('hidden');
+          formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } catch (err) {
+          console.error('Survey submit failed:', err);
+          showError('Något gick fel när vi skickade ditt svar. Kontrollera din anslutning och försök igen.');
+          setSubmitting(false);
+        }
+      });
+    }
+
+    if (resetBtn && form && formSuccess) {
+      resetBtn.addEventListener('click', () => {
+        form.reset();
+        if (formError) formError.classList.add('hidden');
+        formSuccess.classList.add('hidden');
+        form.classList.remove('hidden');
+        setSubmitting(false);
+      });
+    }
+  </script>
+</body>
+</html>
