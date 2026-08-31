@@ -41,6 +41,11 @@ Each row in the admin table has a 🗑 delete button (POST to `/admin/delete/<id
 admin-auth protected, with an on-page confirmation prompt) to remove an individual
 response from the database.
 
+The admin dashboard also shows ad-attribution stats. Any visit or submission that
+arrives with a UTM source in the URL (e.g. `?utm_source=reddit`) is tagged; the
+"Från Reddit Ads" KPI and the "Trafikkällor (utm_source)" breakdown count those
+unique visitors and responses.
+
 Set `PORT` to change the port, `HOST` to change the bind address
 (default `127.0.0.1`; Docker sets it to `0.0.0.0`), `BGF_DB` to use a
 different database file.

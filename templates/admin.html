@@ -47,6 +47,16 @@
             <div class="kpi-num">{% if total %}{{ (stats.volunteer.counts['Ja']|float / total * 100)|round(0) }}{% else %}0{% endif %}%</div>
             <div class="kpi-label">Vill vara funktionär</div>
         </div>
+        <div class="kpi">
+            <div class="kpi-num">{{ reddit_visitors }}</div>
+            <div class="kpi-label">Från Reddit Ads</div>
+            <div class="kpi-sub">unika besökare via ?utm_source=reddit</div>
+        </div>
+        <div class="kpi">
+            <div class="kpi-num">{{ reddit_responses }}</div>
+            <div class="kpi-label">Reddit-responser</div>
+            <div class="kpi-sub">inskick via annonsen</div>
+        </div>
     </div>
 
     {% macro bar_block(title, stat, note='') %}
@@ -72,6 +82,7 @@
         {{ bar_block('7. Övrigt intresse', stats.interests, 'flera val') }}
         {{ bar_block('8. Resevilja', stats.travel_distance) }}
         {{ bar_block('10. Funktionär?', stats.volunteer) }}
+        {{ bar_block('Trafikkällor (utm_source)', utm_breakdown, 'unika besökare') }}
     </div>
 
     <section class="card">

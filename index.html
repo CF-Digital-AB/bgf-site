@@ -479,6 +479,9 @@
         <!-- Actual Interactive Form -->
         <form id="gamefestForm" action="/submit" method="post" class="space-y-8 pt-8">
 
+          <!-- Hidden: ad-attribution source captured from the URL (?utm_source=…) -->
+          <input type="hidden" id="utmSourceInput" name="utm_source" value="" />
+
           <!-- 1. Ålder/intervall -->
           <div class="space-y-3">
             <label class="block font-tech text-lg font-bold text-white uppercase tracking-wider" data-i18n="q1">
@@ -1097,6 +1100,13 @@
     let savedLang = null;
     try { savedLang = localStorage.getItem('bgf_lang'); } catch (e) { /* ignore */ }
     applyLang(savedLang || 'sv');
+
+    // Capture ad-attribution from the URL (?utm_source=…) into the hidden form field
+    (function () {
+      const src = new URLSearchParams(window.location.search).get('utm_source');
+      const field = document.getElementById('utmSourceInput');
+      if (src && field) field.value = src.trim();
+    })();
 
     // 1. Mobile Menu Toggle
     const mobileMenuBtn = document.getElementById('mobileMenuBtn');

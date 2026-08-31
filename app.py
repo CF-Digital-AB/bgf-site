@@ -103,22 +103,32 @@ CREATE TABLE IF NOT EXISTS responses (
     travel_distance   TEXT,
     lan_price         TEXT,
     volunteer         TEXT,
-    email             TEXT
+    email             TEXT,
+    utm_source        TEXT
 );
 
 CREATE TABLE IF NOT EXISTS visitors (
     visitor_id  TEXT PRIMARY KEY,
     first_seen  TEXT NOT NULL,
-    last_seen   TEXT NOT NULL
+    last_seen   TEXT NOT NULL,
+    utm_source  TEXT
 );
 """
 
 
 def init_db() -> None:
-    """Create the tables if they do not exist yet."""
+    """Create the tables if they do not exist yet, and migrate old ones."""
     conn = sqlite3.connect(DB_PATH)
     try:
         conn.executescript(SCHEMA)
+        # Migrations for databases created before utm_source tracking: add the
+        # missing column in place so existing rows are preserved.
+        visitor_cols = {row[1] for row in conn.execute("PRAGMA table_info(visitors)")}
+        if "utm_source" not in visitor_cols:
+            conn.execute("ALTER TABLE visitors ADD COLUMN utm_source TEXT")
+        response_cols = {row[1] for row in conn.execute("PRAGMA table_info(responses)")}
+        if "utm_source" not in response_cols:
+            conn.execute("ALTER TABLE responses ADD COLUMN utm_source TEXT")
         conn.commit()
     finally:
         conn.close()
@@ -136,24 +146,35 @@ def _track_visitor():
     """Count unique visitors to the survey page via an anonymous cookie.
 
     A random UUID is stored client-side (HttpOnly) and in SQLite; nothing
-    personal is collected, consistent with the form's privacy note.
+    personal is collected, consistent with the form's privacy note. The
+    ``utm_source`` query parameter (e.g. ``?utm_source=reddit``) is recorded
+    for ad-attribution stats.
     """
     if request.path != "/":
         return
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
     visitor_id = request.cookies.get(VISITOR_COOKIE)
+    utm_source = (request.args.get("utm_source") or "").strip() or None
     db = get_db()
     if not visitor_id:
         visitor_id = uuid.uuid4().hex
         db.execute(
-            "INSERT INTO visitors (visitor_id, first_seen, last_seen) VALUES (?, ?, ?)",
-            (visitor_id, now, now),
+            "INSERT INTO visitors (visitor_id, first_seen, last_seen, utm_source) "
+            "VALUES (?, ?, ?, ?)",
+            (visitor_id, now, now, utm_source),
         )
     else:
         db.execute(
             "UPDATE visitors SET last_seen = ? WHERE visitor_id = ?",
             (now, visitor_id),
         )
+        if utm_source:
+            # First-touch attribution: remember the source only if we have none yet.
+            db.execute(
+                "UPDATE visitors SET utm_source = ? "
+                "WHERE visitor_id = ? AND (utm_source IS NULL OR utm_source = '')",
+                (utm_source, visitor_id),
+            )
     g.visitor_cookie = visitor_id
     db.commit()
 
@@ -287,6 +308,7 @@ def submit():
         "lan_price": _clean(request.form.get("price")),
         "volunteer": _map(request.form.get("volunteer"), VOLUNTEER_MAP),
         "email": _clean(request.form.get("email")),
+        "utm_source": _clean(request.form.get("utm_source")),
     }
 
     columns = ", ".join(row.keys())
@@ -360,6 +382,23 @@ def admin():
         "SELECT COUNT(*) AS c FROM visitors WHERE date(first_seen) = date('now')"
     ).fetchone()["c"]
 
+    # Ad-attribution stats (utm_source query param, e.g. ?utm_source=reddit)
+    reddit_visitors = db.execute(
+        "SELECT COUNT(*) AS c FROM visitors WHERE utm_source = 'reddit'"
+    ).fetchone()["c"]
+    reddit_responses = db.execute(
+        "SELECT COUNT(*) AS c FROM responses WHERE utm_source = 'reddit'"
+    ).fetchone()["c"]
+    utm_breakdown = {"counts": {}, "total": 0}
+    for row in db.execute(
+        "SELECT utm_source AS src, COUNT(*) AS c FROM visitors "
+        "WHERE utm_source IS NOT NULL AND utm_source != '' "
+        "GROUP BY utm_source ORDER BY c DESC"
+    ).fetchall():
+        label = row["src"] or "Övrigt"
+        utm_breakdown["counts"][label] = row["c"]
+        utm_breakdown["total"] += row["c"]
+
     responses = db.execute(
         "SELECT * FROM responses ORDER BY id DESC"
     ).fetchall()
@@ -371,6 +410,9 @@ def admin():
         with_email=with_email,
         unique_visitors=unique_visitors,
         visitors_today=visitors_today,
+        reddit_visitors=reddit_visitors,
+        reddit_responses=reddit_responses,
+        utm_breakdown=utm_breakdown,
         responses=responses,
         age_groups=AGE_GROUPS,
         motivation_options=MOTIVATION_OPTIONS,
