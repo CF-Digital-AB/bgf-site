@@ -21,7 +21,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY app.py generate_pdf.py ./
+COPY app.py generate_pdf.py index.html ./
 COPY templates/ templates/
 COPY static/ static/
 
