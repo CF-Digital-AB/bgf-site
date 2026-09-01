@@ -57,6 +57,16 @@
             <div class="kpi-label">Reddit-responser</div>
             <div class="kpi-sub">inskick via annonsen</div>
         </div>
+        <div class="kpi">
+            <div class="kpi-num">{{ qr_visitors }}</div>
+            <div class="kpi-label">Från QR-koden</div>
+            <div class="kpi-sub">unika besökare via ?utm_source=qr</div>
+        </div>
+        <div class="kpi">
+            <div class="kpi-num">{{ qr_responses }}</div>
+            <div class="kpi-label">QR-responser</div>
+            <div class="kpi-sub">inskick via QR-koden</div>
+        </div>
     </div>
 
     {% macro bar_block(title, stat, note='') %}

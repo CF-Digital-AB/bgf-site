@@ -382,12 +382,18 @@ def admin():
         "SELECT COUNT(*) AS c FROM visitors WHERE date(first_seen) = date('now')"
     ).fetchone()["c"]
 
-    # Ad-attribution stats (utm_source query param, e.g. ?utm_source=reddit)
+    # Campaign-attribution stats (utm_source query param, e.g. Reddit ads or QR)
     reddit_visitors = db.execute(
-        "SELECT COUNT(*) AS c FROM visitors WHERE utm_source = 'reddit'"
+        "SELECT COUNT(*) AS c FROM visitors WHERE lower(trim(utm_source)) = 'reddit'"
     ).fetchone()["c"]
     reddit_responses = db.execute(
-        "SELECT COUNT(*) AS c FROM responses WHERE utm_source = 'reddit'"
+        "SELECT COUNT(*) AS c FROM responses WHERE lower(trim(utm_source)) = 'reddit'"
+    ).fetchone()["c"]
+    qr_visitors = db.execute(
+        "SELECT COUNT(*) AS c FROM visitors WHERE lower(trim(utm_source)) = 'qr'"
+    ).fetchone()["c"]
+    qr_responses = db.execute(
+        "SELECT COUNT(*) AS c FROM responses WHERE lower(trim(utm_source)) = 'qr'"
     ).fetchone()["c"]
     utm_breakdown = {"counts": {}, "total": 0}
     for row in db.execute(
@@ -412,6 +418,8 @@ def admin():
         visitors_today=visitors_today,
         reddit_visitors=reddit_visitors,
         reddit_responses=reddit_responses,
+        qr_visitors=qr_visitors,
+        qr_responses=qr_responses,
         utm_breakdown=utm_breakdown,
         responses=responses,
         age_groups=AGE_GROUPS,
