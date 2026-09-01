@@ -43,8 +43,9 @@ response from the database.
 
 The admin dashboard also shows ad-attribution stats. Any visit or submission that
 arrives with a UTM source in the URL (e.g. `?utm_source=reddit`) is tagged; the
-"Från Reddit Ads" KPI and the "Trafikkällor (utm_source)" breakdown count those
-unique visitors and responses.
+dedicated Reddit- and QR-kod KPIs plus the "Trafikkällor (utm_source)" breakdown
+count those unique visitors and responses. The QR code should point to
+`https://www.bodengamefest.com/?utm_source=qr`.
 
 Set `PORT` to change the port, `HOST` to change the bind address
 (default `127.0.0.1`; Docker sets it to `0.0.0.0`), `BGF_DB` to use a
