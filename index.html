@@ -460,275 +460,50 @@
           </p>
         </div>
 
-        <!-- Form Success State (hidden initially) -->
-        <div id="formSuccess" class="hidden py-12 text-center space-y-6">
-          <div class="w-20 h-20 bg-green-500/10 border-2 border-green-500 rounded-full flex items-center justify-center mx-auto text-green-400 text-4xl">
-            ✓
-          </div>
-          <div class="space-y-2">
-            <h3 class="font-display font-bold text-2xl text-white" data-i18n="survey-succ-h">TACK FÖR DITT SVAR!</h3>
-            <p class="text-gray-300 max-w-md mx-auto text-sm" data-i18n-html="survey-succ-b">
-              Din feedback är guld värd för oss när vi bygger <strong>Boden GameFest 2027</strong>. Om du angav din e-post kommer du vara först med att få veta när biljetter och turneringar släpps!
-            </p>
-          </div>
-          <button id="resetFormBtn" class="px-6 py-2.5 rounded bg-cyber-dark border border-cyber-border text-xs uppercase font-tech font-bold text-cyber-cyan hover:border-cyber-cyan" data-i18n="survey-succ-btn">
-            Skicka in ett till svar
-          </button>
-        </div>
-
-        <!-- Actual Interactive Form -->
+        <!-- Three essentials are saved immediately; the optional follow-up comes next. -->
         <form id="gamefestForm" action="/submit" method="post" class="space-y-8 pt-8">
-
-          <!-- Hidden: ad-attribution source captured from the URL (?utm_source=…) -->
           <input type="hidden" id="utmSourceInput" name="utm_source" value="" />
 
-          <!-- 1. Ålder/intervall -->
           <div class="space-y-3">
-            <label class="block font-tech text-lg font-bold text-white uppercase tracking-wider" data-i18n="q1">
-              1. Ålder / Intervall
+            <label class="block font-tech text-lg font-bold text-white uppercase tracking-wider">
+              1. Hur gammal är du?
             </label>
             <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
-              <label class="flex items-center gap-2.5 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-cyan cursor-pointer transition-colors text-sm">
-                <input type="radio" name="age" value="under_15" class="accent-cyber-cyan w-4 h-4" />
-                <span>Under 15</span>
-              </label>
-              <label class="flex items-center gap-2.5 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-cyan cursor-pointer transition-colors text-sm">
-                <input type="radio" name="age" value="15_18" class="accent-cyber-cyan w-4 h-4" />
-                <span>15–18</span>
-              </label>
-              <label class="flex items-center gap-2.5 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-cyan cursor-pointer transition-colors text-sm">
-                <input type="radio" name="age" value="19_25" class="accent-cyber-cyan w-4 h-4" />
-                <span>19–25</span>
-              </label>
-              <label class="flex items-center gap-2.5 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-cyan cursor-pointer transition-colors text-sm">
-                <input type="radio" name="age" value="26_35" class="accent-cyber-cyan w-4 h-4" />
-                <span>26–35</span>
-              </label>
-              <label class="flex items-center gap-2.5 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-cyan cursor-pointer transition-colors text-sm col-span-2 sm:col-span-1">
-                <input type="radio" name="age" value="36_plus" class="accent-cyber-cyan w-4 h-4" />
-                <span>36+</span>
-              </label>
+              <label class="flex items-center gap-2.5 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-cyan cursor-pointer text-sm"><input required type="radio" name="age" value="under_15" class="accent-cyber-cyan" /> Under 15</label>
+              <label class="flex items-center gap-2.5 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-cyan cursor-pointer text-sm"><input required type="radio" name="age" value="15_18" class="accent-cyber-cyan" /> 15–18</label>
+              <label class="flex items-center gap-2.5 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-cyan cursor-pointer text-sm"><input required type="radio" name="age" value="19_25" class="accent-cyber-cyan" /> 19–25</label>
+              <label class="flex items-center gap-2.5 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-cyan cursor-pointer text-sm"><input required type="radio" name="age" value="26_35" class="accent-cyber-cyan" /> 26–35</label>
+              <label class="flex items-center gap-2.5 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-cyan cursor-pointer text-sm"><input required type="radio" name="age" value="36_plus" class="accent-cyber-cyan" /> 36+</label>
             </div>
           </div>
 
-          <!-- 2. Ort -->
-          <div class="space-y-2">
-            <label for="locationInput" class="block font-tech text-lg font-bold text-white uppercase tracking-wider" data-i18n="q2">
-              2. Ort (Var bor du?)
-            </label>
-            <input type="text" id="locationInput" name="location" placeholder="T.ex. Boden, Luleå, Piteå, Umeå..." data-i18n-placeholder="q2-ph" class="w-full px-4 py-3 rounded-lg bg-cyber-dark border border-cyber-border focus:border-cyber-cyan focus:ring-1 focus:ring-cyber-cyan text-white placeholder-gray-500 outline-none text-sm transition-all" />
-          </div>
-
-          <!-- 3 & 4. Deltagande / Besökare i 2 kolumner -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            
-            <!-- 3. Delta på LAN -->
-            <div class="space-y-3">
-              <label class="block font-tech text-lg font-bold text-white uppercase tracking-wider" data-i18n="q3">
-                3. Skulle du vilja delta på LAN?
-              </label>
-              <div class="grid grid-cols-3 gap-2">
-                <label class="flex items-center justify-center gap-2 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer text-sm font-medium">
-                  <input type="radio" name="lan_attend" value="ja" class="accent-cyber-yellow" />
-                  <span data-i18n="yn-ja">Ja</span>
-                </label>
-                <label class="flex items-center justify-center gap-2 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer text-sm font-medium">
-                  <input type="radio" name="lan_attend" value="nej" class="accent-cyber-yellow" />
-                  <span data-i18n="yn-nej">Nej</span>
-                </label>
-                <label class="flex items-center justify-center gap-2 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer text-sm font-medium">
-                  <input type="radio" name="lan_attend" value="kanske" class="accent-cyber-yellow" />
-                  <span data-i18n="yn-kanske">Kanske</span>
-                </label>
-              </div>
-            </div>
-
-            <!-- 4. Vanlig besökare -->
-            <div class="space-y-3">
-              <label class="block font-tech text-lg font-bold text-white uppercase tracking-wider" data-i18n="q4">
-                4. Skulle du komma som vanlig besökare?
-              </label>
-              <div class="grid grid-cols-3 gap-2">
-                <label class="flex items-center justify-center gap-2 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer text-sm font-medium">
-                  <input type="radio" name="visitor" value="ja" class="accent-cyber-yellow" />
-                  <span data-i18n="yn-ja">Ja</span>
-                </label>
-                <label class="flex items-center justify-center gap-2 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer text-sm font-medium">
-                  <input type="radio" name="visitor" value="nej" class="accent-cyber-yellow" />
-                  <span data-i18n="yn-nej">Nej</span>
-                </label>
-                <label class="flex items-center justify-center gap-2 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer text-sm font-medium">
-                  <input type="radio" name="visitor" value="kanske" class="accent-cyber-yellow" />
-                  <span data-i18n="yn-kanske">Kanske</span>
-                </label>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- ⭐ VIKTIG FRÅGA SECTION (Framhävd box) -->
-          <div class="p-6 rounded-xl bg-gradient-to-r from-cyber-magenta/10 via-cyber-dark to-cyber-cyan/10 border-2 border-cyber-magenta/60 shadow-glow-magenta space-y-4">
-            <div class="flex items-center gap-2 text-cyber-magenta font-tech font-bold text-sm uppercase tracking-widest">
-              <span>⭐</span> <span data-i18n="imp-title">VIKTIG FRÅGA</span>
-            </div>
-            <label class="block font-display text-lg sm:text-xl font-bold text-white leading-snug" data-i18n="imp-q">
-              Vilket av detta skulle få dig att åka till Boden GameFest?
-            </label>
-            <p class="text-xs text-gray-300" data-i18n="imp-hint">Kryssa i alla alternativ som stämmer in på dig.</p>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-              <label class="flex items-center gap-3 p-3 bg-cyber-card/90 rounded-lg border border-cyber-border hover:border-cyber-magenta cursor-pointer transition-colors text-sm">
-                <input type="checkbox" name="reasons" value="lan_vanner" class="accent-cyber-magenta w-4 h-4" />
-                <span data-i18n="imp-o1">LAN & spela dygnet runt med vänner</span>
-              </label>
-              <label class="flex items-center gap-3 p-3 bg-cyber-card/90 rounded-lg border border-cyber-border hover:border-cyber-magenta cursor-pointer transition-colors text-sm">
-                <input type="checkbox" name="reasons" value="esport" class="accent-cyber-magenta w-4 h-4" />
-                <span data-i18n="imp-o2">E-sport turneringar & scenfinaler</span>
-              </label>
-              <label class="flex items-center gap-3 p-3 bg-cyber-card/90 rounded-lg border border-cyber-border hover:border-cyber-magenta cursor-pointer transition-colors text-sm">
-                <input type="checkbox" name="reasons" value="indie" class="accent-cyber-magenta w-4 h-4" />
-                <span data-i18n="imp-o3">Indie games-utställning & nya spel</span>
-              </label>
-              <label class="flex items-center gap-3 p-3 bg-cyber-card/90 rounded-lg border border-cyber-border hover:border-cyber-magenta cursor-pointer transition-colors text-sm">
-                <input type="checkbox" name="reasons" value="gamedev" class="accent-cyber-magenta w-4 h-4" />
-                <span data-i18n="imp-o4">Game-dev & branschnätverkande</span>
-              </label>
-              <label class="flex items-center gap-3 p-3 bg-cyber-card/90 rounded-lg border border-cyber-border hover:border-cyber-magenta cursor-pointer transition-colors text-sm">
-                <input type="checkbox" name="reasons" value="lectures" class="accent-cyber-magenta w-4 h-4" />
-                <span data-i18n="imp-o5">Föreläsningar & inspiration</span>
-              </label>
-              <label class="flex items-center gap-3 p-3 bg-cyber-card/90 rounded-lg border border-cyber-border hover:border-cyber-magenta cursor-pointer transition-colors text-sm">
-                <input type="checkbox" name="reasons" value="retro" class="accent-cyber-magenta w-4 h-4" />
-                <span data-i18n="imp-o6">Retro-gaming & arkadkänsla</span>
-              </label>
-              <label class="flex items-center gap-3 p-3 bg-cyber-card/90 rounded-lg border border-cyber-border hover:border-cyber-magenta cursor-pointer transition-colors text-sm sm:col-span-2">
-                <input type="checkbox" name="reasons" value="gemenskap" class="accent-cyber-magenta w-4 h-4" />
-                <span data-i18n="imp-o7">Gemenskapen, folket och den fantastiska stämningen</span>
-              </label>
-            </div>
-            
-            <div class="pt-2">
-              <input type="text" name="reason_other" placeholder="Annat som lockar dig? (frivilligt)..." data-i18n-placeholder="imp-ph" class="w-full px-4 py-2.5 rounded-lg bg-cyber-dark border border-cyber-border focus:border-cyber-magenta focus:ring-1 focus:ring-cyber-magenta text-white placeholder-gray-500 outline-none text-sm" />
-            </div>
-          </div>
-
-          <!-- 5. Spel du spelar -->
-          <div class="space-y-2">
-            <label for="gamesInput" class="block font-tech text-lg font-bold text-white uppercase tracking-wider" data-i18n="q5">
-              5. Vilka spel spelar du?
-            </label>
-            <input type="text" id="gamesInput" name="games" placeholder="T.ex. CS2, LoL, Fortnite, Valorant, WoW, Minecraft, Rocket League..." data-i18n-placeholder="q5-ph" class="w-full px-4 py-3 rounded-lg bg-cyber-dark border border-cyber-border focus:border-cyber-cyan focus:ring-1 focus:ring-cyber-cyan text-white placeholder-gray-500 outline-none text-sm" />
-          </div>
-
-          <!-- 6. Önskade Turneringar -->
-          <div class="space-y-2">
-            <label for="tournamentsInput" class="block font-tech text-lg font-bold text-white uppercase tracking-wider" data-i18n="q6">
-              6. Vilka turneringar vill du se på plats?
-            </label>
-            <input type="text" id="tournamentsInput" name="tournaments" placeholder="Vilka titlar vill du tävla i eller se på storbildsskärmarna?" data-i18n-placeholder="q6-ph" class="w-full px-4 py-3 rounded-lg bg-cyber-dark border border-cyber-border focus:border-cyber-cyan focus:ring-1 focus:ring-cyber-cyan text-white placeholder-gray-500 outline-none text-sm" />
-          </div>
-
-          <!-- 7. Specifika intressen -->
           <div class="space-y-3">
-            <label class="block font-tech text-lg font-bold text-white uppercase tracking-wider" data-i18n="q7">
-              7. Är du också intresserad av följande?
+            <label class="block font-tech text-lg font-bold text-white uppercase tracking-wider">
+              2. Hur vill du helst uppleva GameFest?
             </label>
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              <label class="flex items-center gap-2.5 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-cyan cursor-pointer text-sm">
-                <input type="checkbox" name="interests" value="gamedev" class="accent-cyber-cyan w-4 h-4" />
-                <span data-i18n="q7-gamedev">Game-dev</span>
-              </label>
-              <label class="flex items-center gap-2.5 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-cyan cursor-pointer text-sm">
-                <input type="checkbox" name="interests" value="forelasningar" class="accent-cyber-cyan w-4 h-4" />
-                <span data-i18n="q7-talks">Föreläsningar</span>
-              </label>
-              <label class="flex items-center gap-2.5 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-cyan cursor-pointer text-sm">
-                <input type="checkbox" name="interests" value="indie" class="accent-cyber-cyan w-4 h-4" />
-                <span data-i18n="q7-indie">Indie games</span>
-              </label>
-              <label class="flex items-center gap-2.5 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-cyan cursor-pointer text-sm">
-                <input type="checkbox" name="interests" value="retro" class="accent-cyber-cyan w-4 h-4" />
-                <span data-i18n="q7-retro">Retro Arcade</span>
-              </label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <label class="flex items-center gap-3 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer"><input required type="radio" name="participation" value="lan" class="accent-cyber-yellow" /> Spela på LAN</label>
+              <label class="flex items-center gap-3 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer"><input required type="radio" name="participation" value="visitor" class="accent-cyber-yellow" /> Komma som besökare</label>
+              <label class="flex items-center gap-3 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer"><input required type="radio" name="participation" value="both" class="accent-cyber-yellow" /> Både LAN och besökare</label>
+              <label class="flex items-center gap-3 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer"><input required type="radio" name="participation" value="unsure" class="accent-cyber-yellow" /> Inte säker ännu</label>
             </div>
           </div>
 
-          <!-- 8. Resavstånd -->
-          <div class="space-y-3">
-            <label class="block font-tech text-lg font-bold text-white uppercase tracking-wider" data-i18n="q8">
-              8. Hur långt skulle du kunna resa till eventet?
-            </label>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-              <label class="flex items-center gap-2.5 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer text-sm">
-                <input type="radio" name="travel_distance" value="lokalt" class="accent-cyber-yellow w-4 h-4" />
-                <span data-i18n="q8-lokalt">Lokalt (Boden/Fyrkanten)</span>
-              </label>
-              <label class="flex items-center gap-2.5 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer text-sm">
-                <input type="radio" name="travel_distance" value="norrbotten" class="accent-cyber-yellow w-4 h-4" />
-                <span data-i18n="q8-norrbotten">Inom Norrbotten</span>
-              </label>
-              <label class="flex items-center gap-2.5 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer text-sm">
-                <input type="radio" name="travel_distance" value="sverige" class="accent-cyber-yellow w-4 h-4" />
-                <span data-i18n="q8-langt">Utanför länet / Längre</span>
-              </label>
-            </div>
-          </div>
-
-          <!-- 9 & 10. Pris & Funktionär -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            
-            <!-- 9. Pris LAN-pass -->
-            <div class="space-y-2">
-              <label for="priceInput" class="block font-tech text-lg font-bold text-white uppercase tracking-wider" data-i18n="q9">
-                9. Rimligt pris för ett LAN-pass?
-              </label>
-              <input type="text" id="priceInput" name="price" placeholder="T.ex. 400–600 kr för 4 dagar..." data-i18n-placeholder="q9-ph" class="w-full px-4 py-3 rounded-lg bg-cyber-dark border border-cyber-border focus:border-cyber-cyan focus:ring-1 focus:ring-cyber-cyan text-white placeholder-gray-500 outline-none text-sm" />
-            </div>
-
-            <!-- 10. Funktionär -->
-            <div class="space-y-3">
-              <label class="block font-tech text-lg font-bold text-white uppercase tracking-wider" data-i18n="q10">
-                10. Vill du hjälpa till som funktionär?
-              </label>
-              <div class="grid grid-cols-3 gap-2">
-                <label class="flex items-center justify-center gap-2 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-cyan cursor-pointer text-sm">
-                  <input type="radio" name="volunteer" value="ja" class="accent-cyber-cyan" />
-                  <span data-i18n="yn-ja">Ja</span>
-                </label>
-                <label class="flex items-center justify-center gap-2 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-cyan cursor-pointer text-sm">
-                  <input type="radio" name="volunteer" value="nej" class="accent-cyber-cyan" />
-                  <span data-i18n="yn-nej">Nej</span>
-                </label>
-                <label class="flex items-center justify-center gap-2 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-cyan cursor-pointer text-sm">
-                  <input type="radio" name="volunteer" value="kanske" class="accent-cyber-cyan" />
-                  <span data-i18n="yn-kanske">Kanske</span>
-                </label>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- 11. E-post (Frivilligt med integritetsnotis) -->
           <div class="space-y-2 pt-4 border-t border-cyber-border">
-            <label for="emailInput" class="block font-tech text-lg font-bold text-white uppercase tracking-wider" data-i18n="q11">
-              11. E-post för förtur vid biljettsläpp (Frivilligt)
+            <label for="emailInput" class="block font-tech text-lg font-bold text-white uppercase tracking-wider">
+              3. Din e-post
             </label>
-            <input type="email" id="emailInput" name="email" placeholder="namn@exempel.se" data-i18n-placeholder="q11-ph" class="w-full px-4 py-3 rounded-lg bg-cyber-dark border border-cyber-border focus:border-cyber-cyan focus:ring-1 focus:ring-cyber-cyan text-white placeholder-gray-500 outline-none text-sm" />
-            <p class="text-xs text-gray-400 italic" data-i18n-html="privacy">
-              🔒 <strong>Integritet:</strong> Vi samlar inte in fler personuppgifter än nödvändigt. E-postadressen används uteslutande för information om festivalen och biljettsläpp.
-            </p>
+            <input required type="email" id="emailInput" name="email" autocomplete="email" placeholder="namn@exempel.se" class="w-full px-4 py-3 rounded-lg bg-cyber-dark border border-cyber-border focus:border-cyber-cyan focus:ring-1 focus:ring-cyber-cyan text-white placeholder-gray-500 outline-none text-sm" />
+            <p class="text-xs text-gray-400 italic">🔒 Används bara för information om festivalen och biljettsläpp.</p>
           </div>
 
-          <!-- Form Error State (hidden initially) -->
           <div id="formError" class="hidden mb-4 p-3 rounded-lg bg-red-500/10 border border-red-500/40 text-red-300 text-sm text-center"></div>
-
-          <!-- Submit Button -->
-          <div class="pt-4">
-            <button type="submit" id="submitBtn" class="w-full py-4 rounded-xl bg-gradient-to-r from-cyber-yellow via-cyber-magenta to-cyber-cyan font-display font-black text-lg tracking-wider text-black uppercase shadow-glow-yellow hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer" data-i18n="submit">
-              Skicka In Mina Tankar & Önskemål
+          <div class="pt-2">
+            <button type="submit" id="submitBtn" class="w-full py-4 rounded-xl bg-gradient-to-r from-cyber-yellow via-cyber-magenta to-cyber-cyan font-display font-black text-lg tracking-wider text-black uppercase shadow-glow-yellow hover:scale-[1.01] transition-all cursor-pointer">
+              Skicka in intresseanmälan
             </button>
+            <p class="mt-3 text-center text-xs text-gray-500">Tar mindre än en minut. Fler frivilliga frågor kommer efteråt.</p>
           </div>
-
         </form>
 
       </div>
@@ -1149,10 +924,8 @@
 
     // 3. Form Submission Handling -> POST to the backend (/submit) -> SQLite
     const form = document.getElementById('gamefestForm');
-    const formSuccess = document.getElementById('formSuccess');
     const formError = document.getElementById('formError');
     const submitBtn = document.getElementById('submitBtn');
-    const resetBtn = document.getElementById('resetFormBtn');
 
     function showError(message) {
       if (!formError) return;
@@ -1170,7 +943,7 @@
       submitBtn.classList.toggle('opacity-60', isSubmitting);
     }
 
-    if (form && formSuccess) {
+    if (form) {
       form.addEventListener('submit', async function(e) {
         e.preventDefault();
         if (formError) formError.classList.add('hidden');
@@ -1182,10 +955,8 @@
           const res = await fetch('/submit', { method: 'POST', body: formData });
           if (!res.ok) throw new Error('HTTP ' + res.status);
 
-          // Success: hide the form, reveal the success state smoothly.
-          form.classList.add('hidden');
-          formSuccess.classList.remove('hidden');
-          formSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          // Flask returns the unique confirmation/follow-up URL after saving.
+          window.location.assign(res.url);
         } catch (err) {
           console.error('Survey submit failed:', err);
           showError(I18N[CUR_LANG]['error-msg']);
@@ -1194,15 +965,6 @@
       });
     }
 
-    if (resetBtn && form && formSuccess) {
-      resetBtn.addEventListener('click', () => {
-        form.reset();
-        if (formError) formError.classList.add('hidden');
-        formSuccess.classList.add('hidden');
-        form.classList.remove('hidden');
-        setSubmitting(false);
-      });
-    }
   </script>
 </body>
 </html>

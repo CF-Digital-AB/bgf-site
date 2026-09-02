@@ -111,10 +111,16 @@
 
     <div class="thanks-icon">&#10003;</div>
     <h2>Tack för din intresseanmälan!</h2>
-    <p>Ditt svar har registrerats (ref. <span class="ref">#{{ response_id }}</span>).</p>
+    {% if request.args.get('completed') %}
+    <p>Tack för extrasvaren! Allt är nu sparat (ref. <span class="ref">#{{ response['id'] }}</span>).</p>
     <p>Håll ögonen öppna – vi hör av oss när biljetterna släpps!</p>
-
-    <a class="submit-btn" href="{{ url_for('index') }}">Skicka en till anmälan</a>
+    <a class="submit-btn" href="{{ url_for('index') }}">Tillbaka till startsidan</a>
+    {% else %}
+    <p>Din intresseanmälan och e-post är sparade (ref. <span class="ref">#{{ response['id'] }}</span>).</p>
+    <p><strong>Vill du hjälpa oss ännu mer?</strong><br>Svara på några snabba, helt frivilliga frågor till.</p>
+    <a class="submit-btn" href="{{ url_for('complete_response', token=response['completion_token']) }}">Ja, jag hjälper gärna till</a>
+    <p><a href="{{ url_for('index') }}" style="color:#94a3b8">Nej tack, jag är klar</a></p>
+    {% endif %}
 </div>
 
 </body>

@@ -104,7 +104,9 @@ CREATE TABLE IF NOT EXISTS responses (
     lan_price         TEXT,
     volunteer         TEXT,
     email             TEXT,
-    utm_source        TEXT
+    utm_source        TEXT,
+    completion_token  TEXT,
+    completed_at      TEXT
 );
 
 CREATE TABLE IF NOT EXISTS visitors (
@@ -129,6 +131,14 @@ def init_db() -> None:
         response_cols = {row[1] for row in conn.execute("PRAGMA table_info(responses)")}
         if "utm_source" not in response_cols:
             conn.execute("ALTER TABLE responses ADD COLUMN utm_source TEXT")
+        if "completion_token" not in response_cols:
+            conn.execute("ALTER TABLE responses ADD COLUMN completion_token TEXT")
+        if "completed_at" not in response_cols:
+            conn.execute("ALTER TABLE responses ADD COLUMN completed_at TEXT")
+        conn.execute(
+            "CREATE UNIQUE INDEX IF NOT EXISTS responses_completion_token "
+            "ON responses(completion_token)"
+        )
         conn.commit()
     finally:
         conn.close()
@@ -289,12 +299,24 @@ def submit():
     # Field names below are the `name` attributes of index.html's form. Single
     # choice + multi-choice values are mapped through the *_MAP tables so they
     # land in SQLite as the same labels the admin dashboard expects.
+    participation = _clean(request.form.get("participation"))
+    participation_values = {
+        "lan": ("Ja", "Nej"),
+        "visitor": ("Nej", "Ja"),
+        "both": ("Ja", "Ja"),
+        "unsure": ("Kanske", "Kanske"),
+    }
+    age = _clean(request.form.get("age"))
+    email = _clean(request.form.get("email"))
+    if age not in AGE_MAP or participation not in participation_values or not email:
+        return "Fyll i alla tre frågorna med giltiga svar.", 400
+    want_lan, regular_visitor = participation_values.get(participation, ("", ""))
     row = {
         "created_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"),
-        "age_group": _map(request.form.get("age"), AGE_MAP),
+        "age_group": _map(age, AGE_MAP),
         "location": _clean(request.form.get("location")),
-        "want_lan": _map(request.form.get("lan_attend"), YES_NO_MAP),
-        "regular_visitor": _map(request.form.get("visitor"), YES_NO_MAP),
+        "want_lan": want_lan,
+        "regular_visitor": regular_visitor,
         "motivation": _join_multi(
             [_map(v, MOTIVATION_MAP) for v in request.form.getlist("reasons")]
         ),
@@ -307,25 +329,70 @@ def submit():
         "travel_distance": _map(request.form.get("travel_distance"), TRAVEL_MAP),
         "lan_price": _clean(request.form.get("price")),
         "volunteer": _map(request.form.get("volunteer"), VOLUNTEER_MAP),
-        "email": _clean(request.form.get("email")),
+        "email": email,
         "utm_source": _clean(request.form.get("utm_source")),
+        "completion_token": uuid.uuid4().hex,
+        "completed_at": None,
     }
 
     columns = ", ".join(row.keys())
     placeholders = ", ".join(f":{k}" for k in row)
-    cur = db.execute(
-        f"INSERT INTO responses ({columns}) VALUES ({placeholders})", row
+    db.execute(f"INSERT INTO responses ({columns}) VALUES ({placeholders})", row)
+    db.commit()
+    flash("Tack! Dina svar har sparats.", "success")
+    return redirect(url_for("thanks", token=row["completion_token"]))
+
+
+@app.route("/tack/<token>")
+def thanks(token):
+    response = get_db().execute(
+        "SELECT id, completion_token, completed_at FROM responses WHERE completion_token = ?",
+        (token,),
+    ).fetchone()
+    if response is None:
+        return "Anmälan hittades inte.", 404
+    return render_template("thanks.html", response=response)
+
+
+@app.route("/komplettera/<token>", methods=["GET", "POST"])
+def complete_response(token):
+    db = get_db()
+    response = db.execute(
+        "SELECT * FROM responses WHERE completion_token = ?", (token,)
+    ).fetchone()
+    if response is None:
+        return "Anmälan hittades inte.", 404
+    if request.method == "GET":
+        return render_template("followup.html", response=response)
+
+    values = {
+        "location": _clean(request.form.get("location")),
+        "motivation": _join_multi(
+            [_map(v, MOTIVATION_MAP) for v in request.form.getlist("reasons")]
+        ),
+        "motivation_other": _clean(request.form.get("reason_other")),
+        "games_played": _clean(request.form.get("games")),
+        "tournaments_want": _clean(request.form.get("tournaments")),
+        "interests": _join_multi(
+            [_map(v, INTEREST_MAP) for v in request.form.getlist("interests")]
+        ),
+        "travel_distance": _map(request.form.get("travel_distance"), TRAVEL_MAP),
+        "lan_price": _clean(request.form.get("price")),
+        "volunteer": _map(request.form.get("volunteer"), VOLUNTEER_MAP),
+        "completed_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"),
+        "completion_token": token,
+    }
+    db.execute(
+        """UPDATE responses SET location=:location, motivation=:motivation,
+        motivation_other=:motivation_other, games_played=:games_played,
+        tournaments_want=:tournaments_want, interests=:interests,
+        travel_distance=:travel_distance, lan_price=:lan_price,
+        volunteer=:volunteer, completed_at=:completed_at
+        WHERE completion_token=:completion_token""",
+        values,
     )
     db.commit()
-    response_id = cur.lastrowid
-
-    flash("Tack! Dina svar har sparats.", "success")
-    return redirect(url_for("thanks", response_id=response_id))
-
-
-@app.route("/tack/<int:response_id>")
-def thanks(response_id):
-    return render_template("thanks.html", response_id=response_id)
+    return redirect(url_for("thanks", token=token, completed="1"))
 
 
 # --------------------------------------------------------------------------- #
@@ -375,6 +442,9 @@ def admin():
     with_email = db.execute(
         "SELECT COUNT(*) AS c FROM responses WHERE email != ''"
     ).fetchone()["c"]
+    completed = db.execute(
+        "SELECT COUNT(*) AS c FROM responses WHERE completed_at IS NOT NULL"
+    ).fetchone()["c"]
 
     # Unique-visitor counters (anonymous cookie-based)
     unique_visitors = db.execute("SELECT COUNT(*) AS c FROM visitors").fetchone()["c"]
@@ -414,6 +484,7 @@ def admin():
         total=total,
         stats=stats,
         with_email=with_email,
+        completed=completed,
         unique_visitors=unique_visitors,
         visitors_today=visitors_today,
         reddit_visitors=reddit_visitors,

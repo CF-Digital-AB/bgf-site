@@ -44,6 +44,11 @@
             <div class="kpi-label">Med e-post</div>
         </div>
         <div class="kpi">
+            <div class="kpi-num">{{ completed }}</div>
+            <div class="kpi-label">Svarat på bonusfrågor</div>
+            <div class="kpi-sub">{% if total %}{{ (completed|float / total * 100)|round(0) }}{% else %}0{% endif %}% av anmälningarna</div>
+        </div>
+        <div class="kpi">
             <div class="kpi-num">{% if total %}{{ (stats.volunteer.counts['Ja']|float / total * 100)|round(0) }}{% else %}0{% endif %}%</div>
             <div class="kpi-label">Vill vara funktionär</div>
         </div>
@@ -116,6 +121,7 @@
                         <th>Pris</th>
                         <th>Funktionär</th>
                         <th>E-post</th>
+                        <th>Bonus klar</th>
                         <th class="col-del" aria-label="Ta bort">Ta bort</th>
                     </tr>
                 </thead>
@@ -136,6 +142,7 @@
                         <td>{{ r['lan_price'] or '–' }}</td>
                         <td>{{ r['volunteer'] or '–' }}</td>
                         <td class="wrap">{{ r['email'] or '–' }}</td>
+                        <td>{{ 'Ja' if r['completed_at'] else 'Nej' }}</td>
                         <td class="col-del nowrap">
                             <form method="post" action="{{ url_for('admin_delete', response_id=r['id']) }}"
                                   onsubmit="return confirm('Radera svar #{{ r['id'] }}? Detta kan inte ångras.');">

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Några frågor till – Boden GameFest 2027</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<main class="page">
+  <div class="header"><h1>Boden GameFest 2027</h1><p class="subtitle">Hjälp oss forma festivalen</p></div>
+  <section class="card">
+    <h2>Några snabba bonusfrågor</h2>
+    <h3>Din intresseanmälan är redan sparad. Alla frågor nedan är frivilliga.</h3>
+    <form method="post">
+      <div class="form-group"><label class="question" for="location">Var bor du?</label><input class="text-input" id="location" name="location" placeholder="T.ex. Boden, Luleå eller Piteå"></div>
+      <div class="highlight-box"><span class="question">Vad skulle få dig att åka till Boden GameFest?</span>
+        {% for code, label in [('lan_vanner','LAN & spela med vänner'),('esport','E-sportturneringar'),('indie','Indie games-utställning'),('gamedev','Game-dev & nätverkande'),('lectures','Föreläsningar & inspiration'),('retro','Retro-gaming'),('gemenskap','Gemenskapen & stämningen')] %}
+        <label class="option-item wide"><input type="checkbox" name="reasons" value="{{ code }}">{{ label }}</label>{% endfor %}
+        <input class="text-input" name="reason_other" placeholder="Annat som lockar dig?">
+      </div>
+      <div class="form-group"><label class="question" for="games">Vilka spel spelar du?</label><input class="text-input" id="games" name="games"></div>
+      <div class="form-group"><label class="question" for="tournaments">Vilka turneringar vill du se?</label><input class="text-input" id="tournaments" name="tournaments"></div>
+      <div class="form-group"><span class="question">Vad är du också intresserad av?</span>
+        {% for code, label in [('gamedev','Game-dev'),('forelasningar','Föreläsningar'),('indie','Indie games'),('retro','Retro')] %}<label class="option-item"><input type="checkbox" name="interests" value="{{ code }}">{{ label }}</label>{% endfor %}
+      </div>
+      <div class="form-group"><span class="question">Hur långt kan du tänka dig att resa?</span>
+        {% for code, label in [('lokalt','Lokalt (Boden/Fyrkanten)'),('norrbotten','Inom Norrbotten'),('sverige','Utanför länet / längre')] %}<label class="option-item"><input type="radio" name="travel_distance" value="{{ code }}">{{ label }}</label>{% endfor %}
+      </div>
+      <div class="form-group"><label class="question" for="price">Vad känns som ett rimligt pris för ett LAN-pass?</label><input class="text-input" id="price" name="price" placeholder="T.ex. 400–600 kr"></div>
+      <div class="form-group"><span class="question">Vill du hjälpa till som funktionär?</span>
+        {% for code, label in [('ja','Ja'),('nej','Nej'),('kanske','Kanske, berätta mer')] %}<label class="option-item"><input type="radio" name="volunteer" value="{{ code }}">{{ label }}</label>{% endfor %}
+      </div>
+      <div class="submit-row"><button class="btn" type="submit">Spara mina extrasvar</button></div>
+    </form>
+  </section>
+</main>
+</body>
+</html>
