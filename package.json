@@ -9,6 +9,10 @@
     "start": "docker compose up -d",
     "down": "docker compose down",
     "logs": "docker compose logs -f",
-    "pdf": "docker compose run --rm bgf-site python generate_pdf.py"
+    "pdf": "docker compose run --rm bgf-site python generate_pdf.py",
+    "css": "tailwindcss -i tailwind.input.css -o static/tailwind.css --minify"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
   }
 }

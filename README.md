@@ -6,11 +6,12 @@ A small web app for the Boden GameFest 2027 interest survey (6–9 maj, Boden).
 
 | File / dir            | Purpose |
 |-----------------------|---------|
-| `index.html`          | Public landing page + three-question interest form (Tailwind, self-contained). Served at `/`; its form posts to `/submit` |
+| `index.html`          | Public landing page + three-question interest form (Tailwind, prebuilt to `static/tailwind.css`). Served at `/`; its form posts to `/submit` |
 | `app.py`              | Flask backend: serves `index.html`, stores submissions in SQLite, admin dashboard, CSV export |
 | `survey.db`           | SQLite database with all submitted responses (auto-created) |
 | `templates/`          | Jinja templates: confirmation, optional follow-up and admin pages (`survey.html` is legacy) |
 | `static/style.css`    | Shared styling (purple BG27 theme, same look as the printed form) |
+| `static/tailwind.css` | Prebuilt minified Tailwind for `index.html`. Rebuild after markup changes: `npm run css` (uses `tailwind.config.js` + `tailwind.input.css`) |
 | `generate_pdf.py`     | Generates the printable A4 PDF version of the survey |
 | `output/`             | Generated HTML + PDF of the printed form |
 | `Dockerfile`          | Container image for the web app (Flask only) |

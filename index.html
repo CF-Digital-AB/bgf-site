@@ -4,45 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>BODEN GAMEFEST 2027 | 6–9 Maj • Play • Create • Connect</title>
-  
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="64x64" href="/static/favicon-64.png" />
+  <link rel="apple-touch-icon" href="/static/apple-touch-icon.png" />
+  <!-- Tailwind CSS (prebuilt with Tailwind CLI: npx tailwindcss -i tailwind.input.css -o static/tailwind.css --minify) -->
+  <link rel="stylesheet" href="/static/tailwind.css" />
   <!-- Google Fonts: Orbitron, Rajdhani & Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@600;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
-  
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            display: ['Orbitron', 'sans-serif'],
-            tech: ['Rajdhani', 'sans-serif'],
-          },
-          colors: {
-            cyber: {
-              black: '#07080d',
-              dark: '#0e111a',
-              card: '#141724',
-              border: '#23283e',
-              cyan: '#00f0ff',
-              magenta: '#ff0055',
-              yellow: '#ffcc00',
-              purple: '#9d4edd',
-            }
-          },
-          boxShadow: {
-            'glow-cyan': '0 0 25px rgba(0, 240, 255, 0.35)',
-            'glow-magenta': '0 0 25px rgba(255, 0, 85, 0.35)',
-            'glow-yellow': '0 0 25px rgba(255, 204, 0, 0.35)',
-          }
-        }
-      }
-    }
-  </script>
 
   <style>
     /* Custom Grid and Glow Animations */
