@@ -465,7 +465,7 @@
           <input type="hidden" id="utmSourceInput" name="utm_source" value="" />
 
           <div class="space-y-3">
-            <label class="block font-tech text-lg font-bold text-white uppercase tracking-wider">
+            <label class="block font-tech text-lg font-bold text-white uppercase tracking-wider" data-i18n="form-q1">
               1. Hur gammal är du?
             </label>
             <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
@@ -478,33 +478,33 @@
           </div>
 
           <div class="space-y-3">
-            <label class="block font-tech text-lg font-bold text-white uppercase tracking-wider">
+            <label class="block font-tech text-lg font-bold text-white uppercase tracking-wider" data-i18n="form-q2">
               2. Hur vill du helst uppleva GameFest?
             </label>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              <label class="flex items-center gap-3 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer"><input required type="radio" name="participation" value="lan" class="accent-cyber-yellow" /> Spela på LAN</label>
-              <label class="flex items-center gap-3 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer"><input required type="radio" name="participation" value="visitor" class="accent-cyber-yellow" /> Komma som besökare</label>
-              <label class="flex items-center gap-3 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer"><input required type="radio" name="participation" value="both" class="accent-cyber-yellow" /> Både LAN och besökare</label>
-              <label class="flex items-center gap-3 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer"><input required type="radio" name="participation" value="exhibitor_games" class="accent-cyber-yellow" /> Utställare - Spel</label>
-              <label class="flex items-center gap-3 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer"><input required type="radio" name="participation" value="exhibitor_other" class="accent-cyber-yellow" /> Utställare - Övrigt</label>
-              <label class="flex items-center gap-3 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer"><input required type="radio" name="participation" value="unsure" class="accent-cyber-yellow" /> Inte säker ännu</label>
+              <label class="flex items-center gap-3 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer"><input required type="radio" name="participation" value="lan" class="accent-cyber-yellow" /> <span data-i18n="opt-lan">Spela på LAN</span></label>
+              <label class="flex items-center gap-3 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer"><input required type="radio" name="participation" value="visitor" class="accent-cyber-yellow" /> <span data-i18n="opt-visitor">Komma som besökare</span></label>
+              <label class="flex items-center gap-3 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer"><input required type="radio" name="participation" value="both" class="accent-cyber-yellow" /> <span data-i18n="opt-both">Både LAN och besökare</span></label>
+              <label class="flex items-center gap-3 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer"><input required type="radio" name="participation" value="exhibitor_games" class="accent-cyber-yellow" /> <span data-i18n="opt-exh-games">Utställare - Spel</span></label>
+              <label class="flex items-center gap-3 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer"><input required type="radio" name="participation" value="exhibitor_other" class="accent-cyber-yellow" /> <span data-i18n="opt-exh-other">Utställare - Övrigt</span></label>
+              <label class="flex items-center gap-3 p-3 rounded-lg bg-cyber-dark border border-cyber-border hover:border-cyber-yellow cursor-pointer"><input required type="radio" name="participation" value="unsure" class="accent-cyber-yellow" /> <span data-i18n="opt-unsure">Inte säker ännu</span></label>
             </div>
           </div>
 
           <div class="space-y-2 pt-4 border-t border-cyber-border">
-            <label for="emailInput" class="block font-tech text-lg font-bold text-white uppercase tracking-wider">
+            <label for="emailInput" class="block font-tech text-lg font-bold text-white uppercase tracking-wider" data-i18n="form-q3">
               3. Din e-post
             </label>
-            <input required type="email" id="emailInput" name="email" autocomplete="email" placeholder="namn@exempel.se" class="w-full px-4 py-3 rounded-lg bg-cyber-dark border border-cyber-border focus:border-cyber-cyan focus:ring-1 focus:ring-cyber-cyan text-white placeholder-gray-500 outline-none text-sm" />
-            <p class="text-xs text-gray-400 italic">🔒 Används bara för information om festivalen och biljettsläpp.</p>
+            <input required type="email" id="emailInput" name="email" autocomplete="email" placeholder="namn@exempel.se" data-i18n-placeholder="email-ph" class="w-full px-4 py-3 rounded-lg bg-cyber-dark border border-cyber-border focus:border-cyber-cyan focus:ring-1 focus:ring-cyber-cyan text-white placeholder-gray-500 outline-none text-sm" />
+            <p class="text-xs text-gray-400 italic" data-i18n="form-privacy">🔒 Används bara för information om festivalen och biljettsläpp.</p>
           </div>
 
           <div id="formError" class="hidden mb-4 p-3 rounded-lg bg-red-500/10 border border-red-500/40 text-red-300 text-sm text-center"></div>
           <div class="pt-2">
-            <button type="submit" id="submitBtn" class="w-full py-4 rounded-xl bg-gradient-to-r from-cyber-yellow via-cyber-magenta to-cyber-cyan font-display font-black text-lg tracking-wider text-black uppercase shadow-glow-yellow hover:scale-[1.01] transition-all cursor-pointer">
+            <button type="submit" id="submitBtn" data-i18n="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-cyber-yellow via-cyber-magenta to-cyber-cyan font-display font-black text-lg tracking-wider text-black uppercase shadow-glow-yellow hover:scale-[1.01] transition-all cursor-pointer">
               Skicka in intresseanmälan
             </button>
-            <p class="mt-3 text-center text-xs text-gray-500">Tar mindre än en minut. Fler frivilliga frågor kommer efteråt.</p>
+            <p class="mt-3 text-center text-xs text-gray-500" data-i18n="form-minute">Tar mindre än en minut. Fler frivilliga frågor kommer efteråt.</p>
           </div>
         </form>
 
@@ -666,6 +666,18 @@
         "survey-h2": "ÄR DU INTRESSERAD?",
         "survey-tagline": "Intresseformulär • Boden GameFest 2027",
         "survey-sub": "Dina svar hjälper oss att planera storlek på LAN-salen, vilka turneringar vi ska satsa på och vilket innehåll som lockar mest.",
+        "form-q1": "1. Hur gammal är du?",
+        "form-q2": "2. Hur vill du helst uppleva GameFest?",
+        "opt-lan": "Spela på LAN",
+        "opt-visitor": "Komma som besökare",
+        "opt-both": "Både LAN och besökare",
+        "opt-exh-games": "Utställare - Spel",
+        "opt-exh-other": "Utställare - Övrigt",
+        "opt-unsure": "Inte säker ännu",
+        "form-q3": "3. Din e-post",
+        "email-ph": "namn@exempel.se",
+        "form-privacy": "🔒 Används bara för information om festivalen och biljettsläpp.",
+        "form-minute": "Tar mindre än en minut. Fler frivilliga frågor kommer efteråt.",
         "survey-succ-h": "TACK FÖR DITT SVAR!",
         "survey-succ-b": "Din feedback är guld värd för oss när vi bygger <strong>Boden GameFest 2027</strong>. Om du angav din e-post kommer du vara först med att få veta när biljetter och turneringar släpps!",
         "survey-succ-btn": "Skicka in ett till svar",
@@ -707,7 +719,7 @@
         "q11": "11. E-post för förtur vid biljettsläpp (Frivilligt)",
         "q11-ph": "namn@exempel.se",
         "privacy": "🔒 <strong>Integritet:</strong> Vi samlar inte in fler personuppgifter än nödvändigt. E-postadressen används uteslutande för information om festivalen och biljettsläpp.",
-        "submit": "Skicka In Mina Tankar & Önskemål",
+        "submit": "Skicka in intresseanmälan",
         "submit-sending": "Skickar...",
         "error-msg": "Något gick fel när vi skickade ditt svar. Kontrollera din anslutning och försök igen.",
         "faq-h": "VANLIGA FRÅGOR",
@@ -777,6 +789,18 @@
         "survey-h2": "ARE YOU INTERESTED?",
         "survey-tagline": "Interest form • Boden GameFest 2027",
         "survey-sub": "Your answers help us plan the size of the LAN hall, which tournaments to focus on and what content appeals most.",
+        "form-q1": "1. How old are you?",
+        "form-q2": "2. How would you prefer to experience GameFest?",
+        "opt-lan": "Play on LAN",
+        "opt-visitor": "Come as a visitor",
+        "opt-both": "Both LAN and visitor",
+        "opt-exh-games": "Exhibitor - Games",
+        "opt-exh-other": "Exhibitor - Other",
+        "opt-unsure": "Not sure yet",
+        "form-q3": "3. Your email",
+        "email-ph": "name@example.com",
+        "form-privacy": "🔒 Used only for festival information and the ticket release.",
+        "form-minute": "Takes less than a minute. More optional questions follow afterwards.",
         "survey-succ-h": "THANK YOU FOR YOUR RESPONSE!",
         "survey-succ-b": "Your feedback is gold to us as we build <strong>Boden GameFest 2027</strong>. If you left your email you'll be first to know when tickets and tournaments are released!",
         "survey-succ-btn": "Submit another response",
@@ -818,7 +842,7 @@
         "q11": "11. Email for early access to ticket release (Optional)",
         "q11-ph": "name@example.com",
         "privacy": "🔒 <strong>Privacy:</strong> We don't collect more personal data than necessary. Your email address is used solely to send you information about the festival and ticket release.",
-        "submit": "Submit My Thoughts & Wishes",
+        "submit": "Submit interest form",
         "submit-sending": "Submitting...",
         "error-msg": "Something went wrong sending your response. Check your connection and try again.",
         "faq-h": "FREQUENTLY ASKED QUESTIONS",

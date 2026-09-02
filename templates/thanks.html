@@ -100,9 +100,39 @@
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 240, 255, 0.4);
         }
+
+        .lang-switch {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            display: flex;
+            gap: 4px;
+        }
+
+        .lang-switch button {
+            font: inherit;
+            font-size: 0.8rem;
+            font-weight: bold;
+            padding: 4px 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background: transparent;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        .lang-switch button.active {
+            background: var(--accent-primary);
+            color: #000;
+        }
     </style>
 </head>
 <body>
+
+<div class="lang-switch" role="group" aria-label="Språk / Language">
+    <button type="button" data-lang="sv">SV</button>
+    <button type="button" data-lang="en">EN</button>
+</div>
 
 <div class="form-container">
     <div class="header">
@@ -110,18 +140,70 @@
     </div>
 
     <div class="thanks-icon">&#10003;</div>
-    <h2>Tack för din intresseanmälan!</h2>
+    <h2 data-i18n="th-h">Tack för din intresseanmälan!</h2>
     {% if request.args.get('completed') %}
-    <p>Tack för extrasvaren! Allt är nu sparat (ref. <span class="ref">#{{ response['id'] }}</span>).</p>
-    <p>Håll ögonen öppna – vi hör av oss när biljetterna släpps!</p>
-    <a class="submit-btn" href="{{ url_for('index') }}">Tillbaka till startsidan</a>
+    <p><span data-i18n="th-done">Tack för extrasvaren! Allt är nu sparat</span> (ref. <span class="ref">#{{ response['id'] }}</span>).</p>
+    <p data-i18n="th-stay">Håll ögonen öppna – vi hör av oss när biljetterna släpps!</p>
+    <a class="submit-btn" href="{{ url_for('index') }}" data-i18n="th-home">Tillbaka till startsidan</a>
     {% else %}
-    <p>Din intresseanmälan och e-post är sparade (ref. <span class="ref">#{{ response['id'] }}</span>).</p>
-    <p><strong>Vill du hjälpa oss ännu mer?</strong><br>Svara på några snabba, helt frivilliga frågor till.</p>
-    <a class="submit-btn" href="{{ url_for('complete_response', token=response['completion_token']) }}">Ja, jag hjälper gärna till</a>
-    <p><a href="{{ url_for('index') }}" style="color:#94a3b8">Nej tack, jag är klar</a></p>
+    <p><span data-i18n="th-saved">Din intresseanmälan och e-post är sparade</span> (ref. <span class="ref">#{{ response['id'] }}</span>).</p>
+    <p><strong data-i18n="th-more-h">Vill du hjälpa oss ännu mer?</strong><br><span data-i18n="th-more-p">Svara på några snabba, helt frivilliga frågor till.</span></p>
+    <a class="submit-btn" href="{{ url_for('complete_response', token=response['completion_token']) }}" data-i18n="th-yes">Ja, jag hjälper gärna till</a>
+    <p><a href="{{ url_for('index') }}" style="color:#94a3b8" data-i18n="th-no">Nej tack, jag är klar</a></p>
     {% endif %}
 </div>
+
+<script>
+    const TH_I18N = {
+        sv: {
+            "title": "Tack! - Boden GameFest 2027",
+            "th-h": "Tack för din intresseanmälan!",
+            "th-done": "Tack för extrasvaren! Allt är nu sparat",
+            "th-stay": "Håll ögonen öppna – vi hör av oss när biljetterna släpps!",
+            "th-home": "Tillbaka till startsidan",
+            "th-saved": "Din intresseanmälan och e-post är sparade",
+            "th-more-h": "Vill du hjälpa oss ännu mer?",
+            "th-more-p": "Svara på några snabba, helt frivilliga frågor till.",
+            "th-yes": "Ja, jag hjälper gärna till",
+            "th-no": "Nej tack, jag är klar"
+        },
+        en: {
+            "title": "Thank you! - Boden GameFest 2027",
+            "th-h": "Thanks for your interest!",
+            "th-done": "Thanks for the extra answers! Everything is now saved",
+            "th-stay": "Stay tuned – we'll be in touch when tickets are released!",
+            "th-home": "Back to homepage",
+            "th-saved": "Your registration and email have been saved",
+            "th-more-h": "Want to help us even more?",
+            "th-more-p": "Answer a few more quick, entirely optional questions.",
+            "th-yes": "Yes, happy to help",
+            "th-no": "No thanks, I'm done"
+        }
+    };
+
+    function applyLang(lang) {
+        const dict = TH_I18N[lang];
+        if (!dict) return;
+        document.documentElement.lang = lang;
+        document.title = dict["title"];
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (dict[key] !== undefined) el.textContent = dict[key];
+        });
+        document.querySelectorAll('.lang-switch button').forEach(btn => {
+            btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+        });
+        try { localStorage.setItem('bgf_lang', lang); } catch (e) { /* storage unavailable */ }
+    }
+
+    document.querySelectorAll('.lang-switch button').forEach(btn => {
+        btn.addEventListener('click', () => applyLang(btn.getAttribute('data-lang')));
+    });
+
+    let savedLang = null;
+    try { savedLang = localStorage.getItem('bgf_lang'); } catch (e) { /* ignore */ }
+    applyLang(savedLang || 'sv');
+</script>
 
 </body>
 </html>

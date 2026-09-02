@@ -4,35 +4,149 @@
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Några frågor till – Boden GameFest 2027</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    .lang-switch { position: absolute; top: 16px; right: 16px; display: flex; gap: 4px; }
+    .lang-switch button {
+      font: inherit; font-size: 0.8rem; font-weight: bold; padding: 4px 10px;
+      border: 1px solid var(--border-color, #2d3748); border-radius: 6px;
+      background: transparent; color: inherit; cursor: pointer;
+    }
+    .lang-switch button.active { background: var(--accent-primary, #00f0ff); color: #000; }
+  </style>
 </head>
 <body>
 <main class="page">
-  <div class="header"><h1>Boden GameFest 2027</h1><p class="subtitle">Hjälp oss forma festivalen</p></div>
+  <div class="lang-switch" role="group" aria-label="Språk / Language">
+    <button type="button" data-lang="sv">SV</button>
+    <button type="button" data-lang="en">EN</button>
+  </div>
+  <div class="header"><h1>Boden GameFest 2027</h1><p class="subtitle" data-i18n="fu-subtitle">Hjälp oss forma festivalen</p></div>
   <section class="card">
-    <h2>Några snabba bonusfrågor</h2>
-    <h3>Din intresseanmälan är redan sparad. Alla frågor nedan är frivilliga.</h3>
+    <h2 data-i18n="fu-h2">Några snabba bonusfrågor</h2>
+    <h3 data-i18n="fu-h3">Din intresseanmälan är redan sparad. Alla frågor nedan är frivilliga.</h3>
     <form method="post">
-      <div class="form-group"><label class="question" for="location">Var bor du?</label><input class="text-input" id="location" name="location" placeholder="T.ex. Boden, Luleå eller Piteå"></div>
-      <div class="highlight-box"><span class="question">Vad skulle få dig att åka till Boden GameFest?</span>
-        {% for code, label in [('lan_vanner','LAN & spela med vänner'),('esport','E-sportturneringar'),('indie','Indie games-utställning'),('gamedev','Game-dev & nätverkande'),('lectures','Föreläsningar & inspiration'),('retro','Retro-gaming'),('gemenskap','Gemenskapen & stämningen')] %}
-        <label class="option-item wide"><input type="checkbox" name="reasons" value="{{ code }}">{{ label }}</label>{% endfor %}
-        <input class="text-input" name="reason_other" placeholder="Annat som lockar dig?">
+      <div class="form-group"><label class="question" for="location" data-i18n="fu-q-location">Var bor du?</label><input class="text-input" id="location" name="location" placeholder="T.ex. Boden, Luleå eller Piteå" data-i18n-placeholder="fu-ph-location"></div>
+      <div class="highlight-box"><span class="question" data-i18n="fu-q-reason">Vad skulle få dig att åka till Boden GameFest?</span>
+        {% for code, key, label in [('lan_vanner','fu-r1','LAN & spela med vänner'),('esport','fu-r2','E-sportturneringar'),('indie','fu-r3','Indie games-utställning'),('gamedev','fu-r4','Game-dev & nätverkande'),('lectures','fu-r5','Föreläsningar & inspiration'),('retro','fu-r6','Retro-gaming'),('gemenskap','fu-r7','Gemenskapen & stämningen')] %}
+        <label class="option-item wide"><input type="checkbox" name="reasons" value="{{ code }}"><span data-i18n="{{ key }}">{{ label }}</span></label>{% endfor %}
+        <input class="text-input" name="reason_other" placeholder="Annat som lockar dig?" data-i18n-placeholder="fu-ph-other">
       </div>
-      <div class="form-group"><label class="question" for="games">Vilka spel spelar du?</label><input class="text-input" id="games" name="games"></div>
-      <div class="form-group"><label class="question" for="tournaments">Vilka turneringar vill du se?</label><input class="text-input" id="tournaments" name="tournaments"></div>
-      <div class="form-group"><span class="question">Vad är du också intresserad av?</span>
-        {% for code, label in [('gamedev','Game-dev'),('forelasningar','Föreläsningar'),('indie','Indie games'),('retro','Retro')] %}<label class="option-item"><input type="checkbox" name="interests" value="{{ code }}">{{ label }}</label>{% endfor %}
+      <div class="form-group"><label class="question" for="games" data-i18n="fu-q-games">Vilka spel spelar du?</label><input class="text-input" id="games" name="games"></div>
+      <div class="form-group"><label class="question" for="tournaments" data-i18n="fu-q-tournaments">Vilka turneringar vill du se?</label><input class="text-input" id="tournaments" name="tournaments"></div>
+      <div class="form-group"><span class="question" data-i18n="fu-q-interests">Vad är du också intresserad av?</span>
+        {% for code, key, label in [('gamedev','fu-i1','Game-dev'),('forelasningar','fu-i2','Föreläsningar'),('indie','fu-i3','Indie games'),('retro','fu-i4','Retro')] %}<label class="option-item"><input type="checkbox" name="interests" value="{{ code }}"><span data-i18n="{{ key }}">{{ label }}</span></label>{% endfor %}
       </div>
-      <div class="form-group"><span class="question">Hur långt kan du tänka dig att resa?</span>
-        {% for code, label in [('lokalt','Lokalt (Boden/Fyrkanten)'),('norrbotten','Inom Norrbotten'),('sverige','Utanför länet / längre')] %}<label class="option-item"><input type="radio" name="travel_distance" value="{{ code }}">{{ label }}</label>{% endfor %}
+      <div class="form-group"><span class="question" data-i18n="fu-q-travel">Hur långt kan du tänka dig att resa?</span>
+        {% for code, key, label in [('lokalt','fu-t1','Lokalt (Boden/Fyrkanten)'),('norrbotten','fu-t2','Inom Norrbotten'),('sverige','fu-t3','Utanför länet / längre')] %}<label class="option-item"><input type="radio" name="travel_distance" value="{{ code }}"><span data-i18n="{{ key }}">{{ label }}</span></label>{% endfor %}
       </div>
-      <div class="form-group"><label class="question" for="price">Vad känns som ett rimligt pris för ett LAN-pass?</label><input class="text-input" id="price" name="price" placeholder="T.ex. 400–600 kr"></div>
-      <div class="form-group"><span class="question">Vill du hjälpa till som funktionär?</span>
-        {% for code, label in [('ja','Ja'),('nej','Nej'),('kanske','Kanske, berätta mer')] %}<label class="option-item"><input type="radio" name="volunteer" value="{{ code }}">{{ label }}</label>{% endfor %}
+      <div class="form-group"><label class="question" for="price" data-i18n="fu-q-price">Vad känns som ett rimligt pris för ett LAN-pass?</label><input class="text-input" id="price" name="price" placeholder="T.ex. 400–600 kr" data-i18n-placeholder="fu-ph-price"></div>
+      <div class="form-group"><span class="question" data-i18n="fu-q-volunteer">Vill du hjälpa till som funktionär?</span>
+        {% for code, key, label in [('ja','fu-v1','Ja'),('nej','fu-v2','Nej'),('kanske','fu-v3','Kanske, berätta mer')] %}<label class="option-item"><input type="radio" name="volunteer" value="{{ code }}"><span data-i18n="{{ key }}">{{ label }}</span></label>{% endfor %}
       </div>
-      <div class="submit-row"><button class="btn" type="submit">Spara mina extrasvar</button></div>
+      <div class="submit-row"><button class="btn" type="submit" data-i18n="fu-submit">Spara mina extrasvar</button></div>
     </form>
   </section>
 </main>
+<script>
+  const FU_I18N = {
+    sv: {
+      "title": "Några frågor till – Boden GameFest 2027",
+      "fu-subtitle": "Hjälp oss forma festivalen",
+      "fu-h2": "Några snabba bonusfrågor",
+      "fu-h3": "Din intresseanmälan är redan sparad. Alla frågor nedan är frivilliga.",
+      "fu-q-location": "Var bor du?",
+      "fu-ph-location": "T.ex. Boden, Luleå eller Piteå",
+      "fu-q-reason": "Vad skulle få dig att åka till Boden GameFest?",
+      "fu-r1": "LAN & spela med vänner",
+      "fu-r2": "E-sportturneringar",
+      "fu-r3": "Indie games-utställning",
+      "fu-r4": "Game-dev & nätverkande",
+      "fu-r5": "Föreläsningar & inspiration",
+      "fu-r6": "Retro-gaming",
+      "fu-r7": "Gemenskapen & stämningen",
+      "fu-ph-other": "Annat som lockar dig?",
+      "fu-q-games": "Vilka spel spelar du?",
+      "fu-q-tournaments": "Vilka turneringar vill du se?",
+      "fu-q-interests": "Vad är du också intresserad av?",
+      "fu-i1": "Game-dev",
+      "fu-i2": "Föreläsningar",
+      "fu-i3": "Indie games",
+      "fu-i4": "Retro",
+      "fu-q-travel": "Hur långt kan du tänka dig att resa?",
+      "fu-t1": "Lokalt (Boden/Fyrkanten)",
+      "fu-t2": "Inom Norrbotten",
+      "fu-t3": "Utanför länet / längre",
+      "fu-q-price": "Vad känns som ett rimligt pris för ett LAN-pass?",
+      "fu-ph-price": "T.ex. 400–600 kr",
+      "fu-q-volunteer": "Vill du hjälpa till som funktionär?",
+      "fu-v1": "Ja",
+      "fu-v2": "Nej",
+      "fu-v3": "Kanske, berätta mer",
+      "fu-submit": "Spara mina extrasvar"
+    },
+    en: {
+      "title": "A few more questions – Boden GameFest 2027",
+      "fu-subtitle": "Help shape the festival",
+      "fu-h2": "A few quick bonus questions",
+      "fu-h3": "Your interest registration is already saved. All questions below are optional.",
+      "fu-q-location": "Where do you live?",
+      "fu-ph-location": "E.g. Boden, Luleå or Piteå",
+      "fu-q-reason": "What would make you come to Boden GameFest?",
+      "fu-r1": "LAN & gaming with friends",
+      "fu-r2": "Esports tournaments",
+      "fu-r3": "Indie games showcase",
+      "fu-r4": "Game dev & networking",
+      "fu-r5": "Talks & inspiration",
+      "fu-r6": "Retro gaming",
+      "fu-r7": "The community & the atmosphere",
+      "fu-ph-other": "Something else that appeals to you?",
+      "fu-q-games": "Which games do you play?",
+      "fu-q-tournaments": "Which tournaments do you want to see?",
+      "fu-q-interests": "What else are you interested in?",
+      "fu-i1": "Game dev",
+      "fu-i2": "Talks",
+      "fu-i3": "Indie games",
+      "fu-i4": "Retro",
+      "fu-q-travel": "How far are you willing to travel?",
+      "fu-t1": "Local (Boden/Fyrkanten)",
+      "fu-t2": "Within Norrbotten",
+      "fu-t3": "Outside the county / further",
+      "fu-q-price": "What feels like a reasonable price for a LAN pass?",
+      "fu-ph-price": "E.g. 400–600 SEK",
+      "fu-q-volunteer": "Do you want to help out as staff?",
+      "fu-v1": "Yes",
+      "fu-v2": "No",
+      "fu-v3": "Maybe, tell me more",
+      "fu-submit": "Save my extra answers"
+    }
+  };
+
+  function applyLang(lang) {
+    const dict = FU_I18N[lang];
+    if (!dict) return;
+    document.documentElement.lang = lang;
+    document.title = dict["title"];
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (dict[key] !== undefined) el.textContent = dict[key];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+      const key = el.getAttribute('data-i18n-placeholder');
+      if (dict[key] !== undefined) el.placeholder = dict[key];
+    });
+    document.querySelectorAll('.lang-switch button').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+    try { localStorage.setItem('bgf_lang', lang); } catch (e) { /* storage unavailable */ }
+  }
+
+  document.querySelectorAll('.lang-switch button').forEach(btn => {
+    btn.addEventListener('click', () => applyLang(btn.getAttribute('data-lang')));
+  });
+
+  let savedLang = null;
+  try { savedLang = localStorage.getItem('bgf_lang'); } catch (e) { /* ignore */ }
+  applyLang(savedLang || 'sv');
+</script>
 </body>
 </html>
