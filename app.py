@@ -95,6 +95,7 @@ CREATE TABLE IF NOT EXISTS responses (
     location          TEXT,
     want_lan          TEXT,
     regular_visitor   TEXT,
+    participation     TEXT,
     motivation        TEXT,
     motivation_other  TEXT,
     games_played      TEXT,
@@ -133,6 +134,8 @@ def init_db() -> None:
             conn.execute("ALTER TABLE responses ADD COLUMN utm_source TEXT")
         if "completion_token" not in response_cols:
             conn.execute("ALTER TABLE responses ADD COLUMN completion_token TEXT")
+        if "participation" not in response_cols:
+            conn.execute("ALTER TABLE responses ADD COLUMN participation TEXT")
         if "completed_at" not in response_cols:
             conn.execute("ALTER TABLE responses ADD COLUMN completed_at TEXT")
         conn.execute(
@@ -220,6 +223,14 @@ MOTIVATION_OPTIONS = [
 INTEREST_OPTIONS = ["Game-dev (Spelutveckling)", "Föreläsningar", "Indie games", "Retro"]
 TRAVEL_OPTIONS = ["Lokalt (Boden/Fyrkanten)", "Inom Norrbotten", "Utanför länet / Längre"]
 VOLUNTEER_OPTIONS = ["Ja", "Nej", "Kanske, berätta mer"]
+PARTICIPATION_OPTIONS = [
+    "Spela på LAN",
+    "Komma som besökare",
+    "Både LAN och besökare",
+    "Utställare - Spel",
+    "Utställare - Övrigt",
+    "Inte säker ännu",
+]
 
 # --------------------------------------------------------------------------- #
 # Value maps for the standalone index.html form.
@@ -301,22 +312,26 @@ def submit():
     # land in SQLite as the same labels the admin dashboard expects.
     participation = _clean(request.form.get("participation"))
     participation_values = {
-        "lan": ("Ja", "Nej"),
-        "visitor": ("Nej", "Ja"),
-        "both": ("Ja", "Ja"),
-        "unsure": ("Kanske", "Kanske"),
+        # participation code -> (want_lan, regular_visitor, participation label)
+        "lan": ("Ja", "Nej", "Spela på LAN"),
+        "visitor": ("Nej", "Ja", "Komma som besökare"),
+        "both": ("Ja", "Ja", "Både LAN och besökare"),
+        "exhibitor_games": ("Nej", "Nej", "Utställare - Spel"),
+        "exhibitor_other": ("Nej", "Nej", "Utställare - Övrigt"),
+        "unsure": ("Kanske", "Kanske", "Inte säker ännu"),
     }
     age = _clean(request.form.get("age"))
     email = _clean(request.form.get("email"))
     if age not in AGE_MAP or participation not in participation_values or not email:
         return "Fyll i alla tre frågorna med giltiga svar.", 400
-    want_lan, regular_visitor = participation_values.get(participation, ("", ""))
+    want_lan, regular_visitor, participation_label = participation_values[participation]
     row = {
         "created_at": datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S"),
         "age_group": _map(age, AGE_MAP),
         "location": _clean(request.form.get("location")),
         "want_lan": want_lan,
         "regular_visitor": regular_visitor,
+        "participation": participation_label,
         "motivation": _join_multi(
             [_map(v, MOTIVATION_MAP) for v in request.form.getlist("reasons")]
         ),
@@ -430,6 +445,7 @@ def admin():
 
     stats = {
         "age_group": _count_choices(db, "age_group", AGE_GROUPS),
+        "participation": _count_choices(db, "participation", PARTICIPATION_OPTIONS),
         "want_lan": _count_choices(db, "want_lan", YES_NO_MAYBE),
         "regular_visitor": _count_choices(db, "regular_visitor", YES_NO_MAYBE),
         "motivation": _count_multi(db, "motivation", MOTIVATION_OPTIONS),

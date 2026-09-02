@@ -91,6 +91,7 @@
 
     <div class="stats-grid">
         {{ bar_block('1. Ålder', stats.age_group) }}
+        {{ bar_block('2. Hur vill du delta?', stats.participation) }}
         {{ bar_block('3. Delta på LAN?', stats.want_lan) }}
         {{ bar_block('4. Vanlig besökare?', stats.regular_visitor) }}
         {{ bar_block('Viktig fråga – vad får dig att åka?', stats.motivation, 'flera val') }}
@@ -111,6 +112,7 @@
                         <th>Datum</th>
                         <th>Ålder</th>
                         <th>Ort</th>
+                        <th>Roll</th>
                         <th>LAN</th>
                         <th>Besökare</th>
                         <th>Vad får dig att åka?</th>
@@ -132,6 +134,7 @@
                         <td class="nowrap">{{ r['created_at'][:16] }}</td>
                         <td>{{ r['age_group'] or '–' }}</td>
                         <td>{{ r['location'] or '–' }}</td>
+                        <td>{{ r['participation'] or '–' }}</td>
                         <td>{{ r['want_lan'] or '–' }}</td>
                         <td>{{ r['regular_visitor'] or '–' }}</td>
                         <td class="wrap">{{ ((r['motivation'] or '') + ((' – Annat: ' ~ r['motivation_other']) if r['motivation_other'] else '')).replace(',', ', ') or '–' }}</td>
