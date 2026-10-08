@@ -29,7 +29,6 @@ from flask import (
     redirect,
     render_template,
     request,
-    send_from_directory,
     url_for,
 )
 
@@ -163,7 +162,9 @@ def _track_visitor():
     ``utm_source`` query parameter (e.g. ``?utm_source=reddit``) is recorded
     for ad-attribution stats.
     """
-    if request.path != "/":
+    # The public root now redirects to the main site, so it is no longer a
+    # survey visit and should not add a visitor record.
+    if request.path != "/" or request.endpoint == "index":
         return
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
     visitor_id = request.cookies.get(VISITOR_COOKIE)
@@ -296,11 +297,11 @@ def _map(value, mapping: dict) -> str:
 # --------------------------------------------------------------------------- #
 @app.route("/")
 def index():
-    # The public landing page (with the embedded survey form) is the standalone
-    # index.html. Serve it verbatim so its inline Tailwind/JS/CSS stay intact —
-    # no Jinja templating needed, and nothing in the file gets accidentally
-    # parsed as a template expression.
-    return send_from_directory(BASE_DIR, "index.html")
+    """Send public traffic to the main North Game Fest website."""
+    destination = "https://northgamefest.se/"
+    if request.query_string:
+        destination += "?" + request.query_string.decode("latin-1")
+    return redirect(destination, code=301)
 
 
 @app.route("/submit", methods=["POST"])
